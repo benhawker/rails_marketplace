@@ -1,0 +1,9 @@
+<%= link_to "Add a listing", new_listing_path %>
+
+<% if @listings.any? %>
+	<% @listings.each do |listing| %>
+		<%= listing %>
+	<% end %>
+<% else %>
+	<p>No listings yet</p>
+<% end %>
