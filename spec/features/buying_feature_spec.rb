@@ -58,14 +58,28 @@ feature 'buying & watching' do
 	  click_button 'Create Listing'
 	end
 
+	def user_watches_listing_one
+    visit '/listings'
+		click_link '1959 Les Paul'
+		click_link 'Add to my watchlist - 1959 Les Paul'
+	end
 
-  context 'listings have been added' do
+
+  context 'adding items to watchlist' do
 	  before do
 	  	sign_up_user_one
 	    create_listing_one
 	  end
 
+	  scenario 'user not shown add to watchlist for their own items' do
+	    visit '/listings'
+			click_link '1959 Les Paul'
+	    expect(page).not_to have_content('Add to my watchlist - 1959 Les Paul')
+	  end
+
 	  scenario 'user adds item to watchlist & is shown flash notice confirmation' do
+			sign_out
+	  	sign_up_user_two
 	    visit '/listings'
 			click_link '1959 Les Paul'
 			click_link 'Add to my watchlist - 1959 Les Paul'
@@ -74,10 +88,16 @@ feature 'buying & watching' do
 	  end
 
 	  scenario 'user trys to add duplicate item to watchlist & is shown flash notice saying it is already added' do
+	   	sign_out
+	  	sign_up_user_two
+	  	user_watches_listing_one
 	    visit '/listings'
 			click_link '1959 Les Paul'
 			click_link 'Add to my watchlist - 1959 Les Paul'
-			expect(page).to have_content 'This listing is in your watchlist'
+			expect(page).to have_content 'This listing is already in your watchlist'
 	  end
 	end
+
+
+
 end

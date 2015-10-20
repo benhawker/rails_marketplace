@@ -62,9 +62,14 @@ class ListingsController < ApplicationController
 
   def watch
 		@listing = Listing.find(params[:listing_id])
-		current_user.watched_listings << @listing
-		flash[:notices] = ['Listing was successfully added to your watchlist']
-		redirect_to @listing
+		if @listing.watchers.exclude?(current_user)
+			current_user.watched_listings << @listing
+			flash[:notices] = ['Listing was successfully added to your watchlist']
+			redirect_to @listing
+		else
+			flash[:notices] = ['This listing is already in your watchlist']
+			redirect_to @listing
+		end
    end
 
 	def listing_params
