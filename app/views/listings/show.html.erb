@@ -1,4 +1,4 @@
-<%= link_to "Add to watchlist - #{@listing.title}", root_path %>
+<%= link_to "Add to my watchlist - #{@listing.title}", listing_watch_path(@listing), method: :post %>
 
 <% if @listing.user == current_user %>
 	<%= link_to "Edit #{@listing.title}", edit_listing_path %>

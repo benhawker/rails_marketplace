@@ -60,6 +60,13 @@ class ListingsController < ApplicationController
     end
   end
 
+  def watch
+		@listing = Listing.find(params[:listing_id])
+		current_user.watched_listings << @listing
+		flash[:notices] = ['Listing was successfully added to your watchlist']
+		redirect_to @listing
+   end
+
 	def listing_params
     params.require(:listing).permit(:title, :subtitle, :description)
   end
