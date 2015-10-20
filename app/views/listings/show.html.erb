@@ -1,0 +1,9 @@
+
+<% if @listing.user == current_user %>
+	<%= link_to "Edit #{@listing.title}", edit_listing_path %>
+	<%= link_to "Delete #{@listing.title}", listing_path(@listing), method: :delete %>
+<% end %>
+
+<%= @listing.title %>
+<%= @listing.try(:subtitle) %>
+<%= @listing.try(:description) %>

@@ -2,7 +2,7 @@
 
 <% if @listings.any? %>
 	<% @listings.each do |listing| %>
-		<%= listing %>
+		<%= link_to "#{listing.title}", listing_path(listing) %>
 	<% end %>
 <% else %>
 	<p>No listings yet</p>

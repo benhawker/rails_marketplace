@@ -11,6 +11,8 @@ source 'https://rubygems.org'
   gem 'sdoc', '~> 0.4.0', group: :doc
   gem 'devise'
   gem 'rails_12factor'
+  gem 'simple_form'
+  gem 'country_select'
 
   gem 'byebug'
   gem 'guard-rspec', require: false

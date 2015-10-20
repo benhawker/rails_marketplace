@@ -1,0 +1,7 @@
+<%= simple_form_for @listing, defaults: { input_html: { class: 'form-control' } } do |f| %>
+  <%= f.input :title, input_html: { placeholder: 'Title', class: 'special' } %>
+  <%= f.input :subtitle, input_html: { placeholder: 'Subtitle', maxlength: 20 } %>
+  <%= f.input :description, input_html: { placeholder: 'Description' } %>
+  <%= f.button :submit, input_html: { value: "Create Listing" } %>
+<% end %>
+
