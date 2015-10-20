@@ -3,5 +3,12 @@
   <%= f.input :title, input_html: { placeholder: 'Title', class: 'special' } %>
   <%= f.input :subtitle, input_html: { placeholder: 'Subtitle', maxlength: 20 } %>
   <%= f.input :description, input_html: { placeholder: 'Description' } %>
+	<%= f.input :price, input_html: { placeholder: 'Price' } %>
+	<%= f.input :condition, input_html: { placeholder: 'Description' } %>
+	<%= f.input :brand, input_html: { placeholder: 'Description' } %>
+	<%= f.input :model, input_html: { placeholder: 'Description' } %>
+	<%= f.label :case_type %>
+	<%= f.select :case_type, ["Original HardCase", "HardCase", "GigBag", "No Case"], { placeholder: 'Description' } %>
+	<%= f.input :location, input_html: { placeholder: 'Description' } %>
   <%= f.button :submit, input_html: { value: "Create Listing" } %>
 <% end %>

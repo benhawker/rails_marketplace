@@ -1,5 +1,11 @@
 <%= link_to "Add a listing", new_listing_path %>
 
+<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
+	<%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
+	<%= submit_tag "Search" %>
+<% end %>
+
+
 <% if @listings.any? %>
 	<% @listings.each do |listing| %>
 		<%= link_to "#{listing.title}", listing_path(listing) %>
@@ -7,3 +13,4 @@
 <% else %>
 	<p>No listings yet</p>
 <% end %>
+

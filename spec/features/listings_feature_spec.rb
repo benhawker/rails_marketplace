@@ -50,6 +50,14 @@ feature 'listings' do
 	  click_button 'Create Listing'
 	end
 
+	def create_listing_two
+	  visit '/listings/new'
+	  fill_in 'listing[title]', with: '1970 CBS Strat'
+	  fill_in 'listing[subtitle]', with: 'Olympic White'
+	  fill_in 'listing[description]', with: 'Test description'
+	  click_button 'Create Listing'
+	end
+
 
   context 'listings have been added' do
 	  before do
@@ -91,6 +99,23 @@ feature 'listings' do
 	   visit '/listings'
 	   click_link '1959 Les Paul'
 	   expect(page).to have_content '1959 Les Paul'
+	  end
+	end
+
+	context 'searching listings' do
+
+		before do
+	  	sign_up_user_one
+	    create_listing_one
+	    create_listing_two
+	  end
+
+	  scenario 'lets a user view a listing' do
+	   visit '/listings'
+	   fill_in 'search', with: 'Les Paul'
+	   click_button 'Search'
+	   expect(page).to have_content '1959 Les Paul'
+	   expect(page).not_to have_content '1970 CBS Strat'
 	  end
 	end
 
