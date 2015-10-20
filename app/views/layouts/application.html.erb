@@ -14,6 +14,9 @@
 	  <%= link_to "Sign up", new_user_registration_path %>
 	<% end %>
 
+	<%= link_to "My Profile", current_user %>
+	<%= link_to "All Listings", listings_path %>
+
 	<% if flash && flash[:alerts] %>
   <div class="container">
     <div class="alert alert-danger">
