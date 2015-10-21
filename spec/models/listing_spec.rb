@@ -12,6 +12,17 @@ RSpec.describe Listing, type: :model do
       user.watched_listings << listing
       user.watched_listings << listing
       expect(user.watched_listings.count).to eq 1
+      expect(listing.watchers.count).to eq 1
+    end
+
+    it 'counts the correct number of watchers per listing' do
+      user1 = User.create(email: "ben@test.com", password: "password", password_confirmation: "password")
+      user2 = User.create(email: "bob@test.com", password: "password", password_confirmation: "password")
+      listing = user1.listings.create(title: "Stratocaster")
+      user1.watched_listings << listing
+      user2.watched_listings << listing
+      expect(listing.watchers.count).to eq 2
+      expect(user1.watched_listings.count).to eq 1
     end
   end
 
