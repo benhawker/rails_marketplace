@@ -17,6 +17,8 @@ source 'https://rubygems.org'
   gem 'mailboxer'
   gem 'will_paginate'
   gem 'gravatar_image_tag'
+  gem 'paperclip'
+  gem 'aws-sdk'
 
 group :production do
   gem 'rails_12factor'
