@@ -32,6 +32,43 @@ require 'rails_helper'
     click_button 'Sign up'
   end
 
+  def create_listing_one
+    visit '/listings/new'
+    fill_in 'listing[title]', with: '1959 Les Paul'
+    fill_in 'listing[subtitle]', with: 'A true gem with OHSC'
+    fill_in 'listing[description]', with: 'Test description'
+    click_button 'Create Listing'
+  end
+
+  def create_listing_two
+    visit '/listings/new'
+    fill_in 'listing[title]', with: '1970 CBS Strat'
+    fill_in 'listing[subtitle]', with: 'Olympic White'
+    fill_in 'listing[description]', with: 'Test description'
+    click_button 'Create Listing'
+  end
+
+  def create_listing_three
+    visit '/listings/new'
+    fill_in 'listing[title]', with: 'Takamine'
+    fill_in 'listing[subtitle]', with: 'MIJ'
+    fill_in 'listing[description]', with: 'Test description'
+    click_button 'Create Listing'
+  end
+
+  def add_listing_one_to_watchlist
+    visit '/listings'
+    click_link '1959 Les Paul'
+    click_link 'Add to my watchlist - 1959 Les Paul'
+  end
+
+  def add_listing_two_to_watchlist
+    visit '/listings'
+    click_link '1970 CBS Strat'
+    click_link 'Add to my watchlist - 1970 CBS Strat Paul'
+  end
+
+
 feature "User can sign in and out" do
   context "user not signed in and on the homepage" do
     it "should see a 'sign in' link and a 'sign up' link" do
@@ -95,6 +132,27 @@ feature "User can sign in and out" do
       expect(page).to have_content 'ben@test.com'
       expect(page).to have_content 'bob@test.com'
       expect(page).to have_content 'bill@test.com'
+    end
+  end
+
+  context "user viewing their watchlist" do
+    before do
+      sign_up_user_one
+      create_listing_one
+      create_listing_two
+      create_listing_three
+      sign_out
+      sign_up_user_two
+      add_listing_one_to_watchlist
+      add_listing_two_to_watchlist
+    end
+
+    it "should display all their currently watched items" do
+      visit '/' 
+      click_link "My Watch List"
+      expect(page).to have_content '1959 Les Paul'
+      expect(page).to have_content '1970 CBS Strat'
+      expect(page).not_to have_content 'Takamine'
     end
   end
 end

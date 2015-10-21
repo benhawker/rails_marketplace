@@ -3,10 +3,17 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
   
-  resources :users, only: [:show, :index]
+  # resources :users, only: [:show, :index] do
+  # end
+
+   resources :users do
+  	get :watchlist
+  end
+
+  # get 'users/:id/watchlist' => 'users#watchlist'
 
   resources :messages, only: [:new, :create]
-  
+
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
