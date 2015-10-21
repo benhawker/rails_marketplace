@@ -58,7 +58,6 @@ feature 'listings' do
 	  click_button 'Create Listing'
 	end
 
-
   context 'listings have been added' do
 	  before do
 	  	sign_up_user_one
@@ -82,6 +81,7 @@ feature 'listings' do
 	    visit '/listings'
 	    click_link 'Add a listing'
 	    fill_in 'Title', with: '1959 Les Paul'
+	    attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
 	    click_button 'Create Listing'
 	    expect(page).to have_content '1959 Les Paul'
 	    expect(current_path).to eq '/listings'
