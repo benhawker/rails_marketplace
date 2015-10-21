@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020213122) do
+ActiveRecord::Schema.define(version: 20151021011357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "listings", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -29,8 +34,10 @@ ActiveRecord::Schema.define(version: 20151020213122) do
     t.string   "case_type"
     t.string   "location"
     t.integer  "user_id"
+    t.integer  "category_id"
   end
 
+  add_index "listings", ["category_id"], name: "index_listings_on_category_id", using: :btree
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -61,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151020213122) do
   add_index "watches", ["listing_id"], name: "index_watches_on_listing_id", using: :btree
   add_index "watches", ["user_id"], name: "index_watches_on_user_id", using: :btree
 
+  add_foreign_key "listings", "categories"
   add_foreign_key "listings", "users"
   add_foreign_key "watches", "listings"
   add_foreign_key "watches", "users"
