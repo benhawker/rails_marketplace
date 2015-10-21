@@ -1,0 +1,80 @@
+/**********************************************************
+  GLOBALS
+**********************************************************/
+
+html {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+p, a, li, h3, h4, h5, h6, input, label {
+  font-weight: 400;
+}
+
+/* Override Chrome autofill form input yellow color */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+input:focus:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.centered {
+  text-align:center;
+}
+
+.space-10 {
+  height: 10px;
+}
+
+.space-20 {
+  height: 20px;
+}
+
+.width-200 {
+  width:200px;
+  padding: 10px;
+  margin-bottom:10px;
+}
+
+.btn-border {
+  border: 1px solid #003366;
+    &:hover {
+    background-color: #003366;
+    color: white;
+    }
+}
+
+
+/**********************************************************
+  BACKGROUND
+**********************************************************/
+
+html { 
+  background: url(bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+/**********************************************************
+  NAVBAR
+**********************************************************/
+
+.navbar-brand {
+  h1 {
+    color: #003366;
+    margin-top: 12px;
+    font-size: 1.3em;
+    font-weight: bold;
+    display: inline;
+  }
+}
+

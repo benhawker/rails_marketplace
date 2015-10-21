@@ -12,6 +12,8 @@ source 'https://rubygems.org'
   gem 'devise'
   gem 'simple_form'
   gem 'country_select'
+  gem 'bourbon'
+  gem 'neat'
 
 group :production do
   gem 'rails_12factor'
