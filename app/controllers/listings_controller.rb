@@ -14,11 +14,13 @@ class ListingsController < ApplicationController
 
 	def new
 		@listing = Listing.new
+		@listing.build_category
 	end
 
 	def create
 		@user = current_user
 		@listing = @user.listings.build(listing_params)
+		@product.category = Category.find(params[:category_id]) if params[:category_id]
     if @listing.save
     	flash[:notices] = ['Listing created successfully']
     	redirect_to listings_path
@@ -73,7 +75,10 @@ class ListingsController < ApplicationController
    end
 
 	def listing_params
-    params.require(:listing).permit(:title, :subtitle, :description)
+    params.require(:listing).permit(:title, :subtitle, :description,
+     																:price, :condition, :brand, 
+     																:model, :case_type, :location,
+ 																		category_attributes: [:id, :category_id, :name])
   end
 
   # private

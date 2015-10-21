@@ -9,6 +9,29 @@ require 'rails_helper'
     click_button 'Sign up'
   end
 
+  def sign_out
+    visit '/'
+    click_link 'Sign out'
+  end
+
+  def sign_up_user_two
+    visit '/'
+    click_link 'Sign up'
+    fill_in 'user[email]', with: 'bob@test.com'
+    fill_in 'user[password]', with: 'password'
+    fill_in 'user[password_confirmation]', with: 'password'
+    click_button 'Sign up'
+  end
+
+  def sign_up_user_three
+    visit '/'
+    click_link 'Sign up'
+    fill_in 'user[email]', with: 'bill@test.com'
+    fill_in 'user[password]', with: 'password'
+    fill_in 'user[password_confirmation]', with: 'password'
+    click_button 'Sign up'
+  end
+
 feature "User can sign in and out" do
   context "user not signed in and on the homepage" do
     it "should see a 'sign in' link and a 'sign up' link" do
@@ -54,6 +77,24 @@ feature "User can sign in and out" do
       visit '/'
       click_link 'My Profile'
       expect(page).to have_content 'ben@test.com'
+    end
+  end
+
+  context "user signed in and on their my profile page" do
+    before do
+      sign_up_user_one
+      sign_out
+      sign_up_user_two
+      sign_out
+      sign_up_user_three
+    end
+
+    it "should navigate to their profile page" do
+      visit '/'
+      click_link 'Users'
+      expect(page).to have_content 'ben@test.com'
+      expect(page).to have_content 'bob@test.com'
+      expect(page).to have_content 'bill@test.com'
     end
   end
 end

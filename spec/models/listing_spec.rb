@@ -6,6 +6,8 @@ RSpec.describe Listing, type: :model do
   it { should have_many(:watches) }
   it { should have_many(:watchers).through(:watches) }
 
+  # it { should validate_presence_of(:category) }
+
   context 'watching a listing' do
     it 'a listing cannot be watched twice by the same user' do
       user = User.create(email: "ben@test.com", password: "password", password_confirmation: "password")

@@ -14,6 +14,9 @@ source 'https://rubygems.org'
   gem 'country_select'
   gem 'bourbon'
   gem 'neat'
+  gem 'mailboxer'
+  gem 'will_paginate'
+  gem 'gravatar_image_tag'
 
 group :production do
   gem 'rails_12factor'

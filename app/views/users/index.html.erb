@@ -1,0 +1,12 @@
+<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+	<%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+	<%= submit_tag "Search" %>
+<% end %>
+
+<% if @users.any? %>
+	<% @users.each do |user| %>
+		<%= link_to "#{user.email}", user_path(user) %>
+	<% end %>
+<% else %>
+	<p>No users yet</p>
+<% end %>
