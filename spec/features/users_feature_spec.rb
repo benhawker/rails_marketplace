@@ -65,7 +65,7 @@ require 'rails_helper'
   def add_listing_two_to_watchlist
     visit '/listings'
     click_link '1970 CBS Strat'
-    click_link 'Add to my watchlist - 1970 CBS Strat Paul'
+    click_link 'Add to my watchlist - 1970 CBS Strat'
   end
 
 
