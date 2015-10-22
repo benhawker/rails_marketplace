@@ -65,14 +65,27 @@ class ListingsController < ApplicationController
   def watch
 		@listing = Listing.find(params[:listing_id])
 		if @listing.watchers.exclude?(current_user)
-			current_user.watched_listings << @listing
+			# current_user.watched_listings << @listing
+			@listing.watchers << current_user
 			flash[:notices] = ['Listing was successfully added to your watchlist']
 			redirect_to @listing
 		else
 			flash[:notices] = ['This listing is already in your watchlist']
 			redirect_to @listing
 		end
-   end
+  end
+
+  def unwatch
+   	@listing = Listing.find(params[:listing_id])
+   	# if current_user.watched_listings.find(@listing).destroy && @listing.watches.find(current_user)
+    if @listing.watchers.delete(current_user) 
+      flash[:notices] = ['Listing successfully removed from your watch list']
+      redirect_to user_watchlist_path(current_user)
+    else
+    	flash[:notices] = ['This listing was not deleted from your watchlist']
+			redirect_to user_watchlist_path(current_user)
+    end
+  end
 
 	def listing_params
     params.require(:listing).permit(:title, :subtitle, :description,

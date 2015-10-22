@@ -135,7 +135,7 @@ feature "User can sign in and out" do
     end
   end
 
-  context "user viewing their watchlist" do
+  context "user watchlist" do
     before do
       sign_up_user_one
       create_listing_one
@@ -153,6 +153,15 @@ feature "User can sign in and out" do
       expect(page).to have_content '1959 Les Paul'
       expect(page).to have_content '1970 CBS Strat'
       expect(page).not_to have_content 'Takamine'
+    end
+
+    it "can remove a currently watched item from the list" do
+      visit '/' 
+      click_link "My Watch List"
+      click_link 'Remove from watchlist - 1959 Les Paul'
+      expect(page).to have_content '1970 CBS Strat'
+      expect(page).to have_content 'Listing successfully removed from your watch list'
+      expect(page).not_to have_content '1959 Les Paul'
     end
   end
 end

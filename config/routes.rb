@@ -33,6 +33,7 @@ end
 
   resources :listings do
   	post :watch
+  	delete :unwatch
   end
 
   # get "*any", via: :all, to: "errors#not_found"
