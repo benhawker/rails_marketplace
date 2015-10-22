@@ -1,5 +1,9 @@
 <ul>
-	<% @watched_listings.each do |listing| %>
-		<li><%= listing.title %> <%= link_to "Remove from watchlist - #{listing.title}", listing_unwatch_path(listing), method: :delete %></li>
+	<% if @watched_listings.any? %>
+		<% @watched_listings.each do |listing| %>
+			<li><%= listing.title %> <%= link_to "Remove from watchlist - #{listing.title}", listing_unwatch_path(listing), method: :delete %></li>
+		<% end %>
+	<% else %>
+		<li>No items in your watchlist yet :(</li>
 	<% end %>
 </ul>

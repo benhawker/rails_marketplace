@@ -143,11 +143,11 @@ feature "User can sign in and out" do
       create_listing_three
       sign_out
       sign_up_user_two
-      add_listing_one_to_watchlist
-      add_listing_two_to_watchlist
     end
 
     it "should display all their currently watched items" do
+      add_listing_one_to_watchlist
+      add_listing_two_to_watchlist
       visit '/' 
       click_link "My Watch List"
       expect(page).to have_content '1959 Les Paul'
@@ -156,12 +156,28 @@ feature "User can sign in and out" do
     end
 
     it "can remove a currently watched item from the list" do
+      add_listing_one_to_watchlist
+      add_listing_two_to_watchlist
       visit '/' 
       click_link "My Watch List"
       click_link 'Remove from watchlist - 1959 Les Paul'
       expect(page).to have_content '1970 CBS Strat'
       expect(page).to have_content 'Listing successfully removed from your watch list'
       expect(page).not_to have_content '1959 Les Paul'
+    end
+
+    it "can add, remove and re-add a listing to watched item list" do
+      visit '/' 
+      click_link "My Watch List"
+      expect(page).to have_content 'No items in your watchlist yet :('
+      add_listing_one_to_watchlist
+      click_link "My Watch List"
+      expect(page).to have_content '1959 Les Paul'
+      click_link 'Remove from watchlist - 1959 Les Paul'
+      expect(page).to have_content 'No items in your watchlist yet :('
+      add_listing_one_to_watchlist
+      click_link "My Watch List"
+      expect(page).to have_content '1959 Les Paul'
     end
   end
 end
