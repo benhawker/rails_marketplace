@@ -18,6 +18,9 @@
 			<%= p.file_field :image %>
 		<% end %>
 
+	<%= f.label :tag_list, "Tags (separated by commas)" %>
+	<%= f.text_field :tag_list %>
+
   <%= f.button :submit, input_html: { value: "Create Listing" } %>
 <% end %>
 

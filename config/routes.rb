@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   devise_for :users
   root to: "home#index"
-  
   # resources :users, only: [:show, :index] do
   # end
 
@@ -26,10 +25,12 @@ Rails.application.routes.draw do
   end
 
 	resources :conversations, only: [:index, :show, :destroy] do
-  member do
-    post :restore
+    member do
+      post :restore
+    end
   end
-end
+
+  get 'tags/:tag', to: 'listings#show', as: :tag
 
   resources :listings do
   	post :watch

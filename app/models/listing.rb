@@ -7,6 +7,8 @@ class Listing < ActiveRecord::Base
 
 	accepts_nested_attributes_for :category, :photos
 
+	acts_as_taggable_on :tags
+
 	# validates_presence_of :category
 
 	def self.search(search)

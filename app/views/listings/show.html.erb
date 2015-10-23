@@ -9,10 +9,23 @@
 	<%= link_to "Add to my watchlist - #{@listing.title}", listing_watch_path(@listing), method: :post %>
 <% end %>
 
-<%= @listing.title %>
-<%= @listing.category.name %>
-<%= @listing.try(:subtitle) %>
-<%= @listing.try(:description) %>
+<% if @listing.tags.any? %>
+<ul>
+	Tags:
+	<% @listing.tags.each do |tag| %>
+	<li>
+  	<%= tag.name %>
+	</li>
+	<% end %>
+</ul>
+<% end %>
+
+<ul>
+<li>Listing Title: <%= @listing.title %></li>
+<li>Category: <%= @listing.category.name %></li>
+<li>Subtitle: <%= @listing.try(:subtitle) %></li>
+<li>Description: <%= @listing.try(:description) %></li>
+</ul>
 
 <% @listing.photos.each do |photo| %>
 	<%= image_tag photo.image.url(:thumb) %>

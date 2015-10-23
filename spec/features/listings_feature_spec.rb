@@ -86,6 +86,19 @@ feature 'listings' do
 	    expect(page).to have_content '1959 Les Paul'
 	    expect(current_path).to eq '/listings'
 	  end
+
+	  scenario 'user can add tags to their new listing' do
+	    visit '/listings'
+	    click_link 'Add a listing'
+	    fill_in 'Title', with: 'Takamine EN10C'
+	    fill_in 'Tags', with: 'Electric, Vintage, Gibson, Les Paul'
+	    click_button 'Create Listing'
+	    click_link 'Takamine EN10C'
+	    expect(page).to have_content 'Electric'
+	    expect(page).to have_content 'Vintage'
+	    expect(page).to have_content 'Gibson'
+	    expect(page).to have_content 'Les Paul'
+	  end
 	end
 
 	context 'viewing listings' do

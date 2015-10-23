@@ -87,10 +87,18 @@ class ListingsController < ApplicationController
     end
   end
 
+  def tagged
+	  if params[:tag].present? 
+	    @listings = Listing.tagged_with(params[:tag])
+	  else 
+	    @listings = Listing.listingall
+	  end  
+	end
+
 	def listing_params
     params.require(:listing).permit(:title, :subtitle, :description,
      																:price, :condition, :brand, 
-     																:model, :case_type, :location,
+     																:model, :case_type, :location, :tag_list,
  																		category_attributes: [:id, :category_id, :name], 
  																		photos_attributes: [:id, :image, :listing_id])
   end

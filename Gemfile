@@ -19,6 +19,7 @@ source 'https://rubygems.org'
   gem 'gravatar_image_tag'
   gem 'paperclip'
   gem 'aws-sdk'
+  gem 'acts-as-taggable-on', '~> 3.4'
 
 group :production do
   gem 'rails_12factor'
