@@ -4,6 +4,8 @@
 
 html {
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 12px;
+  height: 100%;
 }
 
 p, a, li, h3, h4, h5, h6, input, label {
@@ -62,54 +64,168 @@ input:focus:-webkit-autofill {
   BACKGROUND
 **********************************************************/
 
-html { 
+/*html { 
   background: url(bg.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+}*/
 
 
-/**********************************************************
-  NAVBAR
-**********************************************************/
-
-.navbar-brand {
-  h1 {
-    color: #003366;
-    margin-top: 12px;
-    font-size: 1.3em;
-    font-weight: bold;
-    display: inline;
-  }
-}
 
 /**********************************************************
   NEAT TESTING
 **********************************************************/
 
-.nav {
-  @include span-columns(12);
-  border: 1px solid black;
-}
 
 .wrapper {
-@include outer-container;
+  @include outer-container();
+  background: #E5E4E2;
 
-  .top { 
-    @include span-columns(12);
-    border: 1px solid black;
+  .nav {
+  margin: 0;
+  padding: 0 0 0 0;
+  @include span-columns(12);
+  background: white;
+  border: 1px solid black;
+
+    .title {
+      text-align: center;
+    }
+
+    ul {
+      border: 1px border black;
+      text-align: center;
+      margin: 0px 0px 0px 0px;
+      padding: 0;
+
+      li {
+        font-size: 70%;
+        display:inline-block;
+        margin: 0;
+
+        padding: 3px 20px 3px 20px;
+        width: auto;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 2px;
+
+        a {
+          text-decoration: none;
+          color: black;
+        }
+      }  
+    }
+  }
+
+  .sub-nav {
+    border-bottom: 1px solid black;
+    height: 50px;
+
+    .sub-nav-left { 
+      @include span-columns(5);
+      border-right: 1px solid black;
+      height: inherit;
+      padding: 1% 7px 1% 10px;
+
+        input {
+          height: 30px;
+        }
+
+        #search {
+          width: 70%;
+          padding-left: 5px;
+        }
+
+        input[type="submit"] {
+          width: 25%;
+          height: 20px;
+          margin-left: 5px;
+          padding: 4px 0px 4px 0px;
+          font: inherit;
+          border: 1px;
+          box-sizing: content-box;
+          -webkit-box-sizing: content-box;
+          -moz-box-sizing: content-box;
+        }
+      }
+
+    .sub-nav-right {
+      @include span-columns(7);
+      @include omega();
+      height: inherit;
+    }
   }
 
   .listings { 
+    margin-top: 20px;
     border: 1px solid black;
     @include span-columns(8);  
   }
 
   .listings-right {
+    margin-top: 20px;
     border: 1px solid black;
     @include span-columns(4); 
+    height: 400px;
+    background: white;
+  }
+
+  .listing-snapshot {
+    @include span-columns(12); 
+    border: 1px solid black;
+    background: white;
+    height: 120px;
+    margin-bottom: 25px;
+
+
+    .listing-snapshot-left {
+      @include span-columns(8); 
+      padding: 5px;
+      margin-bottom: 2%;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .title {
+        font-size: 140%;
+      }
+
+      .title {
+
+      }
+
+      .time-ago {
+        float: right;
+      }
+
+      .attributes {
+        & > * {
+          display: block;
+        }
+      }
+    }
+
+    .listing-snapshot-right {
+      @include span-columns(4);
+      height: 100px;
+
+      .location {
+        float: right;
+      }
+
+      img {
+        width: auto;
+        max-width: 150px;
+        float: right;
+        height: 100px;
+      }
+    }
   }
 }
+
+
 

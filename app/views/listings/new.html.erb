@@ -1,3 +1,4 @@
+<section class="wrapper">
 
 <%= simple_form_for @listing, defaults: { input_html: { class: 'form-control' } } do |f| %>
     <%= f.fields_for :category do |c| %>
@@ -24,5 +25,5 @@
   <%= f.button :submit, input_html: { value: "Create Listing" } %>
 <% end %>
 
-
+</section>
    

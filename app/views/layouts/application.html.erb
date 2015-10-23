@@ -8,20 +8,23 @@
 </head>
 <body>
 <section class="wrapper">
-<section class="nav">
-	<% if user_signed_in? %>
-	  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-	  <%= link_to "My Watch List", user_watchlist_path(current_user) %>
-	<% else %>
-	  <%= link_to "Sign in", new_user_session_path %>
-	  <%= link_to "Sign up", new_user_registration_path %>
-	<% end %>
-
-	<li><%= link_to 'Your Conversations', conversations_path %></li>
-	<li><%= link_to "My Profile", current_user %></li>
-	<li><%= link_to "Users", users_path %></li>
-	<li><%= link_to "All Listings", listings_path %></li>
-
+	<section class="nav">
+		<h1 class="title">GuitarTrader</h1>
+		<ul>
+			<% if user_signed_in? %>
+			  <li><%= link_to "My Profile", current_user %></li>
+			  <li><%= link_to "My Watch List", user_watchlist_path(current_user) %></li>
+			  <li><%= link_to "Users", users_path %></li>
+			  <li><%= link_to 'Your Conversations', conversations_path %></li>
+			  <li><%= link_to "All Listings", listings_path %></li>
+        <li><%= link_to "Add a listing", new_listing_path %></li>
+			  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+			<% else %>
+			  <li><%= link_to "Sign in", new_user_session_path %></li>
+			  <li><%= link_to "Sign up", new_user_registration_path %></li>
+			  <li><%= link_to "All Listings", listings_path %></li>
+			<% end %>
+		</ul>
 	</section>
 
 	<section class="flash">

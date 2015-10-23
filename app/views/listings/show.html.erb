@@ -1,4 +1,4 @@
-
+<section class="wrapper">
 
 <% if @listing.user == current_user %>
 	<%= link_to "Edit #{@listing.title}", edit_listing_path %>
@@ -30,3 +30,6 @@
 <% @listing.photos.each do |photo| %>
 	<%= image_tag photo.image.url(:thumb) %>
 <% end %>
+
+
+</section>

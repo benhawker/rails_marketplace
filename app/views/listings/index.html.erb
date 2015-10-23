@@ -1,25 +1,51 @@
 <section class="wrapper">
 
-	<section class="top">
-		<%= link_to "Add a listing", new_listing_path %>
+	<section class="sub-nav">
+		<section class="sub-nav-left">
+			<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
+				<%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
+				<%= submit_tag "Search" %>
+			<% end %>
+		</section>
 
-		<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
-			<%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
-			<%= submit_tag "Search" %>
-		<% end %>
-	</section>
+		<section class="sub-nav-right">
+		Sub nav right
+		</section>
+	</section>	
 
 	<section class="listings">
 	<% if @listings.any? %>
 		<% @listings.each do |listing| %>
-			<%= link_to "#{listing.title}", listing_path(listing) %>
-			<li>Listed by: <%= listing.user.email %></li>
-			<li>Listed <%= time_ago_in_words(listing.created_at) %> ago</li>
-			<li>Price: <%= listing.price %></li>
+		<section class="listing-snapshot">
+		
+		<section class="listing-snapshot-left">
+			<section class="time-ago">Listed <%= time_ago_in_words(listing.created_at) %> ago
+			</section>
+
+			<section class="title">
+				<%= link_to "#{listing.title}", listing_path(listing), class: "title" %>
+			</section>
+	
+			
+			<section class="attributes">
+				<span>Listed by: <%= listing.user.email %></span>
+				<span>Price: <%= listing.price %></span>
+			</section>
+		</section>	
+
+			<section class="listing-snapshot-right">
+				<% listing.photos.each do |photo| %>
+					<%= image_tag photo.image.url(:medium) %>
+				<% end %>
+				<span class="location">Location: <%= listing.location %></span>
+			</section>
+		</section>
 		<% end %>
+	</ul>
 	<% else %>
 		<p>No listings yet</p>
 	<% end %>
+
 	</section>
 
 	<aside class="listings-right">
