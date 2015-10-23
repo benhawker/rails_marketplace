@@ -9,6 +9,9 @@
 <% if @listings.any? %>
 	<% @listings.each do |listing| %>
 		<%= link_to "#{listing.title}", listing_path(listing) %>
+		<li>Listed by: <%= listing.user.email %></li>
+		<li>Listed <%= time_ago_in_words(listing.created_at) %> ago</li>
+		<li>Price: <%= listing.price %></li>
 	<% end %>
 <% else %>
 	<p>No listings yet</p>

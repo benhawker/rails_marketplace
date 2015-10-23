@@ -67,9 +67,12 @@ feature 'listings' do
 	  scenario 'display listings' do
 	    visit '/listings'
 	    expect(page).to have_content('1959 Les Paul')
+	    expect(page).to have_content('ben@test.com')
 	    expect(page).not_to have_content('No listings yet')
 	  end
 	end
+
+
 
 	context 'creating listings' do
 		before do
