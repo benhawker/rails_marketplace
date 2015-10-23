@@ -85,3 +85,31 @@ html {
   }
 }
 
+/**********************************************************
+  NEAT TESTING
+**********************************************************/
+
+.nav {
+  @include span-columns(12);
+  border: 1px solid black;
+}
+
+.wrapper {
+@include outer-container;
+
+  .top { 
+    @include span-columns(12);
+    border: 1px solid black;
+  }
+
+  .listings { 
+    border: 1px solid black;
+    @include span-columns(8);  
+  }
+
+  .listings-right {
+    border: 1px solid black;
+    @include span-columns(4); 
+  }
+}
+

@@ -1,19 +1,29 @@
-<%= link_to "Add a listing", new_listing_path %>
+<section class="wrapper">
 
-<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
-	<%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
-	<%= submit_tag "Search" %>
-<% end %>
+	<section class="top">
+		<%= link_to "Add a listing", new_listing_path %>
 
+		<%= form_tag(listings_path, :method => "get", id: "search-form") do %>
+			<%= text_field_tag :search, params[:search], placeholder: "Search Listings" %>
+			<%= submit_tag "Search" %>
+		<% end %>
+	</section>
 
-<% if @listings.any? %>
-	<% @listings.each do |listing| %>
-		<%= link_to "#{listing.title}", listing_path(listing) %>
-		<li>Listed by: <%= listing.user.email %></li>
-		<li>Listed <%= time_ago_in_words(listing.created_at) %> ago</li>
-		<li>Price: <%= listing.price %></li>
+	<section class="listings">
+	<% if @listings.any? %>
+		<% @listings.each do |listing| %>
+			<%= link_to "#{listing.title}", listing_path(listing) %>
+			<li>Listed by: <%= listing.user.email %></li>
+			<li>Listed <%= time_ago_in_words(listing.created_at) %> ago</li>
+			<li>Price: <%= listing.price %></li>
+		<% end %>
+	<% else %>
+		<p>No listings yet</p>
 	<% end %>
-<% else %>
-	<p>No listings yet</p>
-<% end %>
+	</section>
 
+	<aside class="listings-right">
+		<h4>Hello from the right</h4>
+	</aside>
+
+</section>
