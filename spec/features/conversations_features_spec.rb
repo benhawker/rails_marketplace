@@ -39,7 +39,6 @@ require 'rails_helper'
     click_button 'Create Listing'
   end
 
-
 feature "Conversations" do
   context "buyer messaging seller about a listing" do
     it "buyer can start a conversation with another user with a question about their listing" do
@@ -50,9 +49,9 @@ feature "Conversations" do
       visit "/listings"
       click_link "1959 Les Paul"
       click_link "Contact the Seller"
-      expect(page).to have_content "What is your question about?"
-      select "Shipping", :from => "question_reason"
-      fill_in 'question', with: "How much with Fedex?"
+      expect(page).to have_content "Subject: 1959 Les Paul"
+      # select "Shipping", :from => "question_reason"
+      fill_in 'body', with: "How much with Fedex?"
       click_button "Send Message"
       expect(page).to have_content "Your message was successfully sent to the seller"
     end
