@@ -20,6 +20,7 @@ source 'https://rubygems.org'
   gem 'paperclip'
   gem 'aws-sdk'
   gem 'acts-as-taggable-on', '~> 3.4'
+  gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
 
 group :production do
   gem 'rails_12factor'

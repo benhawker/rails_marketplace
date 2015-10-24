@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
-	has_many :listings
-	has_many :watches
-	has_many :watched_listings,  -> { uniq }, :through => :watches
+	has_many :listings, dependent: :destroy
+	has_many :watches, dependent: :destroy
+	has_many :watched_listings,  -> { uniq }, :through => :watches, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,5 +17,11 @@ class User < ActiveRecord::Base
   def self.search(search)
 	  where("email ILIKE ?", "%#{search}%") 
 	end
+
+  # after_create :send_welcome_mail
+  
+  # def send_welcome_mail
+  #   UserMailer.sign_up_email(self).deliver
+  # end
 
 end

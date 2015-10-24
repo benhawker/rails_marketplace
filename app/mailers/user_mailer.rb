@@ -5,4 +5,5 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: @user.email, subject: 'Succes - you are signed up!')
   end
+
 end
