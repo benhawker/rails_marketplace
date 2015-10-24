@@ -3,10 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "home#index"
-  # resources :users, only: [:show, :index] do
-  # end
 
-   resources :users do
+   resources :users, only: [:show, :index] do
+    resource :profile, only: [:show, :edit, :update]
   	get :watchlist
   end
 

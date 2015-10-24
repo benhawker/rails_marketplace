@@ -1,0 +1,8 @@
+<section class="wrapper">
+
+	<%= form_for @profile, :url => user_profile_path do |f| %>
+	  <%= f.text_field :city %>
+	  <%= f.button :submit, "Update Profile" %>
+	<% end %>
+
+</section>

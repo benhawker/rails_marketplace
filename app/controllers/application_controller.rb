@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
 	def redirect_back_or(path)
 	  redirect_to request.referer || path
 	end
+
+	def after_sign_in_path_for(resource)
+    user_profile_path(resource)
+  end
+
+  def after_sign_up_path_for(resource)
+    user_profile_path(resource)
+  end
+
 end

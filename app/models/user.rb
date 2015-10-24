@@ -18,6 +18,13 @@ class User < ActiveRecord::Base
 	  where("email ILIKE ?", "%#{search}%") 
 	end
 
+
+  # def build_profile
+  #   Profile.create(user: self)
+  # end
+
+  before_create :build_profile
+
   # after_create :send_welcome_mail
   
   # def send_welcome_mail
