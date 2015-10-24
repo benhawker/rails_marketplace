@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  has_one :profile, dependent: :destroy
 	has_many :listings, dependent: :destroy
 	has_many :watches, dependent: :destroy
 	has_many :watched_listings,  -> { uniq }, :through => :watches, dependent: :destroy
