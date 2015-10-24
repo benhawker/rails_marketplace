@@ -43,9 +43,22 @@ require 'rails_helper'
 feature "Profile" do
   context "user has created their account" do
 
+    it "after user sign up page redirects and prompts users to complete their profile information with new user prompt" do
+      sign_up_user_one
+      expect(page).to have_content "You are now signed up - please complete some profile information about yourself."
+    end
+
+    # it "user goes back to edit their profile and is not shown the new user, profile prompt" do
+    #   sign_up_user_one
+    #   visit root_path
+    #   visit '/users/1/profile'
+    #   click_link 'Edit Profile'
+    #   expect(page).not_to have_content "You are now signed up - please complete some profile information about yourself."
+    #   expect(page).to have_content "Edit your profile and update"
+    # end
+
     it "can fill in and save their profile information" do
       sign_up_user_one
-      click_link "Edit Profile"
       fill_in 'profile[city]', with: "London"
       fill_in 'profile[country]', with: "UK"
       attach_file 'profile[avatar]', 'spec/test.jpg'

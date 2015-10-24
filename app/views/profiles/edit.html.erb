@@ -1,5 +1,11 @@
 <section class="wrapper">
 
+<% if URI(request.referer || '').path == '/users/sign_up' %>
+	<h4>You are now signed up - please complete some profile information about yourself.</h4>
+<% else %>
+	<h4>Edit your profile and update</h4>
+<% end %>
+
 	<%= form_for @profile, :url => user_profile_path, html: {multipart: true} do |f| %>
 	  <%= f.text_field :city, placeholder: "City" %>
 	  <%= f.text_field :country, placeholder: "Country" %>
