@@ -1,8 +1,9 @@
 <section class="wrapper">
 
-	<%= form_for @profile, :url => user_profile_path do |f| %>
+	<%= form_for @profile, :url => user_profile_path, html: {multipart: true} do |f| %>
 	  <%= f.text_field :city, placeholder: "City" %>
 	  <%= f.text_field :country, placeholder: "Country" %>
+	  <%= f.file_field :avatar %>
 	  <%= f.button :submit %>
 	<% end %>
 

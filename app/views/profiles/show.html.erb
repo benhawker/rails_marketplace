@@ -3,6 +3,7 @@
 	Profile for <%= @profile.user.email %>
 	<%= @profile.city %>
 	<%= @profile.country %>
+	<%= image_tag @profile.avatar.url(:thumb) %>
 
 	<%= link_to "Edit Profile", edit_user_profile_path %>
 </section>

@@ -48,10 +48,11 @@ feature "Profile" do
       click_link "Edit Profile"
       fill_in 'profile[city]', with: "London"
       fill_in 'profile[country]', with: "UK"
+      attach_file 'profile[avatar]', 'spec/test.jpg'
       click_button "submit"
-      expect(page).to have_content("Profile for ben@test.com")
-      expect(page).to have_content("London")
-      expect(page).to have_content("UK")
+      expect(page).to have_content "Profile for ben@test.com"
+      expect(page).to have_content "London"
+      expect(page).to have_content "UK"
     end
 
   end
