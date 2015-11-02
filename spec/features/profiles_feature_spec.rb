@@ -48,14 +48,14 @@ feature "Profile" do
       expect(page).to have_content "You are now signed up - please complete some profile information about yourself."
     end
 
-    # it "user goes back to edit their profile and is not shown the new user, profile prompt" do
-    #   sign_up_user_one
-    #   visit root_path
-    #   visit '/users/1/profile'
-    #   click_link 'Edit Profile'
-    #   expect(page).not_to have_content "You are now signed up - please complete some profile information about yourself."
-    #   expect(page).to have_content "Edit your profile and update"
-    # end
+    it "user goes back to edit their profile and is not shown the new user, profile prompt" do
+      sign_up_user_one
+      visit root_path
+      click_link 'My Profile'
+      click_link 'Edit Profile'
+      expect(page).not_to have_content "You are now signed up - please complete some profile information about yourself."
+      expect(page).to have_content "Edit your profile and update"
+    end
 
     it "can fill in and save their profile information" do
       sign_up_user_one
@@ -69,17 +69,14 @@ feature "Profile" do
     end
   end
 
-  # context "user has created their profile" do
-  #   # before { sign_up_user_one }
+  context "user has created their profile" do
+    before { sign_up_user_one }
 
-  #   # let!(:user) { User.create(email: "ben@test.com", password: "password", password_confirmation: "password") }
-
-  #   it "displays the user profile" do
-  #     visit root_path
-  #     click_link "Profile"
-  #     expect(current_path).to eq user_profile_path("#{user.id}")
-  #     expect(page).to have_content "ben@test.com"
-  #   end
-  # end
+    it "displays the user profile" do
+      visit root_path
+      click_link "My Profile"
+      expect(page).to have_content "ben@test.com"
+    end
+  end
 
 end
