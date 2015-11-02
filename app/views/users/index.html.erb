@@ -9,7 +9,7 @@
 		<% if @users.any? %>
 			<% @users.each do |user| %>
 				<li.block>
-					<%= link_to "#{user.email}", user_path(user) %>
+					<%= link_to "#{user.email}", user_profile_path(user) %>
 				</li.block>
 			<% end %>
 		<% else %>

@@ -79,4 +79,19 @@ feature "Profile" do
     end
   end
 
+  context "accessing other user profiles" do
+    before do
+      sign_up_user_one
+      sign_out
+    end
+
+    it "user does not see edit button for another users profile" do
+      sign_up_user_two
+      visit root_path
+      click_link "Users"
+      click_link "ben@test.com"
+      expect(page).not_to have_content "Edit Profile"
+    end
+  end
+
 end

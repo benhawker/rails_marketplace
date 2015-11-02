@@ -1,11 +1,14 @@
 class ProfilesController < ApplicationController
+
+  # before_filter :validate_user, :only => :edit
+
 	def show
 		# @profile = Profile.find_by user_id: current_user.id
      @profile = Profile.find_by(user_id: params[:user_id])
 	end
 
 	def edit
-	  @profile = Profile.find_by user_id: current_user.id
+    @profile = Profile.find_by user_id: current_user.id
 	end
 
 	def update
@@ -22,5 +25,10 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:city, :country, :avatar)
   end
+
+  # def validate_user
+  #   redirect_to root_path unless current_user.id == Profile.find()
+  # end
+
 end
 
