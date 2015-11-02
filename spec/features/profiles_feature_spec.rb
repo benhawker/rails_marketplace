@@ -67,6 +67,19 @@ feature "Profile" do
       expect(page).to have_content "London"
       expect(page).to have_content "UK"
     end
-
   end
+
+  # context "user has created their profile" do
+  #   # before { sign_up_user_one }
+
+  #   # let!(:user) { User.create(email: "ben@test.com", password: "password", password_confirmation: "password") }
+
+  #   it "displays the user profile" do
+  #     visit root_path
+  #     click_link "Profile"
+  #     expect(current_path).to eq user_profile_path("#{user.id}")
+  #     expect(page).to have_content "ben@test.com"
+  #   end
+  # end
+
 end

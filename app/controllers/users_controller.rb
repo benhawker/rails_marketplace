@@ -13,10 +13,6 @@ class UsersController < ApplicationController
 	end
 
 	def watchlist
-		# @user = User.find(current_user)
-		# @user = User.find(params[:user_id])
-		# @user = current_user
 		@watched_listings = current_user.watched_listings.all
 	end
-
 end

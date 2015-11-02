@@ -116,6 +116,16 @@ feature 'listings' do
 	   click_link '1959 Les Paul'
 	   expect(page).to have_content '1959 Les Paul'
 	  end
+
+	  it "lets users view the listing owner's profile direct from the listing" do
+	  	sign_out
+	  	sign_up_user_two
+	  	visit '/listings'
+	  	click_link "1959 Les Paul"
+	  	click_link "View Seller's Profile"
+	  	expect(page).to have_content "ben@test.com"
+	  	expect(page).not_to have_content "bob@test.com"
+	  end
 	end
 
 	context 'searching listings' do
