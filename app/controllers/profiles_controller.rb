@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  # before_filter :validate_user, :only => :edit
+  before_filter :authenticate_user!, :only => [:edit, :update]
 
 	def show
 		# @profile = Profile.find_by user_id: current_user.id
@@ -25,10 +25,5 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:city, :country, :avatar)
   end
-
-  # def validate_user
-  #   redirect_to root_path unless current_user.id == Profile.find()
-  # end
-
 end
 

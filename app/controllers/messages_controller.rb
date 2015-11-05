@@ -20,8 +20,10 @@ class MessagesController < ApplicationController
 
   def create
   	@recipient = User.find_by(id: params[:user])
-		current_user.send_message(@recipient, params[:body], params[:subject])  
+		# @conversation = current_user.send_message(@recipient, params[:body], params[:subject]).conversation
+    conversation = current_user.send_message(@recipient, "Hello", "Subject").conversation
 	  flash[:notices] = ["Your message was successfully sent to the seller"]
-	  redirect_to conversations_path
+    redirect_to root_path
+  	 # redirect_to conversation_path(@conversation)
   end
 end

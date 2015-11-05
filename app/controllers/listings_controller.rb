@@ -1,7 +1,6 @@
 class ListingsController < ApplicationController
 
 	before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
-	# before_filter :must_be_listing_owner, :only => [:edit, :update]
 
 	def index
 		@listings = Listing.all
@@ -103,11 +102,4 @@ class ListingsController < ApplicationController
  																		category_attributes: [:id, :category_id, :name], 
  																		photos_attributes: [:id, :image, :listing_id])
   end
-
-  # private
-
-  # def must_be_listing_owner
-  #   head :forbidden unless @listing.user.id == current_user.id
-  # end
-
 end
