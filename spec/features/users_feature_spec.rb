@@ -179,5 +179,14 @@ feature "User can sign in and out" do
       click_link "My Watch List"
       expect(page).to have_content '1959 Les Paul'
     end
+
+    it "can link straight to the listing a watched item" do
+      add_listing_one_to_watchlist
+      visit '/' 
+      click_link "My Watch List"
+      click_link "1959 Les Paul"
+      # expect(current_path).to eq listing_path(listing)
+      expect(page).to have_content 'A true gem with OHSC'
+    end
   end
 end
