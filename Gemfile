@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rspec-collection_matchers'
   gem 'factory_girl_rails'
   gem 'seed_dump'
+  gem 'coveralls', require: false
 end
 
 group :development do
