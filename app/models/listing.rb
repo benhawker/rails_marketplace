@@ -9,7 +9,8 @@ class Listing < ActiveRecord::Base
 
 	acts_as_taggable_on :tags
 
-	# validates_presence_of :category
+	validates_presence_of :category
+	validates_presence_of :user
 
 	def self.search(search)
 	  where("title ILIKE ?", "%#{search}%") 

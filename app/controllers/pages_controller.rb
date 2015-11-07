@@ -7,5 +7,9 @@ class PagesController < ApplicationController
 	def contact
 		render
 	end
+
+	def faq
+		render
+	end
 	
 end
