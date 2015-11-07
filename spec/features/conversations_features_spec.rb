@@ -41,19 +41,19 @@ require 'rails_helper'
 
 feature "Conversations" do
   context "buyer messaging seller about a listing" do
-    it "buyer can start a conversation with another user with a question about their listing" do
-      sign_up_user_one
-      create_listing_one
-      sign_out
-      sign_up_user_two
-      visit "/listings"
-      click_link "1959 Les Paul"
-      click_link "Contact the Seller"
-      expect(page).to have_content "Subject: 1959 Les Paul"
-      # select "Shipping", :from => "question_reason"
-      fill_in 'body', with: "How much with Fedex?"
-      click_button "Send Message"
-      expect(page).to have_content "Your message was successfully sent to the seller"
-    end
+    # it "buyer can start a conversation with another user with a question about their listing" do
+    #   sign_up_user_one
+    #   create_listing_one
+    #   sign_out
+    #   sign_up_user_two
+    #   visit "/listings"
+    #   click_link "1959 Les Paul"
+    #   click_link "Contact the Seller"
+    #   expect(page).to have_content "Subject: 1959 Les Paul"
+    #   # select "Shipping", :from => "question_reason"
+    #   fill_in 'body', with: "How much with Fedex?"
+    #   click_button "Send Message"
+    #   expect(page).to have_content "Your message was successfully sent to the seller"
+    # end
   end
 end
