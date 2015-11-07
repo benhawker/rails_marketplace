@@ -10,7 +10,7 @@ RSpec.describe Listing, type: :model do
   it { should have_many(:watchers).through(:watches) }
 
   #Association validations
-  it { should validate_presence_of(:category) }
+  # it { should validate_presence_of(:category) }
   it { should validate_presence_of(:user) }
 
   #Attribute validations

@@ -12,7 +12,7 @@ class Listing < ActiveRecord::Base
 	acts_as_taggable_on :tags
 
 	#Association validations
-	validates_presence_of :category
+	# validates_presence_of :category
 	validates_presence_of :user
 
 	#Attribute validations
