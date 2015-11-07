@@ -78,11 +78,16 @@ html {
   NEAT TESTING
 **********************************************************/
 
+
   .wrapper {
     @include outer-container(960px);
     background: #E5E4E2;
     opacity: 0.9;
     border: 3px solid black;
+
+    footer {
+      text-align: center;
+    }
 
     .nav {
     margin: 0;
