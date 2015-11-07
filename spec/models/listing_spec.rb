@@ -1,14 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Listing, type: :model do
+
+  #Associations
   it { should belong_to(:user) }
   it { should belong_to(:category) }
   it { should have_many(:photos) }
   it { should have_many(:watches) }
   it { should have_many(:watchers).through(:watches) }
 
+  #Association validations
   it { should validate_presence_of(:category) }
   it { should validate_presence_of(:user) }
+
+  #Attribute validations
+  it { should validate_presence_of(:title).with_message("Please add a title.") }
 
   context 'watching a listing' do
     it 'a listing cannot be watched twice by the same user' do
@@ -30,16 +36,6 @@ RSpec.describe Listing, type: :model do
       user2.watched_listings << listing
       expect(listing.watchers.count).to eq 2
       expect(user1.watched_listings.count).to eq 1
-    end
-  end
-
-  context 'listing validity' do
-    it 'must have an associated user' do
-
-    end
-
-    it 'a listing must have a title' do
-
     end
   end
 end

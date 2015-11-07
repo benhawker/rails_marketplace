@@ -80,28 +80,41 @@ feature 'listings' do
 	    create_listing_one
 	  end
 
-	  scenario 'prompts user to fill out a form, then displays the new listing' do
-	    visit '/listings'
-	    click_link 'Add a listing'
-	    fill_in 'Title', with: '1959 Les Paul'
-	    attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
-	    click_button 'Create Listing'
-	    expect(page).to have_content '1959 Les Paul'
-	    expect(current_path).to eq '/listings'
-	  end
+		context "listing filled out correctly" do
+		  scenario 'prompts user to fill out a form, then displays the new listing' do
+		    visit '/listings'
+		    click_link 'Add a listing'
+		    fill_in 'Title', with: '1959 Les Paul'
+		    attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
+		    click_button 'Create Listing'
+		    expect(page).to have_content '1959 Les Paul'
+		    expect(current_path).to eq '/listings'
+		  end
 
-	  scenario 'user can add tags to their new listing' do
-	    visit '/listings'
-	    click_link 'Add a listing'
-	    fill_in 'Title', with: 'Takamine EN10C'
-	    fill_in 'Tags', with: 'Electric, Vintage, Gibson, Les Paul'
-	    click_button 'Create Listing'
-	    click_link 'Takamine EN10C'
-	    expect(page).to have_content 'Electric'
-	    expect(page).to have_content 'Vintage'
-	    expect(page).to have_content 'Gibson'
-	    expect(page).to have_content 'Les Paul'
-	  end
+		  scenario 'user can add tags to their new listing' do
+		    visit '/listings'
+		    click_link 'Add a listing'
+		    fill_in 'Title', with: 'Takamine EN10C'
+		    fill_in 'Tags', with: 'Electric, Vintage, Gibson, Les Paul'
+		    click_button 'Create Listing'
+		    click_link 'Takamine EN10C'
+		    expect(page).to have_content 'Electric'
+		    expect(page).to have_content 'Vintage'
+		    expect(page).to have_content 'Gibson'
+		    expect(page).to have_content 'Les Paul'
+		  end
+		end
+
+		context "listing filled out wrong" do
+			scenario "user does not include a title to their listing" do
+				visit '/listings'
+		    click_link 'Add a listing'
+		    click_button 'Create Listing'
+		    expect(current_path).to eq listings_path
+		    expect(page).to have_content "Please add a title"
+			end
+		end
+
 	end
 
 	context 'viewing listings' do
