@@ -2,10 +2,10 @@ FactoryGirl.define do
   factory :user do
 		first_name "Ben"
     last_name "Hawker"
-    user_name { "#{first_name}#{last_name}".downcase }
-    password 'password'
-    password_confirmation 'password'
-    email { "#{first_name}@test.com".downcase }
+    user_name "benhawker"
+    password "password"
+    password_confirmation "password"
+    email "ben@test.com"
   end
 
   trait :bob do
