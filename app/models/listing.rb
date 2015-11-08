@@ -16,7 +16,7 @@ class Listing < ActiveRecord::Base
 	# Association validations
 	validates_presence_of :category
 	validates_presence_of :user
-	validates_presence_of :photo, message: "Please add a photo. Every listing minimum 1 photo."
+	# validates_presence_of :photo, message: "Please add a photo. Every listing minimum 1 photo."
 
 	# Attribute validations
 	validates_presence_of :title, message: "Please add a title."

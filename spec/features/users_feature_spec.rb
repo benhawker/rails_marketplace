@@ -9,11 +9,6 @@ require 'rails_helper'
     click_button 'Sign up'
   end
 
-  def sign_out
-    visit '/'
-    click_link 'Sign out'
-  end
-
   def sign_up_user_two
     visit '/'
     click_link 'Sign up'
@@ -68,6 +63,25 @@ require 'rails_helper'
     click_link 'Add to my watchlist - 1970 CBS Strat'
   end
 
+  def sign_out
+    visit root_path
+    click_link 'Sign out'
+  end
+
+  def sign_in(user)
+    visit root_path
+    click_link 'Sign in'
+    fill_in 'user[email]', with: user.email
+    fill_in 'user[password]', with: user.password
+    click_button 'Log in'
+  end
+
+  def add_listing_to_watchlist(listing)
+    visit listings_path
+    click_link(listing.title)
+    click_link('Add to my watchlist - "#{listing.title}"')
+  end
+
 
 feature "User can sign in and out" do
   context "user not signed in and on the homepage" do
@@ -88,19 +102,24 @@ feature "User can sign in and out" do
       sign_up_user_one
     end
 
+    # before do 
+    #   user = FactoryGirl.create(:user)
+    # end
+
+
     it "should see 'sign out' link" do
-      visit('/')
+      visit root_path
       expect(page).to have_link('Sign out')
     end
 
     it "should not see a 'sign in' link and a 'sign up' link" do
-      visit('/')
+      visit root_path
       expect(page).not_to have_link('Sign in')
       expect(page).not_to have_link('Sign up')
     end
 
     it "should see a link to view their profile" do
-      visit '/'
+      visit root_path
       expect(page).to have_link 'My Profile'
     end
   end
