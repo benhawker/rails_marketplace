@@ -10,11 +10,16 @@ RSpec.describe Listing, type: :model do
   it { should have_many(:watchers).through(:watches) }
 
   #Association validations
-  # it { should validate_presence_of(:category) }
+  it { should validate_presence_of(:category) }
   it { should validate_presence_of(:user) }
+  it { should validate_presence_of(:photo).with_message("Please add a photo. Every listing minimum 1 photo.") }
 
   #Attribute validations
   it { should validate_presence_of(:title).with_message("Please add a title.") }
+  it { should validate_presence_of(:subtitle).with_message("Please add a subtitle.") }
+  it { should validate_presence_of(:price).with_message("Please add a price.") }
+  it { should validate_presence_of(:title).with_message("Please select a condition.") }
+  it { should validate_presence_of(:location).with_message("Please select a location.") }
 
   context 'watching a listing' do
     it 'a listing cannot be watched twice by the same user' do

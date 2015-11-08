@@ -109,6 +109,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
     ffi (1.9.10)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
@@ -335,6 +337,7 @@ DEPENDENCIES
   coveralls
   devise
   factory_girl_rails
+  faker
   gravatar_image_tag
   guard-rspec
   jbuilder (~> 2.0)

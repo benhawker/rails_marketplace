@@ -37,6 +37,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'seed_dump'
   gem 'coveralls', require: false
+  gem 'faker'
 end
 
 group :development do
