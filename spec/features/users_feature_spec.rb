@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 feature "User can sign in and out" do
+  let!(:user) { FactoryGirl.create(:user) }
 
     context "user not signed in and on the homepage" do
       it "should see a 'sign in' link and a 'sign up' link" do
-        visit('/')
+        visit root_path
         expect(page).to have_link('Sign in')
         expect(page).to have_link('Sign up')
       end
@@ -16,13 +17,7 @@ feature "User can sign in and out" do
     end
 
     context "user signed in on the homepage" do
-      before do
-        sign_up_user_one
-      end
-
-      # before do 
-      #   user = FactoryGirl.create(:user)
-      # end
+      before { login_as(user, :scope => :user) }
 
       it "should see 'sign out' link" do
         visit root_path
@@ -42,28 +37,22 @@ feature "User can sign in and out" do
     end
 
     context "user signed in and on their my profile page" do
-      before do
-        sign_up_user_one
-      end
+      before { login_as(user, :scope => :user) }
 
       it "should navigate to their profile page" do
-        visit '/'
+        visit root_path
         click_link 'My Profile'
         expect(page).to have_content 'ben@test.com'
       end
     end
 
     context "user signed in and on their my profile page" do
-      before do
-        sign_up_user_one
-        sign_out
-        sign_up_user_two
-        sign_out
-        sign_up_user_three
-      end
+      let!(:user_two) { FactoryGirl.create(:user, :bob) }
+      let!(:user_three) { FactoryGirl.create(:user, :bill) }
+      before { login_as(user, :scope => :user) }
 
       it "should navigate to their profile page" do
-        visit '/'
+        visit root_path
         click_link 'Users'
         expect(page).to have_content 'ben@test.com'
         expect(page).to have_content 'bob@test.com'
@@ -81,57 +70,66 @@ feature "User can sign in and out" do
         sign_up_user_two
       end
 
-      it "should display all their currently watched items" do
-        add_listing_one_to_watchlist
-        add_listing_two_to_watchlist
-        visit root_path
-        click_link "My Watch List"
-        expect(page).to have_content '1959 Les Paul'
-        expect(page).to have_content '1970 CBS Strat'
-        expect(page).not_to have_content 'Takamine'
-      end
+        # let!(:listing_one) { FactoryGirl.create(:listing, :user => user) }
+        # let!(:listing_two) { FactoryGirl.create(:listing, :user => user) }
+        # let!(:listing_three) { FactoryGirl.create(:listing, :user => user) }
+        # let(:user_two) { FactoryGirl.create(:user, :bob) }
+        # let(:user_three) { FactoryGirl.create(:user, :bill) }
+        # before { login_as(user_two, :scope => :user) }
+        # let!(:watch) { FactoryGirl.build(:watch) }
+        # let!(:listing_with_watch) { FactoryGirl.create(:listing_with_watch) }
 
-      it "can remove a currently watched item from the list" do
-        add_listing_one_to_watchlist
-        add_listing_two_to_watchlist
-        visit root_path 
-        click_link "My Watch List"
-        click_link 'Remove from watchlist - 1959 Les Paul'
-        expect(page).to have_content '1970 CBS Strat'
-        expect(page).to have_content 'Listing successfully removed from your watch list'
-        expect(page).not_to have_content '1959 Les Paul'
-      end
+      # it "should display all their currently watched items" do
+      #   add_listing_one_to_watchlist
+      #   add_listing_two_to_watchlist
+      #   visit root_path
+      #   click_link "My Watch List"
+      #   expect(page).to have_content '1959 Les Paul'
+      #   expect(page).to have_content '1970 CBS Strat'
+      #   expect(page).not_to have_content 'Takamine'
+      # end
 
-      it "can add, remove and re-add a listing to watched item list" do
-        visit '/' 
-        click_link "My Watch List"
-        expect(page).to have_content 'No items in your watchlist yet :('
-        add_listing_one_to_watchlist
-        click_link "My Watch List"
-        expect(page).to have_content '1959 Les Paul'
-        click_link 'Remove from watchlist - 1959 Les Paul'
-        expect(page).to have_content 'No items in your watchlist yet :('
-        add_listing_one_to_watchlist
-        click_link "My Watch List"
-        expect(page).to have_content '1959 Les Paul'
-      end
+      # it "can remove a currently watched item from the list" do
+      #   add_listing_one_to_watchlist
+      #   add_listing_two_to_watchlist
+      #   visit root_path 
+      #   click_link "My Watch List"
+      #   click_link 'Remove from watchlist - 1959 Les Paul'
+      #   expect(page).to have_content '1970 CBS Strat'
+      #   expect(page).to have_content 'Listing successfully removed from your watch list'
+      #   expect(page).not_to have_content '1959 Les Paul'
+      # end
 
-      it "can link straight to the listing a watched item" do
-        add_listing_one_to_watchlist
-        visit root_path
-        click_link "My Watch List"
-        click_link "1959 Les Paul"
-        # expect(current_path).to eq listing_path(listing)
-        expect(page).to have_content 'A true gem with OHSC'
-      end
+      # it "can add, remove and re-add a listing to watched item list" do
+      #   visit root_path
+      #   click_link "My Watch List"
+      #   expect(page).to have_content 'No items in your watchlist yet :('
+      #   add_listing_one_to_watchlist
+      #   click_link "My Watch List"
+      #   expect(page).to have_content '1959 Les Paul'
+      #   click_link 'Remove from watchlist - 1959 Les Paul'
+      #   expect(page).to have_content 'No items in your watchlist yet :('
+      #   add_listing_one_to_watchlist
+      #   click_link "My Watch List"
+      #   expect(page).to have_content '1959 Les Paul'
+      # end
+
+      # it "can link straight to the listing a watched item" do
+      #   add_listing_one_to_watchlist
+      #   visit root_path
+      #   click_link "My Watch List"
+      #   click_link "1959 Les Paul"
+      #   expect(current_path).to eq listing_path(listing)
+      #   expect(page).to have_content 'A true gem with OHSC'
+      # end
     end
   end
   
-
+  ## Helpers
   def sign_up_user_one
     visit '/'
     click_link 'Sign up'
-    fill_in 'user[email]', with: 'ben@test.com'
+    fill_in 'user[email]', with: 'steve@test.com'
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'
     click_button 'Sign up'
@@ -140,7 +138,7 @@ feature "User can sign in and out" do
   def sign_up_user_two
     visit '/'
     click_link 'Sign up'
-    fill_in 'user[email]', with: 'bob@test.com'
+    fill_in 'user[email]', with: 'joe@test.com'
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'
     click_button 'Sign up'
@@ -149,7 +147,7 @@ feature "User can sign in and out" do
   def sign_up_user_three
     visit '/'
     click_link 'Sign up'
-    fill_in 'user[email]', with: 'bill@test.com'
+    fill_in 'user[email]', with: 'barry@test.com'
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'
     click_button 'Sign up'
