@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :listing do
   	#Associations
-		user
-		category
-		watch
+		# association :user, email: "somethingelse@gmail.com"
+		# category
+		# watch
 
   	#Attributes
     title { Faker::Lorem.sentence }
@@ -22,12 +22,6 @@ FactoryGirl.define do
     	end
   	end
   end
-    
-    # after(:build) do |listing|
-    #   listing.category ||=  FactoryGirl.create(:category)
-    #   listing.user ||= FactoryGirl.create(:user)
-    #   listing.photos ||= FactoryGirl.create(:photo)
-    # end
 
     trait :les_paul do
     	title "1959 Les Paul"

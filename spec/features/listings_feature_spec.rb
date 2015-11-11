@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 feature 'listings' do
+	let!(:user) { FactoryGirl.create(:user) }
+  let!(:category) { FactoryGirl.create(:category) }
+  let!(:listing) { FactoryGirl.create(:listing, :les_paul, user: user, category: category) }
+  let!(:user_two) { FactoryGirl.create(:user, :bob) }
+
   context 'listings have been added' do
-	  # before do
-	  # 	sign_up_user_one
-	  #   create_listing_one
-	  # end
-	  #let!(:user) { FactoryGirl.create(:user) }
-	  # before { login_as(user, :scope => :user) }
-	  let!(:listing) { FactoryGirl.create(:listing) }
+
+	  before { login_as(user, :scope => :user) }
 
 	  scenario 'displays listings' do
 	    visit listings_path
@@ -19,16 +19,16 @@ feature 'listings' do
 	end
 
 	context 'creating listings' do
-		before do
-	  	sign_up_user_one
-	    create_listing_one
-	  end
+		before { login_as(user, :scope => :user) }
 
 		context "listing filled out correctly" do
 		  scenario 'prompts user to fill out a form, then displays the new listing' do
 		    visit '/listings'
 		    click_link 'Add a listing'
 		    fill_in 'Title', with: '1959 Les Paul'
+		    fill_in 'Subtitle', with: "Subtitle"
+		    fill_in "Price", with: '100'
+		    fill_in "Location", with: 'London'
 		    attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
 		    click_button 'Create Listing'
 		    expect(page).to have_content '1959 Les Paul'
@@ -40,6 +40,10 @@ feature 'listings' do
 		    click_link 'Add a listing'
 		    fill_in 'Title', with: 'Takamine EN10C'
 		    fill_in 'Tags', with: 'Electric, Vintage, Gibson, Les Paul'
+		    fill_in 'Subtitle', with: "Subtitle"
+		    fill_in "Price", with: '100'
+		    fill_in "Location", with: 'London'
+		    attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
 		    click_button 'Create Listing'
 		    click_link 'Takamine EN10C'
 		    expect(page).to have_content 'Electric'
@@ -50,6 +54,8 @@ feature 'listings' do
 		end
 
 		context "listing filled out wrong" do
+			before { login_as(user, :scope => :user) }
+			
 			scenario "user does not include a title to their listing" do
 				visit '/listings'
 		    click_link 'Add a listing'
@@ -62,22 +68,18 @@ feature 'listings' do
 	end
 
 	context 'viewing listings' do
+		let!(:profile) { FactoryGirl.create(:profile, user: user) }
+	  before { login_as(user_two) }
 
-		before do
-	  	sign_up_user_one
-	    create_listing_one
-	  end
-
-	  scenario 'lets a user view a listing' do
-	   visit '/listings'
+	  it "lets a user view a listing" do
+	   visit listings_path
 	   click_link '1959 Les Paul'
+	   expect(current_path).to eq listing_path(listing)
 	   expect(page).to have_content '1959 Les Paul'
 	  end
 
 	  it "lets users view the listing owner's profile direct from the listing" do
-	  	sign_out
-	  	sign_up_user_two
-	  	visit '/listings'
+	  	visit listings_path
 	  	click_link "1959 Les Paul"
 	  	click_link "View Seller's Profile"
 	  	expect(page).to have_content "ben@test.com"
@@ -86,15 +88,8 @@ feature 'listings' do
 	end
 
 	context 'searching listings' do
-
-		before do
-	  	sign_up_user_one
-	    create_listing_one
-	    create_listing_two
-	  end
-
 	  scenario 'lets a user view a listing' do
-	   visit '/listings'
+	   visit listings_path
 	   fill_in 'search', with: 'Les Paul'
 	   click_button 'Search'
 	   expect(page).to have_content '1959 Les Paul'
@@ -103,17 +98,10 @@ feature 'listings' do
 	end
 
 	context 'editing listings' do
-
-		before do
-	  	sign_up_user_one
-	    create_listing_one
-	  end
-
-	  # let!(:user){ User.create(email: "ben@test.com", password: "password", password_confirmation: "password") }
-	  # let!(:listing){user.listings.create(title:'1959 Les Paul')}
-
-	  scenario 'let a listing owner edit their own listing' do
-			visit '/listings'
+		before { login_as(user) }
+	  
+	  it 'let a listing owner edit their own listing' do
+			visit listings_path
 			click_link '1959 Les Paul'
 			click_link 'Edit 1959 Les Paul'
 			fill_in 'listing[title]', with: '1970 CBS Strat'
@@ -121,39 +109,44 @@ feature 'listings' do
 			expect(page).to have_content 'Your listing was successfully updated'
 	  end
 
-	  scenario 'user see edit link to anothers listing' do
-	  	sign_out
-			sign_up_user_two
-			visit '/listings'
+	 	before do 
+	 		sign_out
+	 		login_as(user_two)
+	 	end
+
+	  it 'user see edit link to anothers listing' do
+			visit listings_path
 			click_link '1959 Les Paul'
 			expect(page).not_to have_content 'Edit your listing'
 	  end
 
-	 	scenario 'user cannot edit anothers listing' do
-			visit '/listings'
+	 	it 'user cannot edit anothers listing' do
+			visit listings_path
 			click_link '1959 Les Paul'
+			#Test to be completed
 	  end
 	end
 
 	context 'deleting listings' do
-
-		before do
-	  	sign_up_user_one
-	    create_listing_one
-	  end
+		before { login_as(user) }
 
 	  scenario 'removes a listing when the listing owner clicks a delete link' do
-	    visit '/listings'
+	    visit listings_path
 	    click_link '1959 Les Paul'
 	    click_link 'Delete 1959 Les Paul'
 	    expect(page).not_to have_content '1959 Les Paul'
+	    expect(current_path).to eq listings_path
 	    expect(page).to have_content 'Your listing was successfully deleted'
 	  end
 
+	  before do 
+	 		sign_out
+	 		login_as(user_two)
+	 	end
+
 	  scenario 'user see delete link to anothers listing' do
-	  	sign_out
-			sign_up_user_two
-			visit '/listings'
+			visit listings_path
+			save_and_open_page
 			click_link '1959 Les Paul'
 			expect(page).not_to have_content 'Delete 1959 Les Paul'
 	  end
@@ -164,58 +157,8 @@ feature 'listings' do
 	end
 end
 
-def sign_up_user_one
-	  visit '/'
-	  click_link 'Sign up'
-	  fill_in 'user[email]', with: 'ben@test.com'
-	  fill_in 'user[password]', with: 'password'
-	  fill_in 'user[password_confirmation]', with: 'password'
-	  click_button 'Sign up'
-	end
-
-	def sign_in_user_one
-	  visit '/'
-	  click_link 'Sign in'
-	  fill_in 'user[email]', with: 'ben@test.com'
-	  fill_in 'user[password]', with: 'password'
-	  click_button 'Log in'
-	end
-
-	def sign_out
-	  visit '/'
-	  click_link 'Sign out'
-	end
-
-	def sign_up_user_two
-	  visit '/'
-	  click_link 'Sign up'
-	  fill_in 'user[email]', with: 'bob@test.com'
-	  fill_in 'user[password]', with: 'password'
-	  fill_in 'user[password_confirmation]', with: 'password'
-	  click_button 'Sign up'
-	end
-
-	def sign_up_user(user)
-	  visit '/'
-	  click_link 'Sign up'
-	  fill_in 'user[email]', with: user.email
-	  fill_in 'user[password]', with: user.password
-	  fill_in 'user[password_confirmation]', with: user.password_confirmation
-	  click_button 'Sign up'
-	end
-
-	def create_listing_one
-	  visit '/listings/new'
-	  fill_in 'listing[title]', with: '1959 Les Paul'
-	  fill_in 'listing[subtitle]', with: 'A true gem with OHSC'
-	  fill_in 'listing[description]', with: 'Test description'
-	  click_button 'Create Listing'
-	end
-
-	def create_listing_two
-	  visit '/listings/new'
-	  fill_in 'listing[title]', with: '1970 CBS Strat'
-	  fill_in 'listing[subtitle]', with: 'Olympic White'
-	  fill_in 'listing[description]', with: 'Test description'
-	  click_button 'Create Listing'
-	end
+## To be moved out into support/helpers
+def sign_out
+	visit root_path
+	click_link 'Sign out'
+end

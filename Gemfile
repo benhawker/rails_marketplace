@@ -38,7 +38,7 @@ group :development, :test do
   gem 'seed_dump'
   gem 'coveralls', require: false
   gem 'faker'
-  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
+  gem 'database_rewinder'
 end
 
 group :development do

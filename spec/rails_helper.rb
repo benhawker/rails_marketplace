@@ -36,19 +36,22 @@ RSpec.configure do |config|
     Warden.test_mode!
   end
 
+  def sign_in(user, opts = {})
+    login_as(user, opts)
+  end
+
+  def sign_out(*scopes)
+    logout(*scopes)
+  end
+
   config.use_transactional_fixtures = true
 
-  config.before(:suite) do
-    DatabaseCleaner[:active_record].strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+  config.before :suite do
+    DatabaseRewinder.clean_all
   end
 
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
+  config.after :each do
+    DatabaseRewinder.clean
   end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
