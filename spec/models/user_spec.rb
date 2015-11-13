@@ -8,8 +8,9 @@ RSpec.describe User, type: :model do
 
   context 'watching a listing' do
     let!(:user_one) { FactoryGirl.create(:user) }
-    let!(:listing_one) { FactoryGirl.create(:listing, :user => user_one) }
-    let!(:listing_two) { FactoryGirl.create(:listing, :user => user_one) }
+    let!(:category) {FactoryGirl.create(:category) }
+    let!(:listing_one) { FactoryGirl.create(:listing, user: user_one, category: category) }
+    let!(:listing_two) { FactoryGirl.create(:listing, user:  user_one, category: category) }
 
     it 'counts the correct number of listings user is watching' do
       user_one.watched_listings << listing_one

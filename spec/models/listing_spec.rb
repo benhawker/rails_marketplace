@@ -22,9 +22,10 @@ RSpec.describe Listing, type: :model do
   it { should validate_presence_of(:location).with_message("Please select a location.") }
 
   context 'watching a listing' do
-    let(:user_one) { FactoryGirl.create(:user) }
-    let(:user_two) { FactoryGirl.create(:user) }
-    let(:listing) { FactoryGirl.create(:listing) }
+    let!(:user_one) { FactoryGirl.create(:user) }
+    let!(:user_two) { FactoryGirl.create(:user, :bob) }
+    let!(:category) {FactoryGirl.create(:category) }
+    let(:listing) { FactoryGirl.create(:listing, category: category, user: user_one) }
 
     it 'a listing cannot be watched twice by the same user' do
       user_one.watched_listings << listing

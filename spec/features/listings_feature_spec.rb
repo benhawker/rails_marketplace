@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 feature 'listings' do
-	let!(:user) { FactoryGirl.create(:user) }
+	let(:user) { FactoryGirl.create(:user) }
   let!(:category) { FactoryGirl.create(:category) }
   let!(:listing) { FactoryGirl.create(:listing, :les_paul, user: user, category: category) }
   let!(:user_two) { FactoryGirl.create(:user, :bob) }
 
   context 'listings have been added' do
 
-	  before { login_as(user, :scope => :user) }
+	  before { login_as(user) }
 
 	  scenario 'displays listings' do
 	    visit listings_path
@@ -19,7 +19,7 @@ feature 'listings' do
 	end
 
 	context 'creating listings' do
-		before { login_as(user, :scope => :user) }
+		before { login_as(user) }
 
 		context "listing filled out correctly" do
 		  scenario 'prompts user to fill out a form, then displays the new listing' do
@@ -54,7 +54,7 @@ feature 'listings' do
 		end
 
 		context "listing filled out wrong" do
-			before { login_as(user, :scope => :user) }
+			before { login_as(user) }
 			
 			scenario "user does not include a title to their listing" do
 				visit '/listings'
@@ -100,7 +100,7 @@ feature 'listings' do
 	context 'editing listings' do
 		before { login_as(user) }
 	  
-	  it 'let a listing owner edit their own listing' do
+	  xit 'let a listing owner edit their own listing' do
 			visit listings_path
 			click_link '1959 Les Paul'
 			click_link 'Edit 1959 Les Paul'
@@ -130,9 +130,10 @@ feature 'listings' do
 	context 'deleting listings' do
 		before { login_as(user) }
 
-	  scenario 'removes a listing when the listing owner clicks a delete link' do
+	  xit 'removes a listing when the listing owner clicks a delete link' do
 	    visit listings_path
 	    click_link '1959 Les Paul'
+	    expect(current_path).to eq listing_path(listing)
 	    click_link 'Delete 1959 Les Paul'
 	    expect(page).not_to have_content '1959 Les Paul'
 	    expect(current_path).to eq listings_path
@@ -146,7 +147,6 @@ feature 'listings' do
 
 	  scenario 'user see delete link to anothers listing' do
 			visit listings_path
-			save_and_open_page
 			click_link '1959 Les Paul'
 			expect(page).not_to have_content 'Delete 1959 Les Paul'
 	  end
