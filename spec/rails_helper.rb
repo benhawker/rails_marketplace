@@ -46,15 +46,28 @@ RSpec.configure do |config|
     logout(*scopes)
   end
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+    if defined?(ActiveRecord::Base)
+    begin
+      require 'database_cleaner'
+      config.before(:suite) do
+        DatabaseCleaner.strategy = :truncation
+        DatabaseCleaner.clean_with(:truncation)
+      end
 
-  config.before :suite do
-    DatabaseRewinder.clean_all
+      config.before(:each) do
+        DatabaseCleaner.start
+      end
+
+      config.after(:each) do
+        DatabaseCleaner.clean
+      end
+
+    rescue LoadError => ignore_if_database_cleaner_not_present
+    end
   end
 
-  config.after :each do
-    DatabaseRewinder.clean
-  end
+
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
