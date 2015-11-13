@@ -82,6 +82,21 @@ module CommonStepsHelper
     click_link('Add to my watchlist - "#{listing.title}"')
   end
 
+	#Used in profiles_feature_spec
+	def sign_up_test_user
+	  visit root_path
+	  fill_in 'user[email]', with: 'testing123@test.com'
+	  fill_in 'user[password]', with: 'password'
+	  fill_in 'user[password_confirmation]', with: 'password'
+	  click_button 'Sign up'
+	end
+
+	#Used in buying_feature_spec
+	def user_watches_listing_one
+    visit listings_path
+		click_link '1959 Les Paul'
+		click_link 'Add to my watchlist - 1959 Les Paul'
+	end
 
 
 end

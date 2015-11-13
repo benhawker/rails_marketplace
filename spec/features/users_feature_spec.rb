@@ -1,5 +1,4 @@
 require 'rails_helper'
-include CommonStepsHelper
 
 feature "User can sign in and out" do
   let!(:user) { FactoryGirl.create(:user) }

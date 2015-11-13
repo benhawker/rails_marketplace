@@ -157,8 +157,3 @@ feature 'listings' do
 	end
 end
 
-## To be moved out into support/helpers
-def sign_out
-	visit root_path
-	click_link 'Sign out'
-end
