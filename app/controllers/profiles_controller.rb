@@ -3,7 +3,6 @@ class ProfilesController < ApplicationController
   before_filter :authenticate_user!, :only => [:edit, :update]
 
 	def show
-		# @profile = Profile.find_by user_id: current_user.id
      @profile = Profile.find_by(user_id: params[:user_id])
 	end
 
