@@ -4,10 +4,10 @@ FactoryGirl.define do
   end
 
   trait :bass do
-  	name { "Bass" }
+    name { "Bass" }
   end
 
   trait :acoustic do
-  	name { "Acoustic" }
+    name { "Acoustic" }
   end
 end

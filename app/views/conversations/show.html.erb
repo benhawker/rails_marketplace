@@ -7,16 +7,16 @@
     <div class="messages">
       <% @conversation.receipts_for(current_user).each do |receipt| %>
         <div class="media">
-	        <%= @conversation.subject %>
-	        <% message = receipt.message %>
+          <%= @conversation.subject %>
+          <% message = receipt.message %>
 
-	        <h4>
-	        <%= message.sender.email %>
-	      	says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></h4>
-	        <p><%= message.body %></p>
+          <h4>
+          <%= message.sender.email %>
+          says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></h4>
+          <p><%= message.body %></p>
         </div>
       <% end %>
-		</div>
+    </div>
 
 <%= form_tag reply_conversation_path(@conversation), method: :post do %>
   <div class="form-group">

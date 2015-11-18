@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
-	has_many :listings, dependent: :destroy
-	has_many :watches, dependent: :destroy
-	has_many :watched_listings,  -> { uniq }, :through => :watches, dependent: :destroy
+  has_many :listings, dependent: :destroy
+  has_many :watches, dependent: :destroy
+  has_many :watched_listings,  -> { uniq }, :through => :watches, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
   end
 
   def self.search(search)
-	  where("email ILIKE ?", "%#{search}%") 
-	end
+    where("email ILIKE ?", "%#{search}%") 
+  end
 
 
   # def build_profile
