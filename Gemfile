@@ -21,6 +21,7 @@ source 'https://rubygems.org'
   gem 'aws-sdk'
   gem 'acts-as-taggable-on', '~> 3.4'
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+  gem 'faker'
 
 group :production do
   gem 'rails_12factor'
@@ -37,7 +38,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'seed_dump'
   gem 'coveralls', require: false
-  gem 'faker'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
 end
 
