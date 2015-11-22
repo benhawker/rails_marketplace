@@ -16,4 +16,7 @@ FactoryGirl.define do
   trait :bill do
   	email "bill@test.com"
   end
+
+  sequence(:first_name) { |n|  "Person #{n}"}
+  sequence(:email) { |n| "person#{n}@example.com" }
 end
