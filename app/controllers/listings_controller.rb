@@ -3,7 +3,8 @@ class ListingsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
 
   def index
-    @listings = Listing.all
+    #@listings = Listing.all
+    @listings = Listing.paginate(page: params[:page])
     if params[:search]
       @listings = Listing.search(params[:search]).order("created_at DESC")
     else

@@ -14,6 +14,9 @@
 	</section>	
 
 	<section class="listings">
+
+	<%= will_paginate %>
+
 	<% if @listings.any? %>
 		<% @listings.each do |listing| %>
 		<section class="listing-snapshot">
@@ -42,9 +45,12 @@
 		</section>
 		<% end %>
 	</ul>
+
 	<% else %>
 		<p>No listings yet</p>
 	<% end %>
+
+		<%= will_paginate %>
 
 	</section>
 
