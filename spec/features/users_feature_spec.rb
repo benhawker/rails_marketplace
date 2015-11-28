@@ -37,6 +37,7 @@ feature "User can sign in and out" do
     end
 
     context "user signed in and on their my profile page" do
+      let!(:profille) { FactoryGirl.create(:profile, user: user) }
       before { login_as(user, :scope => :user) }
 
       it "should navigate to their profile page" do

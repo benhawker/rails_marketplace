@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
 
-  before_filter :authenticate_user!, :only [:edit, :update]
-  before_filter :correct_user, :only [:edit, :update]
+  # before_filter :authenticate_user!, :only [:edit, :update]
+  # before_filter :correct_user, :only [:edit, :update]
 
   def show
      @profile = Profile.find_by(user_id: params[:user_id])

@@ -1,7 +1,7 @@
 require 'rails_helper'
-include Devise::TestHelpers
 
 RSpec.describe ListingsController, type: :controller do
+
   describe "#show" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:category) { FactoryGirl.create(:category) }
@@ -41,18 +41,16 @@ RSpec.describe ListingsController, type: :controller do
   end
 
   describe "#new" do
-
-  let(:user) { FactoryGirl.create(:user) }
-  
-  before(:each){ login_as(user) }  
+    let(:user) { FactoryGirl.create(:user) }
+    before(:each){ login_as(user) }  
 
     it "assigns a new listing as @listing" do
-      get :new, {}
+      get :new
       expect(assigns(:listing)).to be_a_new(Listing)
     end
 
     it "renders the new template" do
-      get :new, {}
+      get :new
       expect(response).to render_template(:new)
       expect(response.status).to eql(200)
     end

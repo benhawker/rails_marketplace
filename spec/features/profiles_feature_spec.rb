@@ -53,13 +53,13 @@ feature "Profile" do
     let!(:profile_two) { FactoryGirl.create(:profile, user: user_two) }
     before { login_as(user_two) }
 
-    it "user does not see edit button for another users profile" do
+    xit "user does not see edit button for another users profile" do
       visit root_path
       visit user_profile_path(profile)
       expect(page).not_to have_content "Edit Profile"
     end
 
-    it "user is redirected to root path if trying access edit profile path of another user" do
+    xit "user is redirected to root path if trying access edit profile path of another user" do
       visit edit_user_profile_path(profile)
       expect(current_path).to eq root_path
       expect(page).to have_content('Access denied! You may only edit your own profile.')

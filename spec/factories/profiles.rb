@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :profile do
     #Associations
-    user
+    association :user
 
     #Attributes
     city { Faker::Address.city }

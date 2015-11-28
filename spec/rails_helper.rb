@@ -11,8 +11,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   include CommonStepsHelper
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.include Devise::TestHelpers, :type => :controller
   config.include Warden::Test::Helpers
+  config.include Devise::TestHelpers, type: :controller
   
   config.before :suite do
     Warden.test_mode!
