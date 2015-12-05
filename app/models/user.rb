@@ -11,12 +11,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  acts_as_messageable
-
-  def mailboxer_email(object)
-    email
-  end
-
   def self.search(search)
     where("email ILIKE ?", "%#{search}%") 
   end
