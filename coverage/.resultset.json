@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/controllers/inquiries_controller_spec.rb": [
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/controllers/messages_controller_spec.rb": [
         1,
         null,
         1,
@@ -1063,34 +1063,52 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/controllers/inquiries_controller.rb": [
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/controllers/messages_controller.rb": [
         1,
-        null,
-        null,
-        null,
         1,
-        0,
         0,
         null,
         null,
         1,
         0,
         0,
+        0,
+        0,
+        null,
         null,
         0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        null,
         null,
         null,
         0,
         null,
         null,
         1,
-        1,
         0,
         null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
         null,
         null
       ]
     },
-    "timestamp": 1449288125
+    "timestamp": 1449290140
   }
 }
