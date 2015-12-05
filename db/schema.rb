@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205022059) do
+ActiveRecord::Schema.define(version: 20151205033126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20151205022059) do
   add_index "categories_listings", ["category_id", "listing_id"], name: "index_categories_listings_on_category_id_and_listing_id", using: :btree
   add_index "categories_listings", ["listing_id", "category_id"], name: "index_categories_listings_on_listing_id_and_category_id", using: :btree
 
+  create_table "inquiries", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.integer  "listing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "inquiries", ["user_id"], name: "index_inquiries_on_user_id", using: :btree
+
   create_table "listings", force: :cascade do |t|
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -51,6 +62,18 @@ ActiveRecord::Schema.define(version: 20151205022059) do
 
   add_index "listings", ["category_id"], name: "index_listings_on_category_id", using: :btree
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "inquiry_id"
+    t.integer  "user_id"
+    t.boolean  "read",       default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["inquiry_id"], name: "index_messages_on_inquiry_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -122,6 +145,7 @@ ActiveRecord::Schema.define(version: 20151205022059) do
   add_index "watches", ["user_id"], name: "index_watches_on_user_id", using: :btree
 
   add_foreign_key "categories", "listings"
+  add_foreign_key "inquiries", "users"
   add_foreign_key "listings", "categories"
   add_foreign_key "listings", "users"
   add_foreign_key "photos", "listings"
