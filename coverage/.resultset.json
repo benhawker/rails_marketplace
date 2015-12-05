@@ -1,10 +1,13 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/category_spec.rb": [
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/inquiry_spec.rb": [
         1,
         null,
         1,
+        2,
+        2,
+        null,
         2,
         null
       ],
@@ -47,11 +50,11 @@
         null,
         null,
         1,
-        29,
+        3,
         null,
         null,
         1,
-        29,
+        3,
         null,
         null,
         null,
@@ -690,7 +693,7 @@
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/factories/categories.rb": [
         1,
         1,
-        4,
+        1,
         null,
         null,
         1,
@@ -719,15 +722,15 @@
         null,
         null,
         null,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         1,
         1,
@@ -856,7 +859,7 @@
         1,
         1,
         1,
-        5,
+        1,
         1,
         1,
         null,
@@ -930,15 +933,6 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/helpers/conversations_helper.rb": [
-        1,
-        1,
-        0,
-        0,
-        0,
-        null,
-        null
-      ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/helpers/errors_helper.rb": [
         1,
         null
@@ -947,21 +941,13 @@
         1,
         null
       ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/helpers/listings_helper.rb": [
-        1,
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/helpers/inquiries_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/helpers/messages_helper.rb": [
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/helpers/listings_helper.rb": [
         1,
         1,
-        0,
-        0,
-        0,
-        null,
-        0,
-        null,
-        null,
         null
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/helpers/pages_helper.rb": [
@@ -1085,23 +1071,6 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/category.rb": [
-        1,
-        1,
-        null,
-        1,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/inquiry_spec.rb": [
-        1,
-        null,
-        1,
-        2,
-        2,
-        null,
-        2,
-        null
-      ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/inquiry.rb": [
         1,
         1,
@@ -1110,57 +1079,10 @@
         null,
         1,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/listing_spec.rb": [
         1,
         null,
         1,
-        null,
-        null,
-        2,
-        2,
-        2,
-        2,
-        2,
-        null,
-        null,
-        2,
-        2,
-        null,
-        null,
-        null,
-        2,
-        2,
-        2,
-        2,
-        2,
-        null,
-        1,
-        3,
-        3,
-        3,
-        3,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+        0,
         null,
         null,
         null
@@ -1173,7 +1095,7 @@
         1,
         1,
         1,
-        3,
+        1,
         null,
         null,
         1,
@@ -1199,85 +1121,8 @@
         null,
         null,
         null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/message_spec.rb": [
-        1,
-        null,
-        1,
-        2,
-        2,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/message.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/messaging_spec.rb": [
-
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/photo_spec.rb": [
-        1,
-        null,
-        1,
-        2,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/photo.rb": [
-        1,
-        1,
-        null,
-        1,
-        1,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/user_spec.rb": [
-        1,
-        null,
-        1,
-        2,
-        2,
-        2,
-        2,
-        2,
-        null,
-        1,
-        2,
-        2,
-        2,
-        2,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/watch_spec.rb": [
-        1,
-        null,
-        1,
-        2,
-        2,
-        null
-      ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/watch.rb": [
-        1,
-        1,
-        1,
-        null
       ]
     },
-    "timestamp": 1449286359
+    "timestamp": 1449286831
   }
 }

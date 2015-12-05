@@ -5,10 +5,10 @@ class Inquiry < ActiveRecord::Base
 	
 	has_many :messages, dependent: :destroy
 
-	# validates_uniqueness_of :sender_id, :scope => :recipient_id
+	validates_uniqueness_of :sender_id, :scope => :recipient_id
 	
-	# scope :between, -> (sender_id,recipient_id) do
-	# 	where(“(inquiries.sender_id = ? AND inquiries.recipient_id =?) OR (inquiries.sender_id = ? AND inquiries.recipient_id =?)”, sender_id,recipient_id, recipient_id, sender_id)
-	# end
+	scope :between, -> (sender_id,recipient_id) do
+		where("(inquiries.sender_id = ? AND inquiries.recipient_id =?) OR (inquiries.sender_id = ? AND inquiries.recipient_id =?)", sender_id,recipient_id, recipient_id, sender_id)
+	end
 
 end
