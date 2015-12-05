@@ -6,7 +6,7 @@
 	<h4>Edit your profile and update</h4>
 <% end %>
 
-	<%= form_for @profile, :url => user_profile_path, html: {multipart: true} do |f| %>
+	<%= form_for @user, :url => user_path, html: {multipart: true} do |f| %>
 	  <%= f.text_field :city, placeholder: "City" %>
 	  <%= f.text_field :country, placeholder: "Country" %>
 	  <%= f.file_field :avatar %>

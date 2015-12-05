@@ -3,3 +3,16 @@
 		<li><%= @user.email %></li>
 	<ul>
 </section>
+
+
+<section class="wrapper">
+
+	Profile for <%= @user.email %>
+	<%= @user.city %>
+	<%= @user.country %>
+	<%= image_tag @user.avatar.url(:thumb) %>
+
+	<% if current_user == @user %>
+		<%= link_to "Edit Profile", edit_user_path %>
+	<% end %>
+</section>

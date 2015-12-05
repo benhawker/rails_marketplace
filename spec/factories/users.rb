@@ -7,9 +7,6 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
     email "ben@test.com"
-    after(:create) do |user|
-      FactoryGirl.create(:profile, user: user)
-    end
   end
 
   trait :bob do
