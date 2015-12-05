@@ -1,0 +1,23 @@
+
+<h3>Mailbox</h3>
+<div class=”item”>
+  <% @inquiries.each do |inquiry| %>
+    <% if inquiry.sender_id == current_user.id || inquiry.recipient_id == current_user.id %>
+      <% if inquiry.sender_id == current_user.id %>
+        <% recipient = User.find(inquiry.recipient_id) %>
+      <% else %>
+        <% recipient = User.find(inquiry.sender_id) %>
+      <% end %>
+      <%= link_to recipient.first_name,   inquiry_messages_path(inquiry)%>
+    <% end %>
+  <% end %>
+</div>
+
+ <h3>All Users</h3>
+  <div class=”ui list”>
+    <% @users.each do |user| %>
+      <% if user.id != current_user.id %>
+        <%= user.first_name %> <%= link_to "Message me!", inquiries_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' %>
+      <% end %>
+    <% end %>
+ </div>
