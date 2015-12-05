@@ -7,6 +7,10 @@ def index
 	@inquiries = Inquiry.all
 end
 
+def new
+
+end
+
 def create
 	if Inquiry.between(params[:sender_id],params[:recipient_id]).present?
   	@inquiry = Inquiry.between(params[:sender_id], params[:recipient_id]).first
