@@ -1,12 +1,13 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/watch_spec.rb": [
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/message_spec.rb": [
         1,
         null,
-        0,
-        0,
-        0,
+        1,
+        2,
+        2,
+        2,
         null
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/rails_helper.rb": [
@@ -20,47 +21,47 @@
         null,
         1,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
-        0,
+        1,
         0,
         null,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
         0,
         null,
         null,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
-        0,
-        0,
+        1,
+        3,
         null,
         null,
+        1,
+        3,
         null,
         null,
         null,
         null,
-        0,
-        0,
+        null,
+        null,
+        1,
+        1,
         null
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/config/environment.rb": [
@@ -1083,8 +1084,12 @@
         null,
         null,
         null
+      ],
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/message.rb": [
+        1,
+        null
       ]
     },
-    "timestamp": 1449284146
+    "timestamp": 1449284487
   }
 }

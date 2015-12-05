@@ -4,6 +4,8 @@ RSpec.describe User, type: :model do
   it { should have_one(:profile) }
   it { should have_many(:listings) }
   it { should have_many(:watches) }
+  it { should have_many(:inquiries) }
+  it { should have_many(:messages) }
   it { should have_many(:watched_listings).through(:watches) }
 
   context 'watching a listing' do
