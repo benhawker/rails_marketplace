@@ -32,6 +32,7 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
     @user = @listing.user
+    @offer = Offer.new
   end
 
   def edit

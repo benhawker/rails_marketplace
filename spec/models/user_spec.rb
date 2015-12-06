@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:inquiries) }
   it { should have_many(:messages) }
   it { should have_many(:watched_listings).through(:watches) }
+  it { should have_many(:offers)}
 
   context 'watching a listing' do
     let!(:user_one) { FactoryGirl.create(:user) }

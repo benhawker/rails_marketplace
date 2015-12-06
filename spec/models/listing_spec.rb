@@ -8,6 +8,7 @@ RSpec.describe Listing, type: :model do
   it { should have_many(:photos) }
   it { should have_many(:watches) }
   it { should have_many(:watchers).through(:watches) }
+  it { should have_many(:offers) }
 
   #Association validations
   it { should validate_presence_of(:category) }
