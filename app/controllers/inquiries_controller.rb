@@ -8,7 +8,12 @@ def index
 end
 
 def new
-
+	@sender = User.find_by(id: params[:sender_id])
+	@recipient = User.find_by(id: params[:recipient_id])
+  @listing = Listing.find_by(id: params[:listing])
+	
+	@inquiry = current_user.inquiries.new
+  @message = @inquiry.messages.build
 end
 
 def create

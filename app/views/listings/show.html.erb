@@ -34,8 +34,6 @@
 <li>Listed by <%= @listing.user.email %></li>
 <%= link_to "View Seller's Profile", user_path(@listing.user.id) %>
 
-<%= link_to 'Start conversation', new_inquiry_path, class: 'btn btn-lg btn-primary' %>
-
-<%= link_to "Contact the Seller", new_inquiry_path(:user => @user.id, :listing => @listing.id), class: "btn btn-large btn-primary" %>
+<%= link_to "Contact the Seller", new_inquiry_path(:sender_id => @user.id, :recipient_id => @listing.user.id, :listing => @listing.id), class: "btn btn-large btn-primary" %>
 
 </section>
