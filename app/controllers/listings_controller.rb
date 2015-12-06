@@ -90,14 +90,14 @@ class ListingsController < ApplicationController
   end
 
   def offer
-    @listing = Listing.find(params[:id])
-    @offer = @listing.offers.build
+    @listing = Listing.find(params[:listing_id])
     if @listing.offers.exclude?(current_user)
-      @listing.offers << @offer
+      @listing.offers << @listing.offers.create {(params[:offer][:price])}
+      # User.find(params[:team][:player_one])
       flash[:notices] = ['Offer submitted to the seller.']
       redirect_to @listing
     else
-      flash[:notices] = ['Error submitting your offer. Please try again']
+      flash[:notices] = ['You have already made an offer on this listing']
       redirect_to @listing
     end
   end

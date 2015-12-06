@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Offer, type: :model do
   #Associations
-  it { should belong_to(:listing) }
-  it { should belong_to(:user) }
+  it { should have_one(:listing) }
+  it { should have_one(:user) }
 
   #Association validations
   it { should validate_presence_of(:listing) }

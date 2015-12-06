@@ -1,7 +1,7 @@
 class Offer < ActiveRecord::Base
 	#Associations
-	belongs_to :listing
-	belongs_to :user
+	has_one :listing
+	has_one :user
 
   #Association validations
   validates_presence_of :listing
