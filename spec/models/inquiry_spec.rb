@@ -8,4 +8,5 @@ RSpec.describe Inquiry, type: :model do
 
   it { should validate_presence_of(:sender) }
   it { should validate_presence_of(:recipient) }
+  it { should validate_presence_of(:listing) }
 end

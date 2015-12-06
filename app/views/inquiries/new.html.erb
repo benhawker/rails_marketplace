@@ -1,9 +1,0 @@
-<section class="wrapper">
- Send a message to
-    <%= @recipient.email %>
-    <%= form_tag({controller: "inquiries", action: "create"}, method: :post) do %>
-    <%= hidden_field_tag(:listing, "#{@listing.id}") %>
-    <%= hidden_field_tag(:sender, "#{@sender.id}") %>
-    <%= submit_tag 'Send Message', class: "btn btn-primary" %>
-   <% end %>
-</section>

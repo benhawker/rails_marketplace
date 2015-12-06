@@ -1,22 +1,27 @@
+<section class="wrapper">
+
 <% if @over_ten %>
 	<%= link_to "Show Previous", "?m=all" %>
 <% end %>
 
 <% @messages.each do |message| %>
   <% if message.body %>
-  	<% user = User.find(message.user_id) %>
+  	<% @user = User.find(message.user_id) %>
   
   <div class=”item”>
     <div class=”content”>
     	<div class=”header”>
-    		<strong><%= user.first_name %></strong><%= message.message_time %>
+    		At <%= message.message_time %> <strong><%= @user.email %> wrote:</strong>
     	</div>
-         <%= message.body %>
+       <%= message.body %>
     </div>
   </div>
 
  	<% end %>
 <% end %>
+
+You are chatting with <%= @inquiry.recipient.email %>
+About <%= @inquiry.listing.title %>
 
 <%= form_for [@inquiry, @message], html: {class: "ui reply form"} do |f| %>
 	<div class="field">
@@ -28,3 +33,5 @@
  		<%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
  	</div>
 <% end %>
+
+</section>

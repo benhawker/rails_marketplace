@@ -6,7 +6,7 @@ class Inquiry < ActiveRecord::Base
 
 	accepts_nested_attributes_for :messages, reject_if: proc { |attributes| attributes["message"].blank? }
 
-  validates_presence_of :sender, :recipient
+  validates_presence_of :sender, :recipient, :listing
 
 	validates_uniqueness_of :sender_id, :scope => :recipient_id
 	
