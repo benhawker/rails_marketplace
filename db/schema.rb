@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205033126) do
+ActiveRecord::Schema.define(version: 20151206053114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 20151205033126) do
 
   add_index "messages", ["inquiry_id"], name: "index_messages_on_inquiry_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "offers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "listing_id"
+    t.string   "price"
+    t.integer  "user_id"
+  end
+
+  add_index "offers", ["listing_id"], name: "index_offers_on_listing_id", using: :btree
+  add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -148,6 +159,8 @@ ActiveRecord::Schema.define(version: 20151205033126) do
   add_foreign_key "inquiries", "users"
   add_foreign_key "listings", "categories"
   add_foreign_key "listings", "users"
+  add_foreign_key "offers", "listings"
+  add_foreign_key "offers", "users"
   add_foreign_key "photos", "listings"
   add_foreign_key "watches", "listings"
   add_foreign_key "watches", "users"
