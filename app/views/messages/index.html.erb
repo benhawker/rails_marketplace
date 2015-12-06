@@ -21,7 +21,7 @@
 <% end %>
 
 You are chatting with <%= @inquiry.recipient.email %>
-About <%= @inquiry.listing.title %>
+About <%= @inquiry.try(:listing).try(:title) %>
 
 <%= form_for [@inquiry, @message], html: {class: "ui reply form"} do |f| %>
 	<div class="field">

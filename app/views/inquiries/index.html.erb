@@ -3,14 +3,13 @@
   <div class=”item”>
     <% @inquiries.each do |inquiry| %>
       <% if inquiry.sender_id == current_user.id || inquiry.recipient_id == current_user.id %>
-        
         <% if inquiry.sender_id == current_user.id %>
           <% recipient = User.find(inquiry.recipient_id) %>
         <% else %>
           <% recipient = User.find(inquiry.sender_id) %>
         <% end %>
         <div>
-          <%= link_to "Messages with #{recipient.email} about #{inquiry.listing.title}",   inquiry_messages_path(inquiry)%>
+          <%= link_to "Messages with #{recipient.email} about #{inquiry.try(:listing).try(:title)}",   inquiry_messages_path(inquiry)%>
         </div>
       <% end %>
     <% end %>
