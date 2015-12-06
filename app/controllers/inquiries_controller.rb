@@ -22,6 +22,12 @@ def create
   @listing = Listing.find_by(id: params[:listing_id])
 
   #need to add separation to create new inquiry when it's a different listing.
+  # if Inquiry.present? && Inquiry.includes(@sender, @recipient, @listing)
+  # 	flash[:notices] = ["You already have a message history about this."]
+  # else
+  # 	flash[:notices] = ["This is a new inquiry with user x about listing y"]
+  # end
+
 	if Inquiry.between(@sender,@recipient).present?
 		@inquiry = Inquiry.between(@sender, @recipient).first
   else
