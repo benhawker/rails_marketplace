@@ -38,7 +38,7 @@
 
 <%= link_to "Contact the Seller", inquiries_path(sender_id: current_user.id, recipient_id: @user.id, listing_id: @listing.id), method: 'post' %>
 
-<%= form_for @listing do |listing| %>
+<%= form_for [@listing, @offer], :url => listing_offer_path(@listing) do |listing| %>
  	<%= listing.fields_for :offers do |offer| %>
     <%= offer.label :price %>
     <%= offer.text_field :price, class: "form-control" %>

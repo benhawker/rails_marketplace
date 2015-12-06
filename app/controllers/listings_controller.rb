@@ -89,6 +89,18 @@ class ListingsController < ApplicationController
     end
   end
 
+  def offer
+    @listing = Listing.find(params[:listing_id])
+    if @listing.offers.exclude?(current_user)
+      @listing.offers << @offer
+      flash[:notices] = ['Offer submitted to the seller.']
+      redirect_to @listing
+    else
+      flash[:notices] = ['Error submitting your offer. Please try again']
+      redirect_to @listing
+    end
+  end
+
   def tagged
     if params[:tag].present? 
       @listings = Listing.tagged_with(params[:tag])
@@ -97,11 +109,14 @@ class ListingsController < ApplicationController
     end  
   end
 
+  private
+
   def listing_params
     params.require(:listing).permit(:title, :subtitle, :description,
                                     :price, :condition, :brand, 
                                     :model, :case_type, :location, :tag_list,
                                     category_attributes: [:id, :category_id, :name], 
-                                    photos_attributes: [:id, :image, :listing_id])
+                                    photos_attributes: [:id, :image, :listing_id],
+                                    offer_attributes: [:price])
   end
 end

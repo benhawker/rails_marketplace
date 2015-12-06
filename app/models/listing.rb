@@ -9,7 +9,8 @@ class Listing < ActiveRecord::Base
   has_many :offers
  
   # Nested Attributes
-  accepts_nested_attributes_for :category, :photos, :offers
+  accepts_nested_attributes_for :category, :photos
+  accepts_nested_attributes_for :offers, reject_if: proc { |attributes| attributes["offer"].blank? }
 
   # Tags
   acts_as_taggable_on :tags
