@@ -31,23 +31,19 @@
 	<%= image_tag photo.image.url(:thumb) %>
 <% end %>
 
- <%= form_for [@listing, @offer], :html => {:multipart => true} do |f| %>
-    <%= f.label :team_one %>
-    <%= f.select :team_one, Team.all.collect {|team| ["#{team.team_player_one}" + " " + "#{team.team_player_two}", team.id] }, class: "form-control" %>
-    <%= f.select :team_one_score, (0..10), class: "form-control" %>
-    <br>
-    <%= f.label :team_two %>
-    <%= f.select :team_two, Team.all.collect {|team| ["#{team.team_player_one}" + " " + "#{team.team_player_two}", team.id] }, class: "form-control" %>
-    <%= f.select :team_two_score, (0..10), class: "form-control" %>
-    <br>
-    <br>
-    <%= f.submit "Create Match!", class: "btn 200-width btn-primary" %>
-  <% end %>
 
 
 <li>Listed by <%= @listing.user.email %></li>
 <%= link_to "View Seller's Profile", user_path(@listing.user.id) %>
 
 <%= link_to "Contact the Seller", inquiries_path(sender_id: current_user.id, recipient_id: @user.id, listing_id: @listing.id), method: 'post' %>
+
+<%= form_for @listing do |listing| %>
+ 	<%= listing.fields_for :offers do |offer| %>
+    <%= offer.label :price %>
+    <%= offer.text_field :price, class: "form-control" %>
+    <%= offer.submit "Submit Offer", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
 
 </section>

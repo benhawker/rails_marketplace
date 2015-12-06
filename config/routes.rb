@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :listings do
   	post :watch
+    post :offer
   	delete :unwatch
   end
 
