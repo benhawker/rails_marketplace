@@ -31,6 +31,7 @@ class MessagesController < ApplicationController
 	def create
 	 @message = @inquiry.messages.new(message_params)
 	 if @message.save
+	 	flash[:notices] = ["Your message was successfully sent"]
 	  redirect_to inquiry_messages_path(@inquiry)
 	 end
 	end
