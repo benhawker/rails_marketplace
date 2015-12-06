@@ -90,7 +90,8 @@ class ListingsController < ApplicationController
   end
 
   def offer
-    @listing = Listing.find(params[:listing_id])
+    @listing = Listing.find(params[:id])
+    @offer = @listing.offers.build
     if @listing.offers.exclude?(current_user)
       @listing.offers << @offer
       flash[:notices] = ['Offer submitted to the seller.']
@@ -117,6 +118,6 @@ class ListingsController < ApplicationController
                                     :model, :case_type, :location, :tag_list,
                                     category_attributes: [:id, :category_id, :name], 
                                     photos_attributes: [:id, :image, :listing_id],
-                                    offer_attributes: [:price])
+                                    offers_attributes: [:price])
   end
 end
