@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
    resources :users do
   	get :watchlist
+    get :offers
   end
 
   resources :inquiries do
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
 
   resources :listings do
   	post :watch
-    # post :offer
   	delete :unwatch
   end
 

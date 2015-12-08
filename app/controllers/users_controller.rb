@@ -35,6 +35,10 @@ class UsersController < ApplicationController
     @watched_listings = current_user.watched_listings.all
   end
 
+  def offers
+    @user_offers = current_user.offers.all
+  end
+
   private
 
   def user_params
