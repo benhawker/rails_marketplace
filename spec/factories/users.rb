@@ -17,8 +17,6 @@ FactoryGirl.define do
   	email "bill@test.com"
   end
 
-  after
-
   sequence(:first_name) { |n|  "Person #{n}"}
   sequence(:email) { |n| "person#{n}@example.com" }
 end

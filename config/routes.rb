@@ -19,9 +19,13 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'listings#show', as: :tag
 
+  resources :listings, shallow: true do
+    resources :offers
+  end
+
   resources :listings do
   	post :watch
-    post :offer
+    # post :offer
   	delete :unwatch
   end
 

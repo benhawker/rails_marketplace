@@ -5,6 +5,7 @@ class InquiriesController < ApplicationController
 def index
 	@users = User.all
 	@inquiries = Inquiry.all
+	@listing = Inquiry
 end
 
 def new
@@ -21,7 +22,6 @@ def create
 	@recipient = User.find_by(id: params[:recipient_id])
   @listing = Listing.find_by(id: params[:listing_id])
 
-  #need to add separation to create new inquiry when it's a different listing.
   # if Inquiry.present? && Inquiry.includes(@sender, @recipient, @listing)
   # 	flash[:notices] = ["You already have a message history about this."]
   # else

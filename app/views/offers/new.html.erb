@@ -1,0 +1,6 @@
+
+<%= simple_form_for [@listing, @offer], defaults: { input_html: { class: 'form-control' } } do |f| %>
+    <%= f.label :price %>
+    <%= f.text_field :price, class: "form-control" %>
+    <%= f.submit "Submit Offer", class: "btn btn-primary" %>
+ <% end %>

@@ -3,7 +3,6 @@ class ListingsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
 
   def index
-    #@listings = Listing.all
     @listings = Listing.paginate(page: params[:page])
     if params[:search]
       @listings = Listing.search(params[:search]).order("created_at DESC")
@@ -32,7 +31,7 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
     @user = @listing.user
-    @offer = @listing.offers.build
+    # @offer = @listing.offers.build
   end
 
   def edit
@@ -89,17 +88,15 @@ class ListingsController < ApplicationController
     end
   end
 
-  def offer
-    @listing = Listing.find(params[:listing_id])
-    if @listing.offers.exclude?(current_user)
-      @listing.offers << @listing.offers.create {(params[:offer][:price])}
-      # User.find(params[:team][:player_one])
-      flash[:notices] = ['Offer submitted to the seller.']
-      redirect_to @listing
-    else
-      flash[:notices] = ['You have already made an offer on this listing']
-      redirect_to @listing
-    end
+
+  private
+
+  def listing_params
+    params.require(:listing).permit(:title, :subtitle, :description,
+                                    :price, :condition, :brand, 
+                                    :model, :case_type, :location, :tag_list,
+                                    category_attributes: [:id, :category_id, :name], 
+                                    photos_attributes: [:id, :image, :listing_id])
   end
 
   def tagged
@@ -110,14 +107,4 @@ class ListingsController < ApplicationController
     end  
   end
 
-  private
-
-  def listing_params
-    params.require(:listing).permit(:title, :subtitle, :description,
-                                    :price, :condition, :brand, 
-                                    :model, :case_type, :location, :tag_list,
-                                    category_attributes: [:id, :category_id, :name], 
-                                    photos_attributes: [:id, :image, :listing_id],
-                                    offers_attributes: [:price])
-  end
 end

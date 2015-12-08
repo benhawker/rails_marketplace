@@ -10,7 +10,7 @@ class Listing < ActiveRecord::Base
  
   # Nested Attributes
   accepts_nested_attributes_for :category, :photos
-  accepts_nested_attributes_for :offers, reject_if: proc { |attributes| attributes["offer"].blank? }
+  #accepts_nested_attributes_for :offers, reject_if: proc { |attributes| attributes["offer"].blank? }
 
   # Tags
   acts_as_taggable_on :tags
@@ -27,9 +27,14 @@ class Listing < ActiveRecord::Base
   validates_presence_of :title, message: "Please select a condition."
   validates_presence_of :location, message: "Please select a location."
 
+  #Search
   def self.search(search)
     where("title ILIKE ?", "%#{search}%") 
   end
 
+  #Other methods
+  def build_offer(params, user)
+    self.offers.new(price: params["price"], listing_id: params["listing_id"], user_id: user.id)
+  end
 
 end

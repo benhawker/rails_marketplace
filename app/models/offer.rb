@@ -1,7 +1,7 @@
 class Offer < ActiveRecord::Base
 	#Associations
-	has_one :listing
-	has_one :user
+	belongs_to :listing
+	belongs_to :user
 
   #Association validations
   validates_presence_of :listing
@@ -9,4 +9,5 @@ class Offer < ActiveRecord::Base
 
   #Attribute validations
   validates_presence_of :price, message: "Your offer must have a price!"
+
 end

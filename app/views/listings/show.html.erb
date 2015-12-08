@@ -38,12 +38,13 @@
 
 <%= link_to "Contact the Seller", inquiries_path(sender_id: current_user.id, recipient_id: @user.id, listing_id: @listing.id), method: 'post' %>
 
+<%= link_to "Make an Offer", new_listing_offer_path(user_id: current_user.id, listing_id: @listing.id) %>
 
-<%= form_for @offer, :url => listing_offer_path(@listing), method: :post do |f| %>
-    <%= f.label :price %>
-    <%= f.text_field :price, class: "form-control" %>
-    <%= f.submit "Submit Offer", class: "btn btn-primary" %>
- <% end %>
+<%#= form_for [@listing, @offer], :url => listing_offer_path(@listing), method: :post do |f| %>
+    <%#= f.label :price %>
+    <%#= f.text_field :price, class: "form-control" %>
+    <%#= f.submit "Submit Offer", class: "btn btn-primary" %>
+ <%# end %>
 
 
 </section>
