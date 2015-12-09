@@ -1,8 +1,10 @@
 <section class="wrapper">
 <ul>
-	<% if @user_offers.any? %>
-		<% @user_offers.each do |offer| %>
-			<li><%= offer.listing.title %> -> <%= offer.price %></li>
+	<% if @offers.any? %>
+		<% @offers.each do |offer| %>
+			<li><%= offer.listing.title %> -->> <%= offer.price %> </li>
+			<%= link_to "View Offer Details", listing_offer_path(offer.listing, offer) %>
+			<%= link_to "Delete Offer", listing_offer_path(offer.listing, offer), method: :delete  %>
 		<% end %>
 	<% else %>
 		<li>You have made no offers</li>
@@ -10,3 +12,4 @@
 </ul>
 
 </section>
+

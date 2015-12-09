@@ -1,0 +1,13 @@
+<section class="wrapper">
+<ul>
+	<% if @offers.any? %>
+		<% @offers.each do |offer| %>
+			<li><%= offer.listing.title %> -->> <%= offer.price %> // Made by <%= offer.user.try(:email) %> </li> 
+		<% end %>
+	<% else %>
+		<li>No offers have been made on this listing.</li>
+	<% end %>
+</ul>
+
+</section>
+

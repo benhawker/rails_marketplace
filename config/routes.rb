@@ -6,6 +6,7 @@ Rails.application.routes.draw do
    resources :users do
   	get :watchlist
     get :offers
+    # resources :offers
   end
 
   resources :inquiries do
@@ -20,11 +21,8 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'listings#show', as: :tag
 
-  resources :listings, shallow: true do
-    resources :offers
-  end
-
   resources :listings do
+    resources :offers
   	post :watch
   	delete :unwatch
   end

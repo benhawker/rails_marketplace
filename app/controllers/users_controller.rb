@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def offers
-    @user_offers = current_user.offers.all
+    @offers = current_user.offers.all
   end
 
   private
