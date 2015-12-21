@@ -22,6 +22,7 @@ source 'https://rubygems.org'
   gem 'acts-as-taggable-on', '~> 3.4'
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
   gem 'faker'
+  gem 'cancancan', '~> 1.10'
 
 group :production do
   gem 'rails_12factor'
