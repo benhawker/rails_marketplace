@@ -3,13 +3,14 @@ class Ability
 
   def initialize(user)
 
-    can :read, Listing
-    can :read, User
-    can :read, Offer
+    # can :read, Listing
+    # can :read, User
+    # can :read, Offer
+    can :manage, User, :id => user.id
 
-    can :update, User, :id => user.id
-    can :manage, Listing, :user => { :id => user.id }
-    can :read, Offer, :user_id => { :user_id => user.id }
+    # can :update, User, :id => user.id
+    # can :manage, Listing, :user => { :id => user.id }
+    # can :read, Offer, :user_id => { :user_id => user.id }
 
     if user.role? == "admin"
       can :manage, :all
@@ -18,7 +19,6 @@ class Ability
       # can [:manage], Offer, :user_id => user.id
       # manage his own quiz responses
       can [:manage], Listing, :user_id => user.id
-      can [:manage], User, :user_id => user.id
     else
 
     end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  load_and_authorize_resource
   # before_filter :authenticate_user!, :only [:edit, :update]
   # before_filter :correct_user, :only [:edit, :update]
 
@@ -18,7 +18,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    authorize! :all, @user
+    # authorize! :read, @user, :message => "You cannot edit another user's profile"
+    # # authorize! :all, @user, :message => "You cannot edit another user's profile"
   end
 
   def update

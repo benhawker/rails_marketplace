@@ -912,8 +912,9 @@
         0,
         null,
         null,
+        1,
         null,
-        null,
+        0,
         null,
         null,
         1,
@@ -1088,7 +1089,7 @@
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/controllers/users_controller.rb": [
         1,
-        null,
+        1,
         null,
         null,
         null,
@@ -1107,7 +1108,8 @@
         null,
         1,
         0,
-        0,
+        null,
+        null,
         null,
         null,
         1,
@@ -1143,6 +1145,6 @@
         null
       ]
     },
-    "timestamp": 1450708306
+    "timestamp": 1450709407
   }
 }

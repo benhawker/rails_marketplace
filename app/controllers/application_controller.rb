@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
     redirect_back_or root_path
   end
 
-  # rescue_from CanCan::AccessDenied do |exception|
-  #   redirect_to root_url, :alert => exception.message
-  # end
+  rescue_from CanCan::AccessDenied do |exception|
+    # flash[:alert] = exception.message
+    redirect_to root_url, :alert => exception.message
+  end
 
   def redirect_back_or(path)
     redirect_to request.referer || path
