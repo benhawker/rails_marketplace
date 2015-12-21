@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:city, :country, :avatar)
+    params.require(:user).permit(:city, :country, :avatar, :role)
   end
 
   def correct_user
