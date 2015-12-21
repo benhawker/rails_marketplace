@@ -36,6 +36,7 @@ class ListingsController < ApplicationController
   def edit
     @user = current_user
     @listing = @user.listings.find(params[:id])
+    authorize! :read, @listing
   end
 
   def update

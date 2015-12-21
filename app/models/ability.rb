@@ -2,20 +2,29 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, :all if user.role == "admin"
-    
+
     can :read, Listing
     can :read, User
+    can :read, Offer
 
-    if User
-      can :update, User, :user_id => user.id
-      can :manage, Listing, :user => { :id => user.id }
-      can :manage, Offer, :user => { :user_id => user.id }
+    can :update, User, :id => user.id
+    can :manage, Listing, :user => { :id => user.id }
+    can :read, Offer, :user_id => { :user_id => user.id }
+
+    if user.role? == "admin"
+      can :manage, :all
+    elsif user.role? == "standard"
+      # can [:manage], Listing, :user_id => user.id
+      # can [:manage], Offer, :user_id => user.id
+      # manage his own quiz responses
+      can [:manage], Listing, :user_id => user.id
+      can [:manage], User, :user_id => user.id
+    else
+
     end
-
     #Offers
     # can :read, Offer, :user_id => user.id
-    # can :read, Offer, :listing => { :user_id => user.id }
+    # can :read, Offer, :
 
 
     # cannot :destroy, Listing
