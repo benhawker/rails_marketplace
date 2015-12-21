@@ -14,9 +14,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  ROLES = %i[admin standard]
+
   def self.search(search)
     where("email ILIKE ?", "%#{search}%") 
   end
+
+
 
   # after_create :send_welcome_mail
   

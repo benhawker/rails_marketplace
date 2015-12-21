@@ -4,6 +4,7 @@ class OffersController < ApplicationController
     #@user = User.find(params[:id])
     @listing = Listing.find(params[:listing_id])
     @offers = @listing.offers.all
+    authorize! :read, @listing
   end
 
 	def new

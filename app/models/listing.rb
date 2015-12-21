@@ -6,12 +6,11 @@ class Listing < ActiveRecord::Base
   has_many :photos, dependent: :destroy 
   has_many :watches
   has_many :watchers, -> { uniq }, :through => :watches
-  has_many :offers
+  has_many :offers, dependent: :destroy
  
   # Nested Attributes
   accepts_nested_attributes_for :category, :photos
-  #accepts_nested_attributes_for :offers, reject_if: proc { |attributes| attributes["offer"].blank? }
-
+  
   # Tags
   acts_as_taggable_on :tags
 
