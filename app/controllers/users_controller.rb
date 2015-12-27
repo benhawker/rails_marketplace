@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   # before_filter :authenticate_user!, :only [:edit, :update]
-  # before_filter :correct_user, :only [:edit, :update]
 
   def index
     @users = User.all
@@ -17,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+
     @user = User.find(params[:id])
     # authorize! :read, @user, :message => "You cannot edit another user's profile"
     # # authorize! :all, @user, :message => "You cannot edit another user's profile"
@@ -45,11 +45,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:city, :country, :avatar, :role)
-  end
-
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
   end
 
 end

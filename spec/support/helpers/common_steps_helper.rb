@@ -1,5 +1,5 @@
 module CommonStepsHelper
- ## Helpers
+
   def sign_up_user_one
     visit '/'
     click_link 'Sign up'
@@ -82,9 +82,9 @@ module CommonStepsHelper
     click_link('Add to my watchlist - "#{listing.title}"')
   end
 
-  #Used in profiles_feature_spec
-  def sign_up_test_user
-    visit root_path
+  #Used in profiles_feature_spec to test sign up redirect.
+  def sign_up_new_user
+    visit new_user_registration_path
     fill_in 'user[email]', with: 'testing123@test.com'
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'

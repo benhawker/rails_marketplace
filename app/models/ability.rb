@@ -20,6 +20,7 @@ class Ability
 
       can :read, Inquiry
       can :read, Message
+      # cannot :update, User unless :id == user.id
 
       # can :read, Offer do |offer| 
       #   offer.listing.user.includes? user.id
