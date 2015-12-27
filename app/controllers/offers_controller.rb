@@ -1,7 +1,6 @@
 class OffersController < ApplicationController
 
   def index
-    #@user = User.find(params[:id])
     @listing = Listing.find(params[:listing_id])
     @offers = @listing.offers.all
     authorize! :read, @listing
@@ -46,7 +45,5 @@ class OffersController < ApplicationController
  	def offer_params
     params.require(:offer).permit(:price)
   end
-
-
 end
 
