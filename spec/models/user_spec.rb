@@ -19,5 +19,9 @@ RSpec.describe User, type: :model do
       user_one.watched_listings << listing_two
       expect(user_one.watched_listings.count).to eq 2
     end
+
+    it 'user has a role of standard by default' do 
+      expect(user_one.role).to eq ("standard")
+    end 
   end
 end

@@ -15,7 +15,6 @@ feature 'buying & watching' do
       expect(page).not_to have_content('Add to my watchlist - 1959 Les Paul')
     end
 
-
     before { login_as(user_two) }
 
     it 'user adds item to watchlist & is shown flash notice confirmation' do

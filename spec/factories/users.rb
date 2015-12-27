@@ -7,6 +7,7 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
     email "ben@test.com"
+    role "standard"
   end
 
   trait :ben do
