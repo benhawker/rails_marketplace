@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  root to: "home#index"
+  root 'home#index'
 
    resources :users do
   	get :watchlist
     get :offers
-    # resources :offers
   end
 
   resources :inquiries do
@@ -30,7 +29,6 @@ Rails.application.routes.draw do
   PagesController.action_methods.each do |action|
     get "/#{action}", to: "pages##{action}", as: "#{action}_page"
   end
-
 
   # get "*any", via: :all, to: "errors#not_found"
 end
