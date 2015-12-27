@@ -9,6 +9,15 @@ FactoryGirl.define do
     email "ben@test.com"
   end
 
+  trait :ben do
+    first_name "Ben"
+    last_name "Hawker"
+    user_name "benhawker"
+    password "password"
+    password_confirmation "password"
+    email "ben@test.com"
+  end
+
   trait :bob do
   	email "bob@test.com"
   end
@@ -17,6 +26,6 @@ FactoryGirl.define do
   	email "bill@test.com"
   end
 
-  sequence(:first_name) { |n|  "Person #{n}"}
-  sequence(:email) { |n| "person#{n}@example.com" }
+  # sequence(:first_name) { |n|  "Person #{n}"}
+  # sequence(:email) { |n| "person#{n}@example.com" }
 end

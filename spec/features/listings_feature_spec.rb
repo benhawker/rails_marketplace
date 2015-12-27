@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 feature 'listings' do
-  let(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user, :ben) }
   let!(:category) { FactoryGirl.create(:category) }
   let!(:listing) { FactoryGirl.create(:listing, :les_paul, user: user, category: category) }
   let!(:user_two) { FactoryGirl.create(:user, :bob) }
 
   context 'listings have been added' do
-
     before { login_as(user) }
 
     scenario 'displays listings' do
@@ -22,7 +21,7 @@ feature 'listings' do
     before { login_as(user) }
 
     context "listing filled out correctly" do
-      scenario 'prompts user to fill out a form, then displays the new listing' do
+      it 'prompts user to fill out a form, then displays the new listing' do
         visit '/listings'
         click_link 'Add a listing'
         fill_in 'Title', with: '1959 Les Paul'
@@ -35,7 +34,7 @@ feature 'listings' do
         expect(current_path).to eq '/listings'
       end
 
-      scenario 'user can add tags to their new listing' do
+      it 'user can add tags to their new listing' do
         visit '/listings'
         click_link 'Add a listing'
         fill_in 'Title', with: 'Takamine EN10C'
@@ -56,7 +55,7 @@ feature 'listings' do
     context "listing filled out wrong" do
       before { login_as(user) }
       
-      scenario "user does not include a title to their listing" do
+      it "user does not include a title to their listing" do
         visit '/listings'
         click_link 'Add a listing'
         click_button 'Create Listing'
@@ -64,43 +63,16 @@ feature 'listings' do
         expect(page).to have_content "Please add a title"
       end
     end
-
-  end
-
-  context 'viewing listings' do
-    let!(:profile) { FactoryGirl.create(:profile, user: user) }
-    before { login_as(user_two) }
-
-    it "lets a user view a listing" do
-     visit listings_path
-     click_link '1959 Les Paul'
-     expect(current_path).to eq listing_path(listing)
-     expect(page).to have_content '1959 Les Paul'
-    end
-
-    it "lets users view the listing owner's profile direct from the listing" do
-      visit listings_path
-      click_link "1959 Les Paul"
-      click_link "View Seller's Profile"
-      expect(page).to have_content "ben@test.com"
-      expect(page).not_to have_content "bob@test.com"
-    end
-  end
-
-  context 'searching listings' do
-    scenario 'lets a user view a listing' do
-     visit listings_path
-     fill_in 'search', with: 'Les Paul'
-     click_button 'Search'
-     expect(page).to have_content '1959 Les Paul'
-     expect(page).not_to have_content '1970 CBS Strat'
-    end
   end
 
   context 'editing listings' do
-    before { login_as(user) }
+    # before do
+    #   sign_out
+    #   login_as(user)
+    # end
     
-    xit 'let a listing owner edit their own listing' do
+    it 'let a listing owner edit their own listing' do
+      login_as(user)
       visit listings_path
       click_link '1959 Les Paul'
       click_link 'Edit 1959 Les Paul'
@@ -114,23 +86,21 @@ feature 'listings' do
       login_as(user_two)
     end
 
-    it 'user see edit link to anothers listing' do
+    it 'user canot see edit link to anothers listing' do
       visit listings_path
       click_link '1959 Les Paul'
       expect(page).not_to have_content 'Edit your listing'
     end
-
-    it 'user cannot edit anothers listing' do
-      visit listings_path
-      click_link '1959 Les Paul'
-      #Test to be completed
-    end
   end
 
   context 'deleting listings' do
-    before { login_as(user) }
+    before do 
+      sign_out
+      login_as(user)
+    end
 
-    xit 'removes a listing when the listing owner clicks a delete link' do
+    it 'removes a listing when the listing owner clicks a delete link' do
+      login_as(user)
       visit listings_path
       click_link '1959 Les Paul'
       expect(current_path).to eq listing_path(listing)
@@ -150,10 +120,35 @@ feature 'listings' do
       click_link '1959 Les Paul'
       expect(page).not_to have_content 'Delete 1959 Les Paul'
     end
+  end
 
-    # scenario 'user cannot delete anothers listing' do
-    #   #this should be a unit test checking validation vs the DB.
-    # end
+  context 'viewing listings' do
+    before { login_as(user_two) }
+
+    it "lets a user view a listing" do
+     visit listings_path
+     click_link '1959 Les Paul'
+     expect(current_path).to eq listing_path(listing)
+     expect(page).to have_content '1959 Les Paul'
+    end
+
+    it "lets users view the listing owner's profile direct from the listing" do
+      visit listings_path
+      click_link "1959 Les Paul"
+      click_link "View Seller's Profile"
+      expect(page).to have_content "Profile for ben@test.com"
+      expect(page).not_to have_content "Profile for bob@test.com"
+    end
+  end
+
+  context 'searching listings' do
+    scenario 'lets a user view a listing' do
+     visit listings_path
+     fill_in 'search', with: 'Les Paul'
+     click_button 'Search'
+     expect(page).to have_content '1959 Les Paul'
+     expect(page).not_to have_content '1970 CBS Strat'
+    end
   end
 end
 

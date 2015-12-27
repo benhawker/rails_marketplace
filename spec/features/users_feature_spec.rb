@@ -5,7 +5,7 @@ feature "User can sign in and out" do
 
     context "user not signed in and on the homepage" do
       it "should see a 'sign in' link and a 'sign up' link" do
-        visit home_index_path
+        visit root_path
         expect(page).to have_link('Sign in')
         expect(page).to have_link('Sign up')
       end
@@ -36,7 +36,7 @@ feature "User can sign in and out" do
       end
     end
 
-    context "user signed in and on their my profile page" do
+    pending "user signed in and on their my profile page" do
       before { login_as(user, :scope => :user) }
 
       it "should navigate to their profile page" do
@@ -46,7 +46,7 @@ feature "User can sign in and out" do
       end
     end
 
-    context "user signed in and on their my profile page" do
+    pending "user signed in and on their my profile page" do
       let!(:user_two) { FactoryGirl.create(:user, :bob) }
       let!(:user_three) { FactoryGirl.create(:user, :bill) }
       before { login_as(user, :scope => :user) }

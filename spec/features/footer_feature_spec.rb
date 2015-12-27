@@ -20,11 +20,5 @@ feature 'footer' do
       click_link "FAQ"
       expect(current_path).to eq faq_page_path
     end
-
-    xit "they can visit the blog" do
-      visit root_path
-      click_link "Blog"
-      expect(current_path).to eq contact_page_path
-    end
   end
 end

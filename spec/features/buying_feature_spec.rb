@@ -6,11 +6,10 @@ feature 'buying & watching' do
     let(:user) { FactoryGirl.create(:user) }
     let!(:category) { FactoryGirl.create(:category) }
     let!(:listing) { FactoryGirl.create(:listing, :les_paul, user: user, category: category) }
-    let(:user_two) { FactoryGirl.create(:user, :bob) }
+    let(:user_two) { FactoryGirl.create(:user, :bill) }
 
-    before { login_as(user) }
-
-    xit 'user not shown add to watchlist for their own items' do
+    it 'user not shown add to watchlist for their own items' do
+      login_as(user)
       visit listings_path
       click_link '1959 Les Paul'
       expect(page).not_to have_content('Add to my watchlist - 1959 Les Paul')
