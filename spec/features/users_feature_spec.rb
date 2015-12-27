@@ -36,17 +36,16 @@ feature "User can sign in and out" do
       end
     end
 
-    pending "user signed in and on their my profile page" do
-      before { login_as(user, :scope => :user) }
-
+    context "user signed in and on their my profile page" do
       it "should navigate to their profile page" do
+        login_as(user)
         visit root_path
         click_link 'My Profile'
         expect(page).to have_content 'ben@test.com'
       end
     end
 
-    pending "user signed in and on their my profile page" do
+    context "user signed in and on their my profile page" do
       let!(:user_two) { FactoryGirl.create(:user, :bob) }
       let!(:user_three) { FactoryGirl.create(:user, :bill) }
       before { login_as(user, :scope => :user) }
