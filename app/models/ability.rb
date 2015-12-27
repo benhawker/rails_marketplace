@@ -14,7 +14,7 @@ class Ability
       can :manage, User, :id => user.id
       cannot :destroy, User
 
-      can :read, Offer, :listing => { :user_id => user.id } || :user => { :user_id => user.id }
+      can :read, Offer, :listing => { :user_id => user.id }
 
       can :read, Inquiry
       can :read, Message

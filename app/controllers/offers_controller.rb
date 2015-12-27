@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-	
+
   def index
     #@user = User.find(params[:id])
     @listing = Listing.find(params[:listing_id])
