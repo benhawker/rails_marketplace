@@ -20,13 +20,14 @@ RSpec.describe Offer, type: :model do
 	    let(:listing) { FactoryGirl.create(:listing, category: category, user: user_one) }
 	    let(:offer) { FactoryGirl.create(:offer, user: user_two, listing: listing) }
 
-	    it 'an offer must be a valid price' do
-	    	offer.price = "bob"
-	    	expect(offer).to_not be_valid
+	    it 'is accepted if offer is valid price' do
+	    	offer.price = 4.99
+	    	expect(offer).to be_valid
 	    end
 
 	    it 'raises an error if offer is not a valid price' do
-
+	    	offer.price = "bob"
+	    	expect(offer).to_not be_valid
 	    end
 
 	    it 'user cannot make a new offer if they currently have an existing offer on the listing' do
