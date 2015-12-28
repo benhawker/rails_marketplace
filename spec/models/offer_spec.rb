@@ -43,14 +43,14 @@ RSpec.describe Offer, type: :model do
 	    end
 
 	    it 'raises an error if user has already made 5 offers on a listing' do
-	    	4.times do
-	    		FactoryGirl.create(:offer, user: user_two, listing: listing)
-	    	end
-	    	expect{ FactoryGirl.create(:offer, user: user_two, listing: listing) }.
+	    	5.times { FactoryGirl.create(:offer, user: user_two, listing: listing) }
+	    	expect{ FactoryGirl.create(:offer, user: user_two, listing: listing) }.to raise_error('You have already made 5 offers on this listing.')
 	    end
 
 	    it 'raises an error if user has more than 15 live offers' do
-
+	    	10.times { FactoryGirl.create(:offer, user: user_two, listing: listing) }
+	    	#expect{ FactoryGirl.create(:offer, user: user_two, listing: listing) }.to raise_error('You cannot have more than 10 live offers at any one time.')
+	    	expect{ Offer.create(price: 4.99, user: user_two, listing: listing) }.to raise_error('You cannot have more than 10 live offers at any one time.')
 	    end
 	  end
 	  
