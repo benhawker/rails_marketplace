@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
     where("email ILIKE ?", "%#{search}%") 
   end
 
-
-
   # after_create :send_welcome_mail
   
   # def send_welcome_mail

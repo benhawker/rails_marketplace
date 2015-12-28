@@ -9,5 +9,6 @@ class Offer < ActiveRecord::Base
 
   #Attribute validations
   validates_presence_of :price, message: "Your offer must have a price!"
+  validates_numericality_of :price, message: "Please input a valid price"
 
 end

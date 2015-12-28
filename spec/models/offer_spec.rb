@@ -12,16 +12,17 @@ RSpec.describe Offer, type: :model do
   #Attribute validations
   it { should validate_presence_of(:price).with_message("Your offer must have a price!") }
 
-
   context 'as a buyer' do
 	  context 'making an offer' do
-	    let!(:user_one) { FactoryGirl.create(:user) }
+	    let!(:user_one) { FactoryGirl.create(:user, :ben) }
 	    let!(:user_two) { FactoryGirl.create(:user, :bob) }
 	    let!(:category) {FactoryGirl.create(:category) }
 	    let(:listing) { FactoryGirl.create(:listing, category: category, user: user_one) }
+	    let(:offer) { FactoryGirl.create(:offer, user: user_two, listing: listing) }
 
 	    it 'an offer must be a valid price' do
-
+	    	offer.price = "bob"
+	    	expect(offer).to_not be_valid
 	    end
 
 	    it 'raises an error if offer is not a valid price' do
