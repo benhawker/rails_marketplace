@@ -23,7 +23,6 @@ source 'https://rubygems.org'
   gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
   gem 'faker'
   gem 'cancancan', '~> 1.10'
-  gem 'rolify'
 
 group :production do
   gem 'rails_12factor'
