@@ -1,23 +1,20 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/message_spec.rb": [
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/inquiry_spec.rb": [
         1,
         null,
         1,
         2,
         2,
-        null,
+        2,
         2,
         null,
-        1,
-        4,
+        2,
+        2,
+        2,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        2,
         null
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/rails_helper.rb": [
@@ -59,11 +56,11 @@
         null,
         null,
         1,
-        4,
+        8,
         null,
         null,
         1,
-        4,
+        8,
         null,
         null,
         null,
@@ -1119,19 +1116,6 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/message.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        null
-      ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/inquiry.rb": [
         1,
         1,
@@ -1151,24 +1135,48 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/offer.rb": [
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/listing.rb": [
         1,
         null,
         null,
         1,
         1,
         1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
         null,
         null,
         1,
         1,
         null,
         null,
+        null,
+        1,
+        1,
+        1,
         1,
         1,
         null,
         null,
         1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/message.rb": [
         1,
         1,
         1,
@@ -1177,13 +1185,11 @@
         null,
         1,
         0,
-        0,
-        null,
         null,
         null,
         null
       ]
     },
-    "timestamp": 1451399946
+    "timestamp": 1451400164
   }
 }
