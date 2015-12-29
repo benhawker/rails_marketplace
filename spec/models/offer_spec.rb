@@ -42,6 +42,10 @@ RSpec.describe Offer, type: :model do
       expect(offer).to_not be_valid
       expect(offer.errors[:status]).to include "is not included in the list"
     end
+
+    it 'offer status will change from made to cancelled if seller does not respond in 24hrs' do
+
+    end
   end
 
   context 'as a buyer' do
@@ -78,24 +82,26 @@ RSpec.describe Offer, type: :model do
   	end
 
   	context 'cancelling your offer' do
-  		it 'buyer cannot cancel/delete their order within 24 hrs of making it' do
 
-  		end
   	end
 
   end
 
   context 'as a seller' do
   	context 'viewing your offers' do
-
+  	
   	end
 
   	context 'accepting offers' do
+  		it "changes offer status to accepted when seller accepts offer within 24hrs" do
 
+  		end
   	end
 
   	context 'declining offers' do
+  		it "changes offer status to declined when seller declines offer within 48hrs" do
 
+  		end
   	end
   end
 

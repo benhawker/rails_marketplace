@@ -3,7 +3,7 @@ class Offer < ActiveRecord::Base
 	#Constants
   MAX_OFFERS_PER_USER_PER_LISTING = 5
   MAX_LIVE_OFFERS_PER_USER = 10
-  STATES = %w(made accepted declined)
+  STATES = %w(made accepted declined cancelled)
 	
 	#Associations
 	belongs_to :listing
