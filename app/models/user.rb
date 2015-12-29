@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
   ALLOWED_ROLES = %w(standard admin)
-  ROLES = %i[admin standard]
 
   has_many :listings, dependent: :destroy
   has_many :watches, dependent: :destroy
