@@ -40,6 +40,7 @@ RSpec.describe Offer, type: :model do
 
 	    it 'user cannot make a new offer if they currently have an existing offer on the listing' do
 				# expect{ Offer.build(price: 4.99, user: user_two, listing: listing)}.not_to change{Offer.count}
+				expect{ FactoryGirl.create(:offer, user: user_two, listing: listing) }.to raise_error('You already have a live offer on this listintg.')
 	    end
 
 	    it 'raises an error if user has already made 5 offers on a listing' do
@@ -59,7 +60,9 @@ RSpec.describe Offer, type: :model do
   	end
 
   	context 'cancelling your offer' do
-
+  		it 'buyer cannot cancel/delete their order within 24 hrs of making it' do
+  			
+  		end
   	end
 
   end
