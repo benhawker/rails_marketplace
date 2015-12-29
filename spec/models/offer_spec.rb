@@ -26,6 +26,24 @@ RSpec.describe Offer, type: :model do
  		expect{ Offer.create(price: 4.99, user: user_one, listing: listing)}.to change{Offer.count}
   end
 
+  context "offer status" do
+    it 'offer has a status of "made" by default' do 
+      expect(offer.status).to eq ("made")
+    end
+
+    it 'offer is invalid if status is not found within Offer::STATES' do
+      offer.status = "bob"
+      expect(offer).to_not be_valid
+      expect(offer.errors[:status]).to include "is not included in the list"
+    end
+
+    it 'offer is invalid if status is blank' do
+      offer.status = nil
+      expect(offer).to_not be_valid
+      expect(offer.errors[:status]).to include "is not included in the list"
+    end
+  end
+
   context 'as a buyer' do
 	  context 'making an offer' do
 	    it 'is accepted if offer is valid price' do
@@ -61,7 +79,7 @@ RSpec.describe Offer, type: :model do
 
   	context 'cancelling your offer' do
   		it 'buyer cannot cancel/delete their order within 24 hrs of making it' do
-  			
+
   		end
   	end
 

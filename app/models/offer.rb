@@ -17,7 +17,7 @@ class Offer < ActiveRecord::Base
   validates_presence_of :price, message: "Your offer must have a price!"
   validates_numericality_of :price, message: "Please input a valid price"
   validate :max_live_offers_per_user
-  validates_inclusion_of :state, in: STATES, allow_blank: false
+  validates_inclusion_of :status, in: STATES, allow_blank: false
 
   private
 
