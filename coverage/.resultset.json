@@ -25,6 +25,13 @@
         null,
         null,
         1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
         0,
         null,
         null,
@@ -32,6 +39,7 @@
         1,
         1,
         1,
+        null,
         null,
         null,
         null
@@ -528,7 +536,7 @@
         null
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/config/initializers/rolify.rb": [
-        1,
+        null,
         null,
         null,
         null,
@@ -1184,6 +1192,6 @@
         null
       ]
     },
-    "timestamp": 1451394662
+    "timestamp": 1451396367
   }
 }

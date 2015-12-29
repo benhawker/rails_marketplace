@@ -20,14 +20,22 @@ RSpec.describe User, type: :model do
       expect(user_one.watched_listings.count).to eq 2
     end
 
-    it 'user has a role of standard by default' do 
-      expect(user_one.role).to eq ("standard")
-    end
+    context "user role" do
+      it 'user has a role of standard by default' do 
+        expect(user_one.role).to eq ("standard")
+      end
 
-    it 'user is invalid if role is not found within User::ROLES' do
-      user_one.role = "bob"
-      expect(user_one).to_not be_valid
-      expect(user_one.errors[:role]).to include "is not included in the list"
+      it 'user is invalid if role is not found within User::ROLES' do
+        user_one.role = "bob"
+        expect(user_one).to_not be_valid
+        expect(user_one.errors[:role]).to include "is not included in the list"
+      end
+
+      it 'user is invalid if role is blank' do
+        user_one.role = nil
+        expect(user_one).to_not be_valid
+        expect(user_one.errors[:role]).to include "is not included in the list"
+      end
     end
   end
 end
