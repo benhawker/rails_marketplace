@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-  rolify
+
+  ALLOWED_ROLES = %w(standard admin)
+  ROLES = %i[admin standard]
+
   has_many :listings, dependent: :destroy
   has_many :watches, dependent: :destroy
   has_many :watched_listings,  -> { uniq }, :through => :watches, dependent: :destroy
@@ -9,14 +12,11 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_inclusion_of :role, in: ALLOWED_ROLES, allow_blank: false
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  ROLES = %i[admin standard]
-
+  
   def self.search(search)
     where("email ILIKE ?", "%#{search}%") 
   end

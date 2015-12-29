@@ -22,6 +22,12 @@ RSpec.describe User, type: :model do
 
     it 'user has a role of standard by default' do 
       expect(user_one.role).to eq ("standard")
-    end 
+    end
+
+    it 'user is invalid if role is not found within User::ROLES' do
+      user_one.role = "bob"
+      expect(user_one).to_not be_valid
+      expect(user_one.errors[:role]).to include "is not included in the list"
+    end
   end
 end

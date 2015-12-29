@@ -11,7 +11,7 @@ class Offer < ActiveRecord::Base
   validates_presence_of :price, message: "Your offer must have a price!"
   validates_numericality_of :price, message: "Please input a valid price"
 
-  validate :max_live_offers_per_user, :on => :create  
+  validate :max_live_offers_per_user
 
   #Constants
   MAX_OFFERS_PER_USER_PER_LISTING = 5
