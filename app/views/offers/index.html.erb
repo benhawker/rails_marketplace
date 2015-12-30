@@ -2,7 +2,7 @@
 <ul>
 	<% if @offers.any? %>
 		<% @offers.each do |offer| %>
-			<li><%= offer.listing.title %> -->> <%= offer.price %> // Made by <%= offer.user.try(:email) %> </li> 
+			<li><%= offer.listing.title %> -->> <%= offer.price %> // Made by <%= offer.user.try(:email) %> // Offer Status <%= offer.status %> </li>
 		<% end %>
 	<% else %>
 		<li>No offers have been made on this listing.</li>
