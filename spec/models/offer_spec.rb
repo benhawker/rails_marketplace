@@ -27,7 +27,7 @@ RSpec.describe Offer, type: :model do
   end
 
   context "offer status" do
-    it 'offer has a status of "made" by default' do 
+    it 'offer has a status of "made" by default' do
       expect(offer.status).to eq ("made")
     end
 
@@ -76,7 +76,7 @@ RSpec.describe Offer, type: :model do
 	    	expect{ Offer.create(price: 4.99, user: user_two, listing: listing) }.to raise_error('You cannot have more than 10 live offers at any one time.')
 	    end
 	  end
-	  
+
 	  context 'viewing your offers' do
 
   	end
@@ -89,7 +89,7 @@ RSpec.describe Offer, type: :model do
 
   context 'as a seller' do
   	context 'viewing your offers' do
-  	
+
   	end
 
   	context 'accepting offers' do
