@@ -26,6 +26,25 @@ RSpec.describe Offer, type: :model do
  		expect{ Offer.create(price: 4.99, user: user_one, listing: listing)}.to change{Offer.count}
   end
 
+  context "offer status changes" do
+    it "changes status to accepted when offer_accepted"
+      expect { offer.accept_offer! }.to change(offer, :status).from('made').to('accepted')
+    end
+
+    it "changes status to declined when offer_declined"
+      expect { offer.decline_offer! }.to change(offer, :status).from('made').to('declined')
+    end
+
+    it "changes status to withdrawn when offer_withdrawn"
+      expect { offer.withdraw_offer! }.to change(offer, :status).from('made').to('withdrawn')
+    end
+
+    it "changes status to lapsed when offer_lapsed"
+      expect { offer.offer_lapsed! }.to change(offer, :status).from('made').to('lapsed')
+    end
+  end
+
+
   context "offer status" do
     it 'offer has a status of "made" by default' do
       expect(offer.status).to eq ("made")

@@ -22,16 +22,16 @@ class Offer < ActiveRecord::Base
   state_machine :status, :initial => :made do
     status :made, :accepted, :declined, :cancelled
 
-    event :offer_accepted do
+    event :accept_offer do
       transition :made => :accepted
     end
 
-    event :offer_declined do
+    event :decline_offer do
       transition :made => :declined
     end
 
-    event :offer_cancelled do
-      transition :made => :cancelled
+    event :withdraw_offer do
+      transition :made => :withdrawn
     end
 
     event :offer_lapsed do
