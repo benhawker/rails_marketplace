@@ -20,7 +20,7 @@ class Offer < ActiveRecord::Base
   validates_inclusion_of :status, in: STATES, allow_blank: false
 
   state_machine :status, :initial => :made do
-    status :made, :accepted, :declined, :cancelled
+    state :made, :accepted, :declined, :cancelled
 
     event :accept_offer do
       transition :made => :accepted

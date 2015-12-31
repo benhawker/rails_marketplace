@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe InquiriesController, type: :controller do
 	
 	let(:user) { FactoryGirl.create(:user) }
+  let(:user_two) { FactoryGirl.create(:user, :bill) }
 	let!(:category) { FactoryGirl.create(:category) }
   let!(:listing) { FactoryGirl.create(:listing, :les_paul, user: user, category: category) }
+  let(:inquiry) { FactoryGirl.create(:inquiry, sender: user, recipient: user_two, listing: listing) }
 
 	describe "#index" do
     before(:each) { login_as(user) }
@@ -25,14 +27,8 @@ RSpec.describe InquiriesController, type: :controller do
     before(:each){ login_as(user) }  
 
     it "assigns a new inquiry as @inquiry" do
-      get :new
+      get :index
       expect(assigns(:inquiry)).to be_a_new(Inquiry)
-    end
-
-    it "renders the new template" do
-      get :new
-      expect(response).to render_template(:new)
-      expect(response.status).to eql(200)
     end
   end
 end
