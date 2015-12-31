@@ -41,6 +41,10 @@ class Offer < ActiveRecord::Base
 
   private
 
+  # def find_duplicate_offer
+  #   self.made.where(:listing) TO BE COMPLETED
+  # end
+
 	def max_live_offers_per_user
 		# if User.offers.count > MAX_LIVE_OFFERS_PER_USER
 		# 	errors.add(:base, 'You cannot have more than 15 live offers at any one time.')
