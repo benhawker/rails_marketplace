@@ -3,7 +3,7 @@ class Offer < ActiveRecord::Base
 	#Constants
   MAX_OFFERS_PER_USER_PER_LISTING = 5
   MAX_LIVE_OFFERS_PER_USER = 10
-  STATES = %w(made accepted declined cancelled lapsed)
+  STATES = %w(made accepted declined withdrawn lapsed)
 
 	#Associations
 	belongs_to :listing
@@ -20,7 +20,7 @@ class Offer < ActiveRecord::Base
   validates_inclusion_of :status, in: STATES, allow_blank: false
 
   state_machine :status, :initial => :made do
-    state :made, :accepted, :declined, :cancelled
+    state :made, :accepted, :declined, :withdrawn, :lapsed
 
     event :accept_offer do
       transition :made => :accepted

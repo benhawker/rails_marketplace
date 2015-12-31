@@ -24,6 +24,7 @@ source 'https://rubygems.org'
   gem 'faker'
   gem 'cancancan', '~> 1.10'
   gem 'state_machine'
+  gem 'state_machines-activerecord'
 
 group :production do
   gem 'rails_12factor'
