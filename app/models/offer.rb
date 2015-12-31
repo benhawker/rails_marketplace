@@ -42,7 +42,13 @@ class Offer < ActiveRecord::Base
 
   #Scopes
   scope :same_offer_info, ->(offer){ where{id.not_eq offer.id}.where(:sender_id => offer.sender_id, :recipient_id => offer.recipient_id, :listing_id => offer.listing_id) }
+  scope :made, ->{ where(status: 'made') }
+  scope :accepted, ->{ where(status: 'accepted') }
+  scope :declined, ->{ where(status: 'declined') }
+  scope :withdrawn, ->{ where(status: 'withdrawn') }
+  scope :lapsed, ->{ where(status: 'lapsed') }
 
+  
   private
 
   def find_duplicate_offer
