@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231095857) do
+ActiveRecord::Schema.define(version: 20151231143214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,15 @@ ActiveRecord::Schema.define(version: 20151231095857) do
   add_index "categories_listings", ["listing_id", "category_id"], name: "index_categories_listings_on_listing_id_and_category_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.boolean  "rating"
     t.string   "comment"
     t.integer  "listing_id"
     t.integer  "user_id"
     t.integer  "seller_id"
     t.integer  "buyer_id"
+    t.string   "type",       default: "buyer_to_seller"
   end
 
   add_index "feedbacks", ["listing_id"], name: "index_feedbacks_on_listing_id", using: :btree
