@@ -22,22 +22,22 @@ RSpec.describe Listing, type: :model do
   it { should validate_presence_of(:title).with_message("Please select a condition.") }
   it { should validate_presence_of(:location).with_message("Please select a location.") }
 
+  let!(:user_one) { FactoryGirl.create(:user) }
+  let!(:user_two) { FactoryGirl.create(:user, :bob) }
+  let!(:category) {FactoryGirl.create(:category) }
+  let(:listing) { FactoryGirl.create(:listing, category: category, user: user_one) }
+
   context "listing status changes" do
-    it "changes status to accepted when offer_accepted" do
-      expect { offer.hide! }.to change(offer, :status).from('made').to('hidden')
+    it "changes status to hidden when hide! is called" do
+      expect { listing.hide! }.to change(listing, :status).from('active').to('hidden')
     end
 
-    it "changes status to declined when offer_declined" do
-      expect { offer.mark_complete! }.to change(offer, :status).from('active').to('completed')
+    it "changes status to completed when mark_complete! is called" do
+      expect { listing.mark_complete! }.to change(listing, :status).from('active').to('completed')
     end
   end
 
   context 'watching a listing' do
-    let!(:user_one) { FactoryGirl.create(:user) }
-    let!(:user_two) { FactoryGirl.create(:user, :bob) }
-    let!(:category) {FactoryGirl.create(:category) }
-    let(:listing) { FactoryGirl.create(:listing, category: category, user: user_one) }
-
     it 'a listing cannot be watched twice by the same user' do
       user_one.watched_listings << listing
       user_one.watched_listings << listing

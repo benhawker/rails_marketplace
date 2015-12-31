@@ -31,7 +31,7 @@ class Listing < ActiveRecord::Base
     state :active, :hidden, :completed
 
     event :hide do
-      transition :active => :hide
+      transition :active => :hidden
     end
 
     event :mark_complete do
