@@ -26,6 +26,19 @@ class Listing < ActiveRecord::Base
   validates_presence_of :title, message: "Please select a condition."
   validates_presence_of :location, message: "Please select a location."
 
+  #Status/State Machine
+  state_machine :status, :initial => :active do
+    state :active, :hidden, :completed
+
+    event :hide do
+      transition :active => :hide
+    end
+
+    event :mark_complete do
+      transition :active => :completed
+    end
+  end
+
   #Search
   def self.search(search)
     where("title ILIKE ?", "%#{search}%") 

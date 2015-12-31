@@ -22,6 +22,16 @@ RSpec.describe Listing, type: :model do
   it { should validate_presence_of(:title).with_message("Please select a condition.") }
   it { should validate_presence_of(:location).with_message("Please select a location.") }
 
+  context "listing status changes" do
+    it "changes status to accepted when offer_accepted" do
+      expect { offer.hide! }.to change(offer, :status).from('made').to('hidden')
+    end
+
+    it "changes status to declined when offer_declined" do
+      expect { offer.mark_complete! }.to change(offer, :status).from('active').to('completed')
+    end
+  end
+
   context 'watching a listing' do
     let!(:user_one) { FactoryGirl.create(:user) }
     let!(:user_two) { FactoryGirl.create(:user, :bob) }
