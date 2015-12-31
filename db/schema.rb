@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231143214) do
+ActiveRecord::Schema.define(version: 20151231144400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20151231143214) do
     t.integer  "user_id"
     t.integer  "seller_id"
     t.integer  "buyer_id"
-    t.string   "type",       default: "buyer_to_seller"
+    t.string   "direction",  default: "buyer_to_seller"
   end
 
   add_index "feedbacks", ["listing_id"], name: "index_feedbacks_on_listing_id", using: :btree

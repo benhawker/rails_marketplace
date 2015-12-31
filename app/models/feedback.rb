@@ -13,6 +13,13 @@ class Feedback < ActiveRecord::Base
   #Attribute validations
   validates_uniqueness_of :seller_id, :scope => :listing_id
 	validates_presence_of :rating, message: "Your feedback must have a rating"
+	validates_presence_of :direction, inclusion: { in: [true, false] }
 	validates_presence_of :comment, message: "Your feedback must have a comment"
+
+	#Scopes
+  scope :buyer_to_seller, ->{ where(direction: 'buyer_to_seller') }
+  scope :seller_to_buyer, ->{ where(direction: 'seller_to_buyer') }
+  scope :negative, -> { where(rating: false) }
+  scope :positive, -> { where(rating: true) }
 
 end
