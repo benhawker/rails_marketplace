@@ -48,11 +48,11 @@ class Offer < ActiveRecord::Base
   scope :withdrawn, ->{ where(status: 'withdrawn') }
   scope :lapsed, ->{ where(status: 'lapsed') }
 
-  
+
   private
 
   def find_duplicate_offer
-    self.made.where(:listing) TO BE COMPLETED
+    self.made.same_offer_info(self)
   end
 
 	def max_live_offers_per_user

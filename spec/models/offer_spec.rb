@@ -18,6 +18,14 @@ RSpec.describe Offer, type: :model do
 	let(:listing) { FactoryGirl.create(:listing, category: category, user: user_one) }
 	let(:offer) { FactoryGirl.create(:offer, user: user_two, listing: listing) }
 
+  it "has a valid factory" do
+    expect(build(:offer)).to be_valid
+  end
+
+  it "has a valid stub" do
+    expect(build_stubbed(:offer)).to be_valid
+  end
+
   it "cannot be created without a user, a listing & a price" do
  		expect{ Offer.create(price: 4.99, listing: listing)}.not_to change{Offer.count}
   end
@@ -122,6 +130,12 @@ RSpec.describe Offer, type: :model do
 
   		end
   	end
+  end
+
+  describe "#find_duplicate_offer" do
+    it "returns made (i.e. active) duplicate offers" do
+
+    end
   end
 
 end
