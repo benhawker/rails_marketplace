@@ -19,6 +19,7 @@ class Offer < ActiveRecord::Base
   validate :max_live_offers_per_user
   validates_inclusion_of :status, in: STATES, allow_blank: false
 
+  #Status/State Machine
   state_machine :status, :initial => :made do
     state :made, :accepted, :declined, :withdrawn, :lapsed
 
@@ -39,11 +40,14 @@ class Offer < ActiveRecord::Base
     end
   end
 
+  #Scopes
+  scope :same_offer_info, ->(offer){ where{id.not_eq offer.id}.where(:sender_id => offer.sender_id, :recipient_id => offer.recipient_id, :listing_id => offer.listing_id) }
+
   private
 
-  # def find_duplicate_offer
-  #   self.made.where(:listing) TO BE COMPLETED
-  # end
+  def find_duplicate_offer
+    self.made.where(:listing) TO BE COMPLETED
+  end
 
 	def max_live_offers_per_user
 		# if User.offers.count > MAX_LIVE_OFFERS_PER_USER
