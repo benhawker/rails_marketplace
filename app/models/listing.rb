@@ -36,4 +36,12 @@ class Listing < ActiveRecord::Base
     self.offers.new(price: params["price"], listing_id: params["listing_id"], user_id: user.id)
   end
 
+  def ready_for_feedback?
+    self.complete?
+  end
+
+  def complete?
+    true if self.status == "complete"
+  end
+
 end

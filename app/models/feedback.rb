@@ -30,5 +30,10 @@ class Feedback < ActiveRecord::Base
     !positive?
   end
 
+  private
 
+  def listing_must_be_complete
+    errors.add(:id, "Feedback can't be created for this listing yet.") if self.listing && !self.listing.ready_for_feedback?
+  end
+  
 end
