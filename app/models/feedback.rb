@@ -12,5 +12,7 @@ class Feedback < ActiveRecord::Base
 
   #Attribute validations
   validates_uniqueness_of :seller_id, :scope => :listing_id
+	validates_presence_of :rating, message: "Your feedback must have a rating"
+	validates_presence_of :comment, message: "Your feedback must have a comment"
 
 end
