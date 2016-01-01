@@ -3,7 +3,7 @@ require 'rails_helper'
 describe SuggestedListings do
 
   before do
-    @listing = FactoryGirl.create(:host)
+    @listing = FactoryGirl.create(:listing)
     @user = FactorlGirl.create(:user)
   end
 

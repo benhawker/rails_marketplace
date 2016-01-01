@@ -31,6 +31,7 @@ class Listing < ActiveRecord::Base
   scope :active, -> { where(status: "active") }
   scope :hidden, -> { where(status: "hidden") }  
   scope :completed, -> { where(status: "completed") }
+  scope :with_no_photos, -> { where("listings.id NOT IN (?)", Photo.where("photos.listing_id IS NOT NULL").select("DISTINCT photos.listing_id")) }
   
   #Status/State Machine
   state_machine :status, :initial => :active do
