@@ -2724,6 +2724,27 @@
         1,
         null
       ],
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/services/suggested_listings_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/services/suggested_listings.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/ability.rb": [
         1,
         1,
@@ -2757,6 +2778,6 @@
         null
       ]
     },
-    "timestamp": 1451620637
+    "timestamp": 1451636050
   }
 }

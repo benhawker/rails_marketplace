@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'listings#show', as: :tag
 
+  resources :feedbacks
   resources :listings do
     resources :offers
   	post :watch

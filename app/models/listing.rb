@@ -7,6 +7,7 @@ class Listing < ActiveRecord::Base
   has_many :watches
   has_many :watchers, -> { uniq }, :through => :watches
   has_many :offers, dependent: :destroy
+  has_many :feedbacks, order: 'created_at DESC'
  
   # Nested Attributes
   accepts_nested_attributes_for :category, :photos
