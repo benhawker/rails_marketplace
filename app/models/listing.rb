@@ -27,6 +27,11 @@ class Listing < ActiveRecord::Base
   validates_presence_of :title, message: "Please select a condition."
   validates_presence_of :location, message: "Please select a location."
 
+  scope :featured, -> { where(featured: true) }
+  scope :active, -> { where(status: "active") }
+  scope :hidden, -> { where(status: "hidden") }  
+  scope :completed, -> { where(status: "completed") }
+  
   #Status/State Machine
   state_machine :status, :initial => :active do
     state :active, :hidden, :completed
