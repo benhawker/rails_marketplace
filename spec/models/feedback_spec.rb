@@ -19,6 +19,8 @@ RSpec.describe Feedback, type: :model do
 	let!(:category) {FactoryGirl.create(:category) }
 	let(:listing) { FactoryGirl.create(:listing, category: category, user: user_one) }
 	let(:offer) { FactoryGirl.create(:offer, user: user_two, listing: listing) }
+	let!(:feedback) { FactoryGirl.create(:feedback, seller: user_one, buyer: user_two, listing: listing) }
+
 
 	context "valid Feedback" do
 		it "feedback cannot be created without a seller, a buyer & a listing" do
@@ -33,4 +35,17 @@ RSpec.describe Feedback, type: :model do
 	  	expect{ Feedback.create(seller: user_one, buyer: user_two, listing: listing, rating: true, comment: "Great!") }.to raise_error('You cannot leave feedback on your own listing.')
 	  end
 	end
+
+	context "#positive & #negative" do
+		it "return positive for positive feedback" do
+			feedback.rating = true
+			expect{ feedback.positive? }.to eq true
+		end
+
+		it "return negative for negative feedback" do
+			feedback.rating = false
+			expect{ feedback.positive? }.to eq true
+		end
+	end
+
 end
