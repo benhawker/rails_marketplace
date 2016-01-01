@@ -39,12 +39,12 @@ RSpec.describe Feedback, type: :model do
 	context "#positive & #negative" do
 		it "return positive for positive feedback" do
 			feedback.rating = true
-			expect{ feedback.positive? }.to eq true
+			expect(feedback.positive?).to eq true
 		end
 
 		it "return negative for negative feedback" do
 			feedback.rating = false
-			expect{ feedback.positive? }.to eq true
+			expect(feedback.negative?).to eq true
 		end
 	end
 
