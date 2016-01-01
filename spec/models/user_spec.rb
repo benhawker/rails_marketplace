@@ -1,12 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { should have_many(:listings) }
-  it { should have_many(:watches) }
+  it { should have_many(:listings).dependent(:destroy) }
+  it { should have_many(:watches).dependent(:destroy) }
   it { should have_many(:inquiries) }
   it { should have_many(:messages) }
-  it { should have_many(:watched_listings).through(:watches) }
-  it { should have_many(:offers)}
+  it { should have_many(:watched_listings).through(:watches).dependent(:destroy) }
+  it { should have_many(:offers).dependent(:destroy) }
+
+  it { should have_many(:given_feedbacks_as_seller) }
+  it { should have_many(:given_feedbacks_as_buyer) }
+  it { should have_many(:received_feedbacks_as_seller) }
+  it { should have_many(:received_feedbacks_as_buyer) }
 
   context 'watching a listing' do
     let!(:user_one) { FactoryGirl.create(:user) }

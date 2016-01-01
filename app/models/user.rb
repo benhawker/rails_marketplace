@@ -11,23 +11,23 @@ class User < ActiveRecord::Base
 
   # Feedbacks given
   has_many :given_feedbacks_as_seller,
+    -> { where(direction: 'seller_to_buyer') },
     class_name: 'Feedback',
-    foreign_key: :seller_id,
-    conditions: { direction: 'seller_to_buyer' }
+    foreign_key: :seller_id
   has_many :given_feedbacks_as_buyer,
+      -> { where(direction: 'buyer_to_seller') },
     class_name: 'Feedback',
-    foreign_key: :buyer_id,
-    conditions: { direction: 'buyer_to_seller' }
+    foreign_key: :buyer_id
 
   # Feedbacks receieved
   has_many :received_feedbacks_as_seller,
+    -> { where(direction: 'seller_to_buyer') },
     class_name: 'Feedback',
-    foreign_key: :seller_id,
-    conditions: { direction: 'seller_to_buyer' }
+    foreign_key: :seller_id
   has_many :received_feedbacks_as_buyer,
+    -> { where(direction: 'buyer_to_seller') },
     class_name: 'Feedback',
-    foreign_key: :buyer_id,
-    conditions: { direction: 'buyer_to_seller' }
+    foreign_key: :buyer_id
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
