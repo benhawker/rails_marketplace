@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :inquiries
   has_many :messages
   has_many :offers, dependent: :destroy
+  # has_many :feedbacks
 
   # Feedbacks given
   has_many :given_feedbacks_as_seller,
@@ -38,6 +39,18 @@ class User < ActiveRecord::Base
   
   def self.search(search)
     where("email ILIKE ?", "%#{search}%") 
+  end
+
+  def all_feedbacks
+    Feedback.for_user(self)
+  end
+
+  def received_negative_feedbacks
+    Feedback.negative.for_user(self)
+  end
+
+  def received_positive_feedbacks
+    Feedback.positive.for_user(self)
   end
 
   # after_create :send_welcome_mail

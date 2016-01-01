@@ -20,7 +20,10 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'listings#show', as: :tag
 
-  resources :feedbacks
+  resources :users do
+    resources :feedbacks, shallow: true
+  end
+
   resources :listings do
     resources :offers
   	post :watch

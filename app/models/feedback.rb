@@ -21,6 +21,10 @@ class Feedback < ActiveRecord::Base
   scope :seller_to_buyer, ->{ where(direction: 'seller_to_buyer') }
   scope :negative, -> { where(rating: false) }
   scope :positive, -> { where(rating: true) }
+  scope :for_user, -> (user) {
+    where("((feedbacks.user_id = ? AND feedbacks.direction = ?) OR (feedbacks.user_id = ? AND feedbacks.direction = ?))",
+      user.id, true, user.id, false)
+  }
 
   def positive?
     self.rating
@@ -35,5 +39,5 @@ class Feedback < ActiveRecord::Base
   def listing_must_be_complete
     errors.add(:id, "Feedback can't be created for this listing yet.") if self.listing && !self.listing.ready_for_feedback?
   end
-  
+
 end

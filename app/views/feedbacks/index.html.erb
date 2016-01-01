@@ -1,0 +1,13 @@
+<section class="wrapper">
+	<ul>
+			<% if @feedbacks.any? %>
+				<% @feedbacks.each do |feedback| %>
+					<li.block>
+						<%= feedback %>
+					</li.block>
+				<% end %>
+			<% else %>
+				<p>No feedback yet</p>
+			<% end %>
+	</ul>
+</section>

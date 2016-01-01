@@ -16,4 +16,6 @@
 		<%= link_to "Edit Profile", edit_user_path %>
 		<%= link_to "Your offers", user_offers_path(current_user) %>
 	<% end %>
+
+	<p><%= link_to "View #{@user.email}'s Feedback", user_feedbacks_path(@user) %></p>
 </section>

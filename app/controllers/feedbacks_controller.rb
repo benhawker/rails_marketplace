@@ -1,23 +1,17 @@
 class FeedbacksController < ApplicationController
-  before_filter :get_listing
   before_filter :can_only_post_feedback_once, :only => [:create]
 
-  def show
-
+  def index
+    @user = User.find(params[:user_id])
+    # @feedbacks = @user.feedbacks.all
+    @feedbacks = @user.all_feedbacks
   end
 
-  def create
-
-  end
 
 	private
-	
+
   def feedback_params
     params.require(:feedback).permit(:rating, :comment)
-  end
-
-  def get_listing
-    @listing = current_user.listings.find(params[:listing_id])
   end
 
   def can_only_post_feedback_once
