@@ -16,7 +16,7 @@
 	<section class="listings">
 
 	<% if @listings.any? %>
-		<% @listings.each do |listing| %>
+		<% @listings.active.each do |listing| %>
 		<section class="listing-snapshot">
 		
 		<section class="listing-snapshot-left">
