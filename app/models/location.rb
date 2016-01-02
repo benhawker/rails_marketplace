@@ -1,4 +1,4 @@
 class Location < ActiveRecord::Base
-	belongs_to user
-	belongs_to :listing
+	has_many :users
+	has_many :listings
 end

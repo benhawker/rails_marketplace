@@ -8,6 +8,7 @@ class Listing < ActiveRecord::Base
   has_many :watchers, -> { uniq }, :through => :watches
   has_many :offers, dependent: :destroy
   has_many :feedbacks
+  belongs_to :location, :dependent => :destroy
  
   # Nested Attributes
   accepts_nested_attributes_for :category, :photos
@@ -25,7 +26,6 @@ class Listing < ActiveRecord::Base
   validates_presence_of :subtitle, message: "Please add a subtitle."
   validates_presence_of :price, message: "Please add a price."
   validates_presence_of :title, message: "Please select a condition."
-  validates_presence_of :location, message: "Please select a location."
 
   scope :featured, -> { where(featured: true) }
   scope :active, -> { where(status: "active") }

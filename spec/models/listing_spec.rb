@@ -9,6 +9,7 @@ RSpec.describe Listing, type: :model do
   it { should have_many(:watches) }
   it { should have_many(:watchers).through(:watches) }
   it { should have_many(:offers) }
+  it { should belong_to(:location).dependent(:destroy) }
 
   #Association validations
   it { should validate_presence_of(:category) }
@@ -20,7 +21,6 @@ RSpec.describe Listing, type: :model do
   it { should validate_presence_of(:subtitle).with_message("Please add a subtitle.") }
   it { should validate_presence_of(:price).with_message("Please add a price.") }
   it { should validate_presence_of(:title).with_message("Please select a condition.") }
-  it { should validate_presence_of(:location).with_message("Please select a location.") }
 
   let!(:user_one) { FactoryGirl.create(:user) }
   let!(:user_two) { FactoryGirl.create(:user, :bob) }

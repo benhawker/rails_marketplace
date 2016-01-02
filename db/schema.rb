@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102040910) do
+ActiveRecord::Schema.define(version: 20160102044358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,14 +70,15 @@ ActiveRecord::Schema.define(version: 20160102040910) do
     t.string   "brand"
     t.string   "model"
     t.string   "case_type"
-    t.string   "location"
     t.integer  "user_id"
     t.integer  "category_id"
     t.string   "status",      default: "active"
     t.boolean  "featured",    default: false
+    t.integer  "location_id"
   end
 
   add_index "listings", ["category_id"], name: "index_listings_on_category_id", using: :btree
+  add_index "listings", ["location_id"], name: "index_listings_on_location_id", using: :btree
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
@@ -164,9 +165,11 @@ ActiveRecord::Schema.define(version: 20160102040910) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "role",                   default: "standard"
+    t.integer  "location_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "watches", force: :cascade do |t|
@@ -184,10 +187,12 @@ ActiveRecord::Schema.define(version: 20160102040910) do
   add_foreign_key "feedbacks", "users"
   add_foreign_key "inquiries", "users"
   add_foreign_key "listings", "categories"
+  add_foreign_key "listings", "locations"
   add_foreign_key "listings", "users"
   add_foreign_key "offers", "listings"
   add_foreign_key "offers", "users"
   add_foreign_key "photos", "listings"
+  add_foreign_key "users", "locations"
   add_foreign_key "watches", "listings"
   add_foreign_key "watches", "users"
 end

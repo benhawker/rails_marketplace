@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :inquiries
   has_many :messages
   has_many :offers, dependent: :destroy
-  # has_many :feedbacks
+  belongs_to :location, :dependent => :destroy
 
   # Feedbacks given
   has_many :given_feedbacks_as_seller,

@@ -14,7 +14,7 @@ FactoryGirl.define do
     brand { Faker::Company.name }
     model { Faker::Commerce.product_name }
     case_type { "No Case" }
-    location { Faker::Address.city }
+    # location { Faker::Address.city }
 
     factory :listing_with_watch do
         after(:create) do |listing|

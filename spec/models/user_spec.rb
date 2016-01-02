@@ -11,6 +11,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:given_feedbacks_as_buyer) }
   it { should have_many(:received_feedbacks_as_seller) }
   it { should have_many(:received_feedbacks_as_buyer) }
+  it { should belong_to(:location).dependent(:destroy) }
 
   let!(:user_one) { FactoryGirl.create(:user) }
   let!(:category) {FactoryGirl.create(:category) }
