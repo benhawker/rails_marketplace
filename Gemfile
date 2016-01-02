@@ -26,6 +26,7 @@ source 'https://rubygems.org'
   gem 'state_machine'
   gem 'state_machines-activerecord'
   gem 'geocoder'
+  gem 'country_select'
 
 group :production do
   gem 'rails_12factor'

@@ -7,8 +7,11 @@
 <% end %>
 
 	<%= form_for @user, :url => user_path, html: {multipart: true} do |f| %>
+	  <%= f.text_field :house_number, placeholder: "House Number/Name" %>
+	  <%= f.text_field :street_address, placeholder: "Street" %>
 	  <%= f.text_field :city, placeholder: "City" %>
-	  <%= f.text_field :country, placeholder: "Country" %>
+	  <%= f.text_field :postal_code, placeholder: "Postal Code" %>
+	  <%= f.country_select :country %>
 	  <%= f.file_field :avatar %>
 	  <%= f.button :submit %>
 	<% end %>
