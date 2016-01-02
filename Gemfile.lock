@@ -117,6 +117,7 @@ GEM
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
     formatador (0.2.5)
+    geocoder (1.2.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gravatar_image_tag (1.2.0)
@@ -350,6 +351,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  geocoder
   gravatar_image_tag
   guard-rspec
   jbuilder (~> 2.0)
