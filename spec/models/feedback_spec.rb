@@ -36,6 +36,24 @@ RSpec.describe Feedback, type: :model do
 	  end
 	end
 
+	context "feedback direction" do
+    it 'direction will be buyer_to_seller by default' do
+      expect(feedback.direction).to eq ("buyer_to_seller")
+    end
+
+    it 'feedback is invalid if direction is not found within Feedback::VALID_DIRECTIONS' do
+      feedback.direction = "North"
+      expect(feedback).to_not be_valid
+      expect(feedback.errors[:direction]).to include "is not included in the list"
+    end
+
+    it 'feedback is invalid if status is blank' do
+      feedback.direction = nil
+      expect(feedback).to_not be_valid
+      expect(feedback.errors[:direction]).to include "is not included in the list"
+    end
+  end
+
 	context "#positive & #negative" do
 		it "return positive for positive feedback" do
 			feedback.rating = true

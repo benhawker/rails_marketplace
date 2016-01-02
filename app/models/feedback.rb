@@ -1,5 +1,7 @@
 class Feedback < ActiveRecord::Base
 
+	VALID_DIRECTIONS = %w(buyer_to_seller seller_to_buyer)
+
 	#Associations
 	belongs_to :listing
 	belongs_to :seller, :foreign_key => :seller_id, class_name: "User"
@@ -15,6 +17,7 @@ class Feedback < ActiveRecord::Base
 	validates_presence_of :rating, message: "Your feedback must have a rating"
 	validates_presence_of :direction, inclusion: { in: [true, false] }
 	validates_presence_of :comment, message: "Your feedback must have a comment"
+	validates_inclusion_of :direction, in: VALID_DIRECTIONS, allow_blank: false
 
 	#Scopes
   scope :buyer_to_seller, ->{ where(direction: 'buyer_to_seller') }
