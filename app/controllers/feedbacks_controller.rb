@@ -3,10 +3,8 @@ class FeedbacksController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    # @feedbacks = @user.feedbacks.all
     @feedbacks = @user.all_feedbacks
   end
-
 
 	private
 
