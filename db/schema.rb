@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102062157) do
+ActiveRecord::Schema.define(version: 20160103100329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,18 +34,20 @@ ActiveRecord::Schema.define(version: 20160102062157) do
   add_index "categories_listings", ["listing_id", "category_id"], name: "index_categories_listings_on_listing_id_and_category_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.boolean  "rating"
     t.string   "comment"
     t.integer  "listing_id"
     t.integer  "user_id"
     t.integer  "seller_id"
     t.integer  "buyer_id"
-    t.string   "direction",  default: "buyer_to_seller"
+    t.string   "direction",      default: "buyer_to_seller"
+    t.integer  "transaction_id"
   end
 
   add_index "feedbacks", ["listing_id"], name: "index_feedbacks_on_listing_id", using: :btree
+  add_index "feedbacks", ["transaction_id"], name: "index_feedbacks_on_transaction_id", using: :btree
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "inquiries", force: :cascade do |t|
@@ -145,6 +147,14 @@ ActiveRecord::Schema.define(version: 20160102062157) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  create_table "transactions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "listing_id"
+  end
+
+  add_index "transactions", ["listing_id"], name: "index_transactions_on_listing_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",         null: false
     t.string   "encrypted_password",     default: "",         null: false
@@ -191,6 +201,7 @@ ActiveRecord::Schema.define(version: 20160102062157) do
 
   add_foreign_key "categories", "listings"
   add_foreign_key "feedbacks", "listings"
+  add_foreign_key "feedbacks", "transactions"
   add_foreign_key "feedbacks", "users"
   add_foreign_key "inquiries", "users"
   add_foreign_key "listings", "categories"
@@ -199,6 +210,7 @@ ActiveRecord::Schema.define(version: 20160102062157) do
   add_foreign_key "offers", "listings"
   add_foreign_key "offers", "users"
   add_foreign_key "photos", "listings"
+  add_foreign_key "transactions", "listings"
   add_foreign_key "users", "locations"
   add_foreign_key "watches", "listings"
   add_foreign_key "watches", "users"
