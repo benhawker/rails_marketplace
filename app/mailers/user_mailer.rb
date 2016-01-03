@@ -6,4 +6,8 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Success - you are signed up!')
   end
 
+  def new_message_notification(message)
+
+  end
+
 end
