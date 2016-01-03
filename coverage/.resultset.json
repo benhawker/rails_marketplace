@@ -47,11 +47,11 @@
         null,
         null,
         1,
-        93,
+        97,
         null,
         null,
         1,
-        93,
+        97,
         null,
         null,
         null,
@@ -813,6 +813,14 @@
         null,
         null
       ],
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/factories/payments.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/factories/photos.rb": [
         1,
         1,
@@ -921,7 +929,6 @@
         1,
         1,
         5,
-        1,
         1,
         1,
         1,
@@ -1304,7 +1311,6 @@
         2,
         2,
         2,
-        null,
         2,
         null,
         2,
@@ -1715,6 +1721,48 @@
         null,
         null
       ],
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/payment_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        null,
+        1,
+        1,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/app/models/payment.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/photo_spec.rb": [
         1,
         null,
@@ -1817,6 +1865,6 @@
         null
       ]
     },
-    "timestamp": 1451815961
+    "timestamp": 1451817349
   }
 }
