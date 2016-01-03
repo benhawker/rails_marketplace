@@ -7,6 +7,11 @@ class Feedback < ActiveRecord::Base
 	belongs_to :seller, :foreign_key => :seller_id, class_name: "User"
 	belongs_to :buyer, :foreign_key => :buyer_id, class_name: "User"
 
+  ##Proposed better solution to be reworked
+  # belongs_to :author, :foreign_key => :author_id, :class_name => "User"
+  # belongs_to :recipient, :foreign_key => :recipient_id, :class_name => "User"
+  # belongs_to :transaction
+
   #Association validations
   validates_presence_of :seller
   validates_presence_of :buyer

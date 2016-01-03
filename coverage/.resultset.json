@@ -967,6 +967,10 @@
         1,
         null,
         null,
+        null,
+        1,
+        null,
+        null,
         1,
         0,
         null,
@@ -2209,18 +2213,8 @@
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/helpers/feedbacks_helper_spec.rb": [
         1,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         1,
-        1,
+        null,
         null
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/helpers/inquiries_helper_spec.rb": [
@@ -2308,6 +2302,10 @@
         1,
         0,
         0,
+        null,
+        null,
+        1,
+        null,
         null,
         null,
         null
@@ -2922,7 +2920,10 @@
         1,
         null,
         1,
+        null,
         1,
+        1,
+        null,
         null
       ],
       "/Users/benhawker/Desktop/Projects/personal/rails_marketplace/spec/models/transaction_spec.rb": [
@@ -3072,6 +3073,6 @@
         null
       ]
     },
-    "timestamp": 1451826695
+    "timestamp": 1451829241
   }
 }
