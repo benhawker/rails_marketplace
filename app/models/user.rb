@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
   has_many :offers, dependent: :destroy
   belongs_to :location, :dependent => :destroy
 
+  has_many :follower_relationships
+  has_many :followers, :through => :follower_relationships, :foreign_key => "user_id"
+  has_many :inverse_follower_relationships, :class_name => "FollowerRelationship", :foreign_key => "follower_id"
+  has_many :followed_people, :through => :inverse_follower_relationships, :source => "user"
+
   #New proposed solution to Feedback relationship
   # has_many :authored_feedbacks, :class_name => "Feedback", :foreign_key => "author_id", :dependent => :destroy
   # has_many :received_feedbacks, -> { order("id DESC")}, :class_name => "Feedback", :foreign_key => "recipient_id", :dependent => :destroy

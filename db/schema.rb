@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103101842) do
+ActiveRecord::Schema.define(version: 20160104132549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20160103101842) do
   add_index "feedbacks", ["listing_id"], name: "index_feedbacks_on_listing_id", using: :btree
   add_index "feedbacks", ["transaction_id"], name: "index_feedbacks_on_transaction_id", using: :btree
   add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
+
+  create_table "follower_relationships", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id",     null: false
+    t.integer  "follower_id", null: false
+  end
+
+  add_index "follower_relationships", ["follower_id"], name: "index_follower_relationships_on_follower_id", using: :btree
+  add_index "follower_relationships", ["user_id", "follower_id"], name: "index_follower_relationships_on_user_id_and_follower_id", unique: true, using: :btree
+  add_index "follower_relationships", ["user_id"], name: "index_follower_relationships_on_user_id", using: :btree
 
   create_table "inquiries", force: :cascade do |t|
     t.integer  "sender_id"
