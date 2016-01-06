@@ -14,9 +14,9 @@ RSpec.describe User, type: :model do
   it { should have_many(:follower_relationships) }
   it { should have_many(:followers).through(:follower_relationships).with_foreign_key('user_id') }
   it { should have_many(:inverse_follower_relationships).class_name('FollowerRelationship').with_foreign_key('follower_id') }
-  it { should have_many(:followed_people).through(:inverse_follower_relationships).source(:user) }
+  it { should have_many(:followed_users).through(:inverse_follower_relationships).source(:user) }
   it { should belong_to(:location).dependent(:destroy) }
-  
+
   let!(:user_one) { FactoryGirl.create(:user) }
   let!(:category) {FactoryGirl.create(:category) }
   let!(:listing_one) { FactoryGirl.create(:listing, user: user_one, category: category) }

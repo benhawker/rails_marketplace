@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :follower_relationships
   has_many :followers, :through => :follower_relationships, :foreign_key => "user_id"
   has_many :inverse_follower_relationships, :class_name => "FollowerRelationship", :foreign_key => "follower_id"
-  has_many :followed_people, :through => :inverse_follower_relationships, :source => "user"
+  has_many :followed_users, :through => :inverse_follower_relationships, :source => "user"
 
   #New proposed solution to Feedback relationship
   # has_many :authored_feedbacks, :class_name => "Feedback", :foreign_key => "author_id", :dependent => :destroy
@@ -66,6 +66,15 @@ class User < ActiveRecord::Base
 
   def received_positive_feedbacks
     Feedback.positive.for_user(self)
+  end
+  
+
+  def follows?(user)
+    followed_users_by_id.include?(user.id)
+  end
+
+  def followed_people_by_id
+    @followed_users_by_id ||= followed_users.group_by(&:id)
   end
 
   # after_create :send_welcome_mail
