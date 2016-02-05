@@ -2,7 +2,7 @@ class Offer < ActiveRecord::Base
 
   # before_save :find_duplicate_offer
   before_save :check_not_listing_owner
-  before_save :check_number_of_active_offers
+  before_save :check_number_of_active_offers_per_user
 
 	#Constants
   MAX_OFFERS_PER_USER_PER_LISTING = 3
@@ -20,7 +20,7 @@ class Offer < ActiveRecord::Base
   #Attribute validations
   validates_presence_of :price, message: "Your offer must have a price!"
   validates_numericality_of :price, message: "Please input a valid price"
-  validate :max_live_offers_per_user
+  # validate :max_live_offers_per_user
   validates_inclusion_of :status, in: STATES, allow_blank: false
 
   #Status/State Machine
@@ -69,14 +69,9 @@ class Offer < ActiveRecord::Base
     raise "You cannot make an offer on your own listing." if self.user_id == self.listing.user.id
   end
 
-  def check_number_of_active_offers
+  def check_number_of_active_offers_per_user
     raise "You cannot have more than 5 live offers at any one time." if self.user.offers.count >= MAX_LIVE_OFFERS_PER_USER
   end
 
-	def max_live_offers_per_user
-		# if User.offers.count > MAX_LIVE_OFFERS_PER_USER
-		# 	errors.add(:base, 'You cannot have more than 15 live offers at any one time.')
-		# end
-	end
 
 end
