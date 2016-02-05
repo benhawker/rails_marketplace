@@ -1,6 +1,7 @@
 class Offer < ActiveRecord::Base
 
-  before_save :find_duplicate_offer
+  # before_save :find_duplicate_offer
+  before_save :check_not_listing_owner
 
 	#Constants
   MAX_OFFERS_PER_USER_PER_LISTING = 5
@@ -61,6 +62,10 @@ class Offer < ActiveRecord::Base
 
   def find_duplicate_offer
     self.same_offer_info_as(self).where(status: "made").first
+  end
+
+  def check_not_listing_owner
+    raise "You cannot make an offer on your own listing." if self.user_id == self.listing.user.id
   end
 
 	def max_live_offers_per_user

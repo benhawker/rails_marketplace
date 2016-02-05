@@ -44,7 +44,6 @@ RSpec.describe Offer, type: :model do
     end
   end
 
-
   context "offer status" do
     it 'offer has a status of "made" by default' do
       expect(offer.status).to eq ("made")
@@ -63,7 +62,8 @@ RSpec.describe Offer, type: :model do
     end
 
     it 'offer status will change from made to cancelled if seller does not respond in 24hrs' do
-
+      offer.status = "made"
+      #Something with Timecop
     end
   end
 
@@ -76,12 +76,17 @@ RSpec.describe Offer, type: :model do
 
 	    it 'raises an error if offer is not a valid price' do
 	    	offer.price = "bob"
+        offer.save!
 	    	expect(offer).to_not be_valid
 	    end
 
+      it 'raises an error if the buyer is the listing owner' do
+        expect { FactoryGirl.create(:offer, user: user_one, listing: listing) }.to raise_error "You cannot make an offer on your own listing."
+      end
+
 	    it 'user cannot make a new offer if they currently have an existing offer on the listing' do
 				# expect{ Offer.build(price: 4.99, user: user_two, listing: listing)}.not_to change{Offer.count}
-				expect{ FactoryGirl.create(:offer, user: user_two, listing: listing) }.to raise_error('You already have a live offer on this listintg.')
+				expect{ FactoryGirl.build(:offer, user: user_two, listing: listing) }.to raise_error('You already have a live offer on this listintg.')
 	    end
 
 	    it 'raises an error if user has already made 5 offers on a listing' do

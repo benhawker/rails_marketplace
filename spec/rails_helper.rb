@@ -26,7 +26,7 @@ RSpec.configure do |config|
     logout(*scopes)
   end
 
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
     if defined?(ActiveRecord::Base)
     begin
       require 'database_cleaner'
