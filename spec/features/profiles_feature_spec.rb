@@ -22,7 +22,7 @@ feature "User profiles" do
     it "can fill in and save their profile information" do
       visit edit_user_path(user)
       fill_in 'user[city]', with: "London"
-      fill_in 'user[country]', with: "UK"
+      #seldct from country select dropdown
       attach_file 'user[avatar]', 'spec/test.jpg'
       click_button "submit"
       expect(page).to have_content "Profile for ben@test.com"
