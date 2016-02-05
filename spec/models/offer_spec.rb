@@ -23,7 +23,7 @@ RSpec.describe Offer, type: :model do
   end
 
  	it "will be created with a user, a listing & a price" do
- 		expect{ Offer.create(price: 4.99, user: user_one, listing: listing)}.to change{Offer.count}
+ 		expect{ Offer.create(price: 4.99, user: user_two, listing: listing)}.to change{Offer.count}
   end
 
   context "offer status changes" do
@@ -76,7 +76,7 @@ RSpec.describe Offer, type: :model do
 
 	    it 'raises an error if offer is not a valid price' do
 	    	offer.price = "bob"
-        offer.save!
+        offer.save
 	    	expect(offer).to_not be_valid
 	    end
 
@@ -89,15 +89,25 @@ RSpec.describe Offer, type: :model do
 				expect{ FactoryGirl.build(:offer, user: user_two, listing: listing) }.to raise_error('You already have a live offer on this listintg.')
 	    end
 
-	    it 'raises an error if user has already made 5 offers on a listing' do
+	    it 'raises an error if user has already made 3 offers on a listing' do
 	    	5.times { FactoryGirl.create(:offer, user: user_two, listing: listing) }
 	    	expect{ FactoryGirl.create(:offer, user: user_two, listing: listing) }.to raise_error('You have already made 5 offers on this listing.')
 	    end
 
-	    it 'raises an error if user has more than 15 live offers' do
-	    	10.times { FactoryGirl.create(:offer, user: user_two, listing: listing) }
-	    	#expect{ FactoryGirl.create(:offer, user: user_two, listing: listing) }.to raise_error('You cannot have more than 10 live offers at any one time.')
-	    	expect{ Offer.create(price: 4.99, user: user_two, listing: listing) }.to raise_error('You cannot have more than 10 live offers at any one time.')
+      #Massive refactor required - this is horrible.
+      let(:listing_two) { FactoryGirl.create(:listing, category: category, user: user_one) }
+      let(:listing_three) { FactoryGirl.create(:listing, category: category, user: user_one) }
+      let(:listing_four) { FactoryGirl.create(:listing, category: category, user: user_one) }
+      let(:listing_five) { FactoryGirl.create(:listing, category: category, user: user_one) }
+      let(:listing_six) { FactoryGirl.create(:listing, category: category, user: user_one) }
+
+	    it 'raises an error if user has more than or equal to 5 live offers' do
+        FactoryGirl.create(:offer, price: 4.99, user: user_two, listing: listing)
+        FactoryGirl.create(:offer, price: 4.99, user: user_two, listing: listing_two)
+        FactoryGirl.create(:offer, price: 4.99, user: user_two, listing: listing_three)
+        FactoryGirl.create(:offer, price: 4.99, user: user_two, listing: listing_four)
+        FactoryGirl.create(:offer, price: 4.99, user: user_two, listing: listing_five)
+	    	expect { Offer.create(price: 4.99, user: user_two, listing: listing_six) }.to raise_error('You cannot have more than 5 live offers at any one time.')
 	    end
 	  end
 

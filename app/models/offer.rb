@@ -2,10 +2,11 @@ class Offer < ActiveRecord::Base
 
   # before_save :find_duplicate_offer
   before_save :check_not_listing_owner
+  before_save :check_number_of_active_offers
 
 	#Constants
-  MAX_OFFERS_PER_USER_PER_LISTING = 5
-  MAX_LIVE_OFFERS_PER_USER = 10
+  MAX_OFFERS_PER_USER_PER_LISTING = 3
+  MAX_LIVE_OFFERS_PER_USER = 5
   STATES = %w(made accepted declined withdrawn lapsed)
 
 	#Associations
@@ -66,6 +67,10 @@ class Offer < ActiveRecord::Base
 
   def check_not_listing_owner
     raise "You cannot make an offer on your own listing." if self.user_id == self.listing.user.id
+  end
+
+  def check_number_of_active_offers
+    raise "You cannot have more than 5 live offers at any one time." if self.user.offers.count >= MAX_LIVE_OFFERS_PER_USER
   end
 
 	def max_live_offers_per_user
