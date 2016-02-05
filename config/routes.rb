@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   	get :watchlist
     get :offers
     resources :followers
-    resources :followed_people
+    resources :followed_users
   end
 
   resources :inquiries do

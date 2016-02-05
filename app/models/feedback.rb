@@ -1,5 +1,7 @@
 class Feedback < ActiveRecord::Base
 
+  before_save :cannot_leave_feedback_on_your_own_listing
+
 	VALID_DIRECTIONS = %w(buyer_to_seller seller_to_buyer)
 
 	#Associations
@@ -46,6 +48,10 @@ class Feedback < ActiveRecord::Base
 
   def listing_must_be_complete
     errors.add(:id, "Feedback can't be created for this listing yet.") if self.listing && !self.listing.ready_for_feedback?
+  end
+
+  def cannot_leave_feedback_on_your_own_listing
+    raise "You cannot leave feedback on your own listing." if self.seller.id == self.listing.user.id
   end
 
 end
