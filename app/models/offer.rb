@@ -1,5 +1,7 @@
 class Offer < ActiveRecord::Base
 
+  before_save :find_duplicate_offer
+
 	#Constants
   MAX_OFFERS_PER_USER_PER_LISTING = 5
   MAX_LIVE_OFFERS_PER_USER = 10
@@ -41,18 +43,24 @@ class Offer < ActiveRecord::Base
   end
 
   #Scopes
-  scope :same_offer_info, ->(offer){ where{id.not_eq offer.id}.where(:sender_id => offer.sender_id, :recipient_id => offer.recipient_id, :listing_id => offer.listing_id) }
+ # scope :same_offer_info, ->(offer){ where{id.not_eq offer.id}.where(:sender_id => offer.user_id, :listing_id => offer.listing_id) }
   scope :made, ->{ where(status: 'made') }
   scope :accepted, ->{ where(status: 'accepted') }
   scope :declined, ->{ where(status: 'declined') }
   scope :withdrawn, ->{ where(status: 'withdrawn') }
   scope :lapsed, ->{ where(status: 'lapsed') }
+  
 
+  def same_offer_info_as(offer)
+    if Offer.where(user_id: offer.user_id, listing_id: offer.listing_id)
+      raise "You already have a live offer on this listintg."
+    end
+  end
 
   private
 
   def find_duplicate_offer
-    self.made.same_offer_info(self)
+    self.same_offer_info_as(self).where(status: "made").first
   end
 
 	def max_live_offers_per_user
