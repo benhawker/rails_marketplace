@@ -1,5 +1,5 @@
 
-	<%= form_for [@user, @feedback], url: user_feedbacks_path(@user, @feedback), html: {multipart: true} do |f| %>
+	<%= form_for [@user, @feedback], url: user_feedbacks_path(@user, @feedback), do |f| %>
     <%= f.label :rating %>
     <%= f.select(:rating, @feedback_presenter.feedback_options, {}, id: 'rating', class: 'form-control') %>
     <%= f.label :comment %>
