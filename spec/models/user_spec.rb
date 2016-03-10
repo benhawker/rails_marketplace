@@ -7,11 +7,11 @@ RSpec.describe User, type: :model do
   it { should have_many(:messages) }
   it { should have_many(:watched_listings).through(:watches).dependent(:destroy) }
   it { should have_many(:offers).dependent(:destroy) }
-  it { should have_many(:given_feedbacks_as_seller) }
-  it { should have_many(:given_feedbacks_as_buyer) }
-  it { should have_many(:received_feedbacks_as_seller) }
-  it { should have_many(:received_feedbacks_as_buyer) }
   it { should belong_to(:location).dependent(:destroy) }
+  it { should have_many(:authored_feedbacks).class_name('Feedback').with_foreign_key('author_id').dependent(:destroy) }
+  it { should have_many(:received_feedbacks).class_name('Feedback').with_foreign_key('recipient_id').dependent(:destroy) }
+  it { should have_many(:received_positive_feedbacks).with_foreign_key('recipient_id').class_name('Feedback') }
+  it { should have_many(:received_negative_feedbacks).with_foreign_key('recipient_id').class_name('Feedback') }
 
   let!(:user_one) { FactoryGirl.create(:user) }
   let!(:category) {FactoryGirl.create(:category) }

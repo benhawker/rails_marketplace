@@ -11,30 +11,10 @@ class User < ActiveRecord::Base
   belongs_to :location, :dependent => :destroy
 
   #New proposed solution to Feedback relationship
-  # has_many :authored_feedbacks, :class_name => "Feedback", :foreign_key => "author_id", :dependent => :destroy
-  # has_many :received_feedbacks, -> { order("id DESC")}, :class_name => "Feedback", :foreign_key => "recipient_id", :dependent => :destroy
-  # has_many :received_positive_feedbacks, -> { where(rating: true).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
-  # has_many :received_negative_feedbacks, -> { where(rating: false).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
-
-  # Feedbacks given - these associations to be removed.
-  has_many :given_feedbacks_as_seller,
-    -> { where(direction: 'seller_to_buyer') },
-    class_name: 'Feedback',
-    foreign_key: :seller_id
-  has_many :given_feedbacks_as_buyer,
-      -> { where(direction: 'buyer_to_seller') },
-    class_name: 'Feedback',
-    foreign_key: :buyer_id
-
-  # Feedbacks receieved
-  has_many :received_feedbacks_as_seller,
-    -> { where(direction: 'seller_to_buyer') },
-    class_name: 'Feedback',
-    foreign_key: :seller_id
-  has_many :received_feedbacks_as_buyer,
-    -> { where(direction: 'buyer_to_seller') },
-    class_name: 'Feedback',
-    foreign_key: :buyer_id
+  has_many :authored_feedbacks, :class_name => "Feedback", :foreign_key => "author_id", :dependent => :destroy
+  has_many :received_feedbacks, -> { order("id DESC")}, :class_name => "Feedback", :foreign_key => "recipient_id", :dependent => :destroy
+  has_many :received_positive_feedbacks, -> { where(rating: true).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
+  has_many :received_negative_feedbacks, -> { where(rating: false).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
