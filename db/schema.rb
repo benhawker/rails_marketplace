@@ -34,18 +34,16 @@ ActiveRecord::Schema.define(version: 20160310133741) do
   add_index "categories_listings", ["listing_id", "category_id"], name: "index_categories_listings_on_listing_id_and_category_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.boolean  "rating"
     t.string   "comment"
     t.integer  "listing_id"
-    t.integer  "transaction_id"
     t.integer  "author_id"
     t.integer  "recipient_id"
   end
 
   add_index "feedbacks", ["listing_id"], name: "index_feedbacks_on_listing_id", using: :btree
-  add_index "feedbacks", ["transaction_id"], name: "index_feedbacks_on_transaction_id", using: :btree
 
   create_table "inquiries", force: :cascade do |t|
     t.integer  "sender_id"
@@ -203,7 +201,6 @@ ActiveRecord::Schema.define(version: 20160310133741) do
 
   add_foreign_key "categories", "listings"
   add_foreign_key "feedbacks", "listings"
-  add_foreign_key "feedbacks", "transactions"
   add_foreign_key "inquiries", "users"
   add_foreign_key "listings", "categories"
   add_foreign_key "listings", "locations"

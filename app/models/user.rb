@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :offers, dependent: :destroy
   belongs_to :location, :dependent => :destroy
 
-  #New proposed solution to Feedback relationship
+  #New implemented solution to Feedback relationship
   has_many :authored_feedbacks, :class_name => "Feedback", :foreign_key => "author_id", :dependent => :destroy
   has_many :received_feedbacks, -> { order("id DESC")}, :class_name => "Feedback", :foreign_key => "recipient_id", :dependent => :destroy
   has_many :received_positive_feedbacks, -> { where(rating: true).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"

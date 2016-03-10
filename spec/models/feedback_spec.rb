@@ -9,8 +9,8 @@ RSpec.describe Feedback, type: :model do
   it { should validate_presence_of(:recipient) }
   it { should validate_presence_of(:listing) }
 
-	# it { should validate_presence_of(:rating).with_message("Your feedback must have a rating") }
-	# it { should validate_presence_of(:comment).with_message("Your feedback must have a comment") }
+	it { should validate_presence_of(:rating).with_message("Your feedback must have a rating") }
+	it { should validate_presence_of(:comment).with_message("Your feedback must have a comment") }
 
 
 	# let!(:user_one) { FactoryGirl.create(:user, :ben) }
