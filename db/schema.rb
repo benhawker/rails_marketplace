@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310133741) do
+ActiveRecord::Schema.define(version: 20160515132933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(version: 20160310133741) do
   end
 
   add_index "categories", ["listing_id"], name: "index_categories_on_listing_id", using: :btree
-
-  create_table "categories_listings", id: false, force: :cascade do |t|
-    t.integer "category_id", null: false
-    t.integer "listing_id",  null: false
-  end
-
-  add_index "categories_listings", ["category_id", "listing_id"], name: "index_categories_listings_on_category_id_and_listing_id", using: :btree
-  add_index "categories_listings", ["listing_id", "category_id"], name: "index_categories_listings_on_listing_id_and_category_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
     t.datetime "created_at",   null: false
@@ -67,11 +59,12 @@ ActiveRecord::Schema.define(version: 20160310133741) do
     t.string   "brand"
     t.string   "model"
     t.string   "case_type"
+    t.string   "location"
     t.integer  "user_id"
-    t.integer  "category_id"
     t.string   "status",      default: "active"
     t.boolean  "featured",    default: false
     t.integer  "location_id"
+    t.integer  "category_id"
   end
 
   add_index "listings", ["category_id"], name: "index_listings_on_category_id", using: :btree

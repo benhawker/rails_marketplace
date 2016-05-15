@@ -1,40 +1,35 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/benhawker/Desktop/rails_marketplace/spec/models/feedback_spec.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/controllers/users_controller_spec.rb": [
         1,
         null,
         1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         2,
-        2,
-        2,
-        null,
-        2,
-        2,
-        2,
-        null,
-        2,
-        2,
         null,
         null,
+        1,
+        3,
+        null,
+        1,
+        0,
         null,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+        1,
+        0,
+        0,
+        0,
         null,
         null,
         null,
@@ -42,7 +37,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/rails_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/rails_helper.rb": [
         1,
         1,
         1,
@@ -81,11 +76,11 @@
         null,
         null,
         1,
-        8,
+        2,
         null,
         null,
         1,
-        8,
+        2,
         null,
         null,
         null,
@@ -96,14 +91,14 @@
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/environment.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/application.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/application.rb": [
         1,
         null,
         1,
@@ -140,12 +135,12 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/boot.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/environments/test.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/environments/test.rb": [
         1,
         null,
         null,
@@ -189,7 +184,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/assets.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -202,7 +197,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/backtrace_silencers.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -211,12 +206,12 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/cookies_serializer.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/devise.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -480,13 +475,13 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/filter_parameter_logging.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/inflections.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -504,7 +499,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/mailboxer.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/mailboxer.rb": [
         1,
         null,
         null,
@@ -527,13 +522,13 @@
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/mime_types.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/rolify.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/rolify.rb": [
         null,
         null,
         null,
@@ -542,12 +537,12 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/session_store.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/simple_form.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/simple_form.rb": [
         null,
         1,
         null,
@@ -714,7 +709,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/initializers/wrap_parameters.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -730,7 +725,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/categories.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/categories.rb": [
         1,
         1,
         1,
@@ -745,7 +740,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/feedbacks.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/feedbacks.rb": [
         1,
         1,
         1,
@@ -765,7 +760,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/inquiries.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/inquiries.rb": [
         1,
         1,
         1,
@@ -775,7 +770,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/listings.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/listings.rb": [
         1,
         1,
         null,
@@ -821,7 +816,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/locations.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/locations.rb": [
         1,
         1,
         null,
@@ -829,7 +824,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/messages.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/messages.rb": [
         1,
         1,
         null,
@@ -837,25 +832,8 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/offers.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/offers.rb": [
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/payments.rb": [
-        1,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/photos.rb": [
         1,
         1,
         1,
@@ -864,7 +842,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/transactions.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/payments.rb": [
         1,
         1,
         null,
@@ -872,7 +850,24 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/users.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/photos.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/transactions.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/users.rb": [
         1,
         null,
         1,
@@ -906,7 +901,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/factories/watches.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/factories/watches.rb": [
         1,
         1,
         null,
@@ -915,7 +910,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/config/routes.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/config/routes.rb": [
         1,
         null,
         1,
@@ -964,7 +959,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/models/user.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/models/user.rb": [
         1,
         null,
         1,
@@ -1018,7 +1013,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/controllers/pages_controller.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/controllers/pages_controller.rb": [
         1,
         null,
         1,
@@ -1032,7 +1027,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/controllers/application_controller.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -1059,7 +1054,7 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/application_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/application_helper.rb": [
         1,
         1,
         0,
@@ -1070,44 +1065,44 @@
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/errors_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/errors_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/feedbacks_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/feedbacks_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/home_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/home_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/inquiries_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/inquiries_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/listings_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/listings_helper.rb": [
         1,
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/messages_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/messages_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/offers_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/offers_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/pages_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/pages_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/helpers/users_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/spec/support/helpers/common_steps_helper.rb": [
+      "/Users/Ls/code/clones/rails_marketplace/spec/support/helpers/common_steps_helper.rb": [
         1,
         null,
         1,
@@ -1207,104 +1202,42 @@
         0,
         0,
         null,
-        null,
-        null,
-        null
-      ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/models/feedback.rb": [
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
         null,
         null,
         null
       ],
-      "/Users/benhawker/Desktop/rails_marketplace/app/models/listing.rb": [
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+      "/Users/Ls/code/clones/rails_marketplace/app/controllers/users_controller.rb": [
         1,
         1,
         null,
         null,
         1,
+        0,
+        0,
+        0,
         null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
+        0,
         null,
         null,
         null,
         1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
+        0,
         null,
         null,
         1,
-        1,
         null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
+        0,
         null,
         null,
         null,
         null,
         1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
         0,
         null,
         null,
@@ -1318,12 +1251,15 @@
         null,
         null,
         1,
+        null,
+        1,
         0,
+        null,
         null,
         null,
         null
       ]
     },
-    "timestamp": 1457618861
+    "timestamp": 1463318244
   }
 }
