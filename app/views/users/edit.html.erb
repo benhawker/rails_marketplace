@@ -11,7 +11,7 @@
 	  <%= f.text_field :street_address, placeholder: "Street" %>
 	  <%= f.text_field :city, placeholder: "City" %>
 	  <%= f.text_field :postal_code, placeholder: "Postal Code" %>
-		<%= country_select("user", "country", { priority_countries: ["GB", "FR"], selected: @user.country }, { class: 'form-control', data: { attribute: "value" } }) %>
+		<%= country_select("user", "country", { priority_countries: ["GB", "FR"], selected: "GB" }, { class: 'form-control', data: { attribute: "value" } }) %>
 	  <%= f.file_field :avatar %>
 	  <%= f.button :submit %>
 	<% end %>

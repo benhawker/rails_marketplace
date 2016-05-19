@@ -18,5 +18,6 @@
 	<% end %>
 
 	<p><%= link_to "View #{@user.email}'s Feedback", user_feedbacks_path(@user) %></p>
+	<p><%= link_to "Follow #{@user.email}", new_user_followed_user_path(@user) %></p>	
 </section>
 

@@ -9,8 +9,7 @@
           <% recipient = User.find(inquiry.sender_id) %>
         <% end %>
         <div>
-          <%= link_to "Messages with #{recipient.email} about #{inquiry.try(:listing).try(:title)}", inquiry_messages_path(inquiry)%>
-          Last message sent: <%= inquiry.messages.last.message_time %>
+          <%= link_to "Messages with #{recipient.email} about #{inquiry.try(:listing).try(:title)}",   inquiry_messages_path(inquiry)%>
         </div>
       <% end %>
     <% end %>

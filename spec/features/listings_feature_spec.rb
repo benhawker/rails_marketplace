@@ -27,7 +27,6 @@ feature 'listings' do
         fill_in 'Title', with: '1959 Les Paul'
         fill_in 'Subtitle', with: "Subtitle"
         fill_in "Price", with: '100'
-        fill_in "Condition", with: 'Good'
         fill_in "Location", with: 'London'
         attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
         click_button 'Create Listing'
