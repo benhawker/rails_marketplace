@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-   resources :users do
+  resources :users do
   	get :watchlist
     get :offers
-    resources :followers
-    resources :followed_users
   end
 
   resources :inquiries do

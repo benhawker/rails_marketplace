@@ -10,36 +10,11 @@ class User < ActiveRecord::Base
   has_many :offers, dependent: :destroy
   belongs_to :location, :dependent => :destroy
 
-  has_many :follower_relationships
-  has_many :followers, :through => :follower_relationships, :foreign_key => "user_id"
-  has_many :inverse_follower_relationships, :class_name => "FollowerRelationship", :foreign_key => "follower_id"
-  has_many :followed_users, :through => :inverse_follower_relationships, :source => "user"
-
-  #New proposed solution to Feedback relationship
-  # has_many :authored_feedbacks, :class_name => "Feedback", :foreign_key => "author_id", :dependent => :destroy
-  # has_many :received_feedbacks, -> { order("id DESC")}, :class_name => "Feedback", :foreign_key => "recipient_id", :dependent => :destroy
-  # has_many :received_positive_feedbacks, -> { where(rating: true).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
-  # has_many :received_negative_feedbacks, -> { where(rating: false).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
-
-  # Feedbacks given - these associations to be removed.
-  has_many :given_feedbacks_as_seller,
-    -> { where(direction: 'seller_to_buyer') },
-    class_name: 'Feedback',
-    foreign_key: :seller_id
-  has_many :given_feedbacks_as_buyer,
-      -> { where(direction: 'buyer_to_seller') },
-    class_name: 'Feedback',
-    foreign_key: :buyer_id
-
-  # Feedbacks receieved
-  has_many :received_feedbacks_as_seller,
-    -> { where(direction: 'seller_to_buyer') },
-    class_name: 'Feedback',
-    foreign_key: :seller_id
-  has_many :received_feedbacks_as_buyer,
-    -> { where(direction: 'buyer_to_seller') },
-    class_name: 'Feedback',
-    foreign_key: :buyer_id
+  #New implemented solution to Feedback relationship
+  has_many :authored_feedbacks, :class_name => "Feedback", :foreign_key => "author_id", :dependent => :destroy
+  has_many :received_feedbacks, -> { order("id DESC")}, :class_name => "Feedback", :foreign_key => "recipient_id", :dependent => :destroy
+  has_many :received_positive_feedbacks, -> { where(rating: true).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
+  has_many :received_negative_feedbacks, -> { where(rating: false).order("id DESC") }, :class_name => "Feedback", :foreign_key => "recipient_id"
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -68,15 +43,6 @@ class User < ActiveRecord::Base
     Feedback.positive.for_user(self)
   end
   
-
-  def follows?(user)
-    followed_users_by_id.include?(user.id)
-  end
-
-  def followed_people_by_id
-    @followed_users_by_id ||= followed_users.group_by(&:id)
-  end
-
   # after_create :send_welcome_mail
   
   # def send_welcome_mail

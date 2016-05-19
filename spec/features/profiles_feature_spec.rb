@@ -27,7 +27,7 @@ feature "User profiles" do
       click_button "submit"
       expect(page).to have_content "Profile for ben@test.com"
       expect(page).to have_content "London"
-      expect(page).to have_content "UK"
+      expect(page).to have_content "GB"
     end
   end
 

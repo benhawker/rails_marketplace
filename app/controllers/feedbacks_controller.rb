@@ -11,20 +11,20 @@ class FeedbacksController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @author = current_user
     @listing = Listing.find(params[:listing_id])
-    @seller = @listing.user
+    @recipient = @listing.user
     @feedback = Feedback.new
     
     @feedback_presenter = FeedbackPresenter.new(@listing)
   end
 
   def create
-    @user = current_user
+    @author = current_user
     @listing = Listing.find(params[:listing_id])
-    @seller = @listing.user
+    @recipient = @listing.user
 
-    @feedback = @user.given_feedbacks_as_buyer.new(listing_id: @listing.id, seller_id: @listing.user.try(:id), rating: params[:feedback][:rating], comment: params[:feedback][:comment])
+    @feedback = @author.authored_feedbacks.build(listing_id: @listing.id, author_id: @author.id, recipient_id: @recipient.id, rating: params[:feedback][:rating], comment: params[:feedback][:comment])
     if @feedback.save
       flash[:notices] = ["Feedback successfully submitted"]
       redirect_to user_feedbacks_path(@user)
@@ -36,7 +36,8 @@ class FeedbacksController < ApplicationController
 	private
 
   def feedback_params
-    params.require(:feedback).permit(:rating, :comment)
+    params.require(:feedback).permit!
+    # params.require(:feedback).permit(:rating, :comment)
   end
 
   # def can_only_post_feedback_once
