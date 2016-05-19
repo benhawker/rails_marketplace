@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
-  # before_filter :authenticate_user!, :only [:edit, :update]
 
   def index
     @users = User.all
@@ -16,10 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-
     @user = User.find(params[:id])
-    # authorize! :read, @user, :message => "You cannot edit another user's profile"
-    # # authorize! :all, @user, :message => "You cannot edit another user's profile"
   end
 
   def update
