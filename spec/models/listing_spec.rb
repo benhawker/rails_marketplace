@@ -20,7 +20,7 @@ RSpec.describe Listing, type: :model do
   it { should validate_presence_of(:title).with_message("Please add a title.") }
   it { should validate_presence_of(:subtitle).with_message("Please add a subtitle.") }
   it { should validate_presence_of(:price).with_message("Please add a price.") }
-  it { should validate_presence_of(:title).with_message("Please select a condition.") }
+  it { should validate_presence_of(:condition).with_message("Please select a condition.") }
 
   let!(:user_one) { FactoryGirl.create(:user) }
   let!(:user_two) { FactoryGirl.create(:user, :bob) }
@@ -43,7 +43,7 @@ RSpec.describe Listing, type: :model do
       user_one.watched_listings << listing
       expect(user_one.watched_listings.count).to eq 1
       expect(listing.watchers.count).to eq 1
-    end 
+    end
 
     it 'counts the correct number of watchers per listing' do
       user_one.watched_listings << listing

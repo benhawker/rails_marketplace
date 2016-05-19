@@ -1,6 +1,6 @@
 class Offer < ActiveRecord::Base
 
-  # before_save :find_duplicate_offer
+  before_save :find_duplicate_offer
   before_save :check_not_listing_owner
   before_save :check_number_of_active_offers_per_user
 
@@ -51,18 +51,18 @@ class Offer < ActiveRecord::Base
   scope :declined, ->{ where(status: 'declined') }
   scope :withdrawn, ->{ where(status: 'withdrawn') }
   scope :lapsed, ->{ where(status: 'lapsed') }
-  
+
 
   def same_offer_info_as(offer)
-    if Offer.where(user_id: offer.user_id, listing_id: offer.listing_id)
-      raise "You already have a live offer on this listintg."
-    end
+    Offer.where(user_id: offer.user_id, listing_id: offer.listing_id)
   end
 
   private
 
   def find_duplicate_offer
-    self.same_offer_info_as(self).where(status: "made").first
+    if same_offer_info_as(self).where(status: "made").first.present?
+      raise "You already have a live offer on this listing."
+    end
   end
 
   def check_not_listing_owner

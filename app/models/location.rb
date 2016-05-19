@@ -8,6 +8,6 @@ class Location < ActiveRecord::Base
 
   def geocoded?
 		self.latitude.present? && self.longitude.present?
-	end 	
+	end
 
 end

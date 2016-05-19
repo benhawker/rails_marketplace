@@ -22,7 +22,6 @@ feature "User profiles" do
     it "can fill in and save their profile information" do
       visit edit_user_path(user)
       fill_in 'user[city]', with: "London"
-      #seldct from country select dropdown
       attach_file 'user[avatar]', 'spec/test.jpg'
       click_button "submit"
       expect(page).to have_content "Profile for ben@test.com"
@@ -44,7 +43,7 @@ feature "User profiles" do
   end
 
   context "accessing other user profiles" do
-    
+
     let!(:user) { FactoryGirl.create(:user) }
     let!(:user_two) { FactoryGirl.create(:user, :bob) }
     before { login_as(user) }

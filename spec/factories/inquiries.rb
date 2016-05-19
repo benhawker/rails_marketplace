@@ -4,5 +4,4 @@ FactoryGirl.define do
   	association :recipient, factory: :user
   	association :listing
   end
-
 end

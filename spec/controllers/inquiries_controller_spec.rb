@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe InquiriesController, type: :controller do
-	
 	let(:user) { FactoryGirl.create(:user) }
   let(:user_two) { FactoryGirl.create(:user, :bill) }
 	let!(:category) { FactoryGirl.create(:category) }
@@ -20,15 +19,6 @@ RSpec.describe InquiriesController, type: :controller do
       get :index
       expect(response).to render_template(:index)
       expect(response.status).to eql(200)
-    end
-  end
-
-  describe "#new" do
-    before(:each){ login_as(user) }  
-
-    xit "assigns a new inquiry as @inquiry" do
-      get :index #as this is dealt with on the index
-      expect(assigns(:inquiry)).to be_a_new(Inquiry)
     end
   end
 end

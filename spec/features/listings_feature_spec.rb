@@ -28,7 +28,6 @@ feature 'listings' do
         fill_in 'Subtitle', with: "Subtitle"
         fill_in "Price", with: '100'
         fill_in "Condition", with: 'Good'
-        fill_in "Location", with: 'London'
         attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
         click_button 'Create Listing'
         expect(page).to have_content '1959 Les Paul'
@@ -42,7 +41,7 @@ feature 'listings' do
         fill_in 'Tags', with: 'Electric, Vintage, Gibson, Les Paul'
         fill_in 'Subtitle', with: "Subtitle"
         fill_in "Price", with: '100'
-        fill_in "Location", with: 'London'
+        fill_in "Condition", with: 'Good'
         attach_file 'listing[photos_attributes][0][image]', 'spec/test.jpg'
         click_button 'Create Listing'
         click_link 'Takamine EN10C'
@@ -55,7 +54,7 @@ feature 'listings' do
 
     context "listing filled out wrong" do
       before { login_as(user) }
-      
+
       it "user does not include a title to their listing" do
         visit '/listings'
         click_link 'Add a listing'
@@ -67,11 +66,6 @@ feature 'listings' do
   end
 
   context 'editing listings' do
-    # before do
-    #   sign_out
-    #   login_as(user)
-    # end
-    
     it 'let a listing owner edit their own listing' do
       login_as(user)
       visit listings_path
@@ -82,7 +76,7 @@ feature 'listings' do
       expect(page).to have_content 'Your listing was successfully updated'
     end
 
-    before do 
+    before do
       sign_out
       login_as(user_two)
     end
@@ -95,7 +89,7 @@ feature 'listings' do
   end
 
   context 'deleting listings' do
-    before do 
+    before do
       sign_out
       login_as(user)
     end
@@ -111,7 +105,7 @@ feature 'listings' do
       expect(page).to have_content 'Your listing was successfully deleted'
     end
 
-    before do 
+    before do
       sign_out
       login_as(user_two)
     end

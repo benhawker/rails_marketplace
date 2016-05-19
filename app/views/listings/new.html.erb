@@ -13,8 +13,8 @@
 	<%= f.input :model, input_html: { placeholder: 'Description' } %>
 	<%= f.label :case_type %>
 	<%= f.select :case_type, ["Original HardCase", "HardCase", "GigBag", "No Case"], { placeholder: 'Description' } %>
-	<%= f.input :location, input_html: { placeholder: 'Description' } %>
-		
+	<%#= f.input :location, input_html: { placeholder: 'Description' } %>
+
 		<%= f.fields_for :photos, html: {multipart: true} do |p| %>
 			<%= p.file_field :image %>
 		<% end %>
@@ -26,4 +26,3 @@
 <% end %>
 
 </section>
-   
