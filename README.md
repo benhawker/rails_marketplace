@@ -47,4 +47,3 @@ select * from users;
 delete from users;
 \q
 ```
->>>>>>> 409f6d2... Updated Readme
